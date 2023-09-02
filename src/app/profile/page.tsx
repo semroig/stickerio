@@ -11,41 +11,30 @@ import {
 export default function Home() {
   return (
     <div>
-      <div>
-        <div clasName="flex items-center">
-          <h1>Profile</h1>
-          <Card className="w-[350px]">
-            <CardHeader>
-              <CardTitle>Create project</CardTitle>
-              <CardDescription>Deploy your new project in one-click.</CardDescription>
-            </CardHeader>
+      <div className="flex flex-row justify-center">
+        <div className="m-8">
+          <p className="font-semibold text-2xl">Mis datos</p>
+          <Card className="mt-3 w-[350px]">
             <CardContent>
-              <p>cosass</p>
+              contentt
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline">Cancel</Button>
-              <Button>Deploy</Button>
+            <CardFooter className="flex justify-end">
+              <Button variant="outline">Editar</Button>
             </CardFooter>
           </Card>
         </div>
-        <div>
-        <h1>Profile</h1>
-          <Card className="w-[350px]">
-            <CardHeader>
-              <CardTitle>Create project</CardTitle>
-              <CardDescription>Deploy your new project in one-click.</CardDescription>
-            </CardHeader>
+        <div className="m-8">
+          <p className="font-semibold text-2xl">Mi dirección</p>
+          <Card className="mt-3 w-[350px]">
             <CardContent>
-              <p>cosass</p>
+              contentt
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline">Cancel</Button>
-              <Button>Deploy</Button>
+            <CardFooter className="flex justify-end">
+              <Button variant="outline">Editar</Button>
             </CardFooter>
           </Card>
         </div>
       </div>
-      
     </div>
   )
 }

@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button"
 
-export default function Home({ params }) {
+export default function Home({ params }: any) {
     const { id } = params;
     return (
-        <main>
+        <div className="container mx-auto">
             <h1>Producto id { id }</h1>
-        <Button>Click me</Button>
-        </main>
+            <Button>Click me</Button>
+        </div>
     )
 }

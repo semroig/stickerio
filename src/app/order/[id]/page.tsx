@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 
-export default function Home({ params }) {
+export default function Home({ params }: any) {
     const { id } = params;
     return (
         <main>

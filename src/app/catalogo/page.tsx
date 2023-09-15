@@ -1,25 +1,27 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import Image from 'next/image';
+import { cache } from 'react';
 
-import { Button } from "@/components/ui/button";
+import Image from 'next/image';
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 
+export const createServerSupabaseClient = cache(() => {
+  const cookieStore = cookies()
+  return createServerComponentClient({ cookies: () => cookieStore })
+})
+
 export default async function Home() {
 
   // Traigo todas las categorias
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerSupabaseClient();
   const { data: categories } = await supabase.from("Category").select();
   const { data: products } = await supabase.from("Product").select();
-
-  console.log(products);
 
   return (
     <div>

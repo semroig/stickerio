@@ -10,6 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Tarjeta from "@/components/custom/tarjeta";
+import Link from 'next/link';
 
 export const createServerSupabaseClient = cache(() => {
   const cookieStore = cookies()
@@ -22,6 +24,10 @@ export default async function Home() {
   const supabase = createServerSupabaseClient();
   const { data: categories } = await supabase.from("Category").select();
   const { data: products } = await supabase.from("Product").select();
+
+  function cosa(){
+    console.log("cosa");
+  }
 
   return (
     <div>
@@ -38,20 +44,11 @@ export default async function Home() {
           <div className="flex flex-wrap">
 
             {products?.map((product) => (
-              <Card className="m-3" key={product.id}>
-                <CardHeader>
-                  <CardTitle>{product.name}</CardTitle>
-                  <CardDescription>Deploy your new one-click.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <Image
-                    src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
-                    width={200}
-                    height={200}
-                    alt="Picture of the author"
-                  />
-                </CardContent>
-              </Card>
+              <div key={product.id}>
+                <Link href="/">
+                  <Tarjeta record={product}></Tarjeta>
+                </Link>
+              </div>
             ))}
           </div>
         </div>

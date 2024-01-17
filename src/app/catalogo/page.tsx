@@ -10,8 +10,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Tarjeta from "@/components/custom/tarjeta";
 import Link from 'next/link';
+import Tarjeta from "@/components/custom/tarjeta";
+import Category from "@/components/custom/category";
 
 export const createServerSupabaseClient = cache(() => {
   const cookieStore = cookies()
@@ -25,10 +26,6 @@ export default async function Home() {
   const { data: categories } = await supabase.from("Category").select();
   const { data: products } = await supabase.from("Product").select();
 
-  function cosa(){
-    console.log("cosa");
-  }
-
   return (
     <div>
       <div className="flex flex-row justify-center px-20 mt-5">
@@ -36,7 +33,9 @@ export default async function Home() {
           <p className="font-semibold text-2xl mb-8">Buscar por Categoría</p>
 
           {categories?.map((category) => (
-            <p className="text-lg my-4" key={category.id}>{category.name}</p>
+            <div key={category.id}>
+              <Category record={category}></Category>
+            </div>
           ))}
 
         </div>
@@ -45,9 +44,7 @@ export default async function Home() {
 
             {products?.map((product) => (
               <div key={product.id}>
-                <Link href="/">
-                  <Tarjeta record={product}></Tarjeta>
-                </Link>
+                <Tarjeta record={product}></Tarjeta>
               </div>
             ))}
           </div>

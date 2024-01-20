@@ -5,7 +5,7 @@ import { cache } from 'react';
 import Tarjeta from "@/components/custom/tarjeta";
 import CategoriesSection from "@/components/custom/categoriesSection";
 
-export const createServerSupabaseClient = cache(() => {
+const createServerSupabaseClient = cache(() => {
   const cookieStore = cookies()
   return createServerComponentClient({ cookies: () => cookieStore })
 })

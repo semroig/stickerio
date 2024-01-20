@@ -2,7 +2,7 @@
 
 import { Checkbox } from "@/components/ui/checkbox"
 
-export default function Category({ record, addFilter, removeFilter }) {
+export default function Category({ record, addFilter, removeFilter }: any) {
     // Docu de atributos que acepta el checkbox:
     // https://www.radix-ui.com/primitives/docs/components/checkbox
 

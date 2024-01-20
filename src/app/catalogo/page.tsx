@@ -10,7 +10,7 @@ const createServerSupabaseClient = cache(() => {
   return createServerComponentClient({ cookies: () => cookieStore })
 })
 
-export default async function Home({ searchParams }) {
+export default async function Home({ searchParams }: any) {
   // Inicializo cliente de supabase
   const supabase = createServerSupabaseClient();
 

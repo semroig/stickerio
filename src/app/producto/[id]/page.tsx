@@ -1,5 +1,5 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cache } from 'react';
 
 import { Button } from "@/components/ui/button"
@@ -12,7 +12,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export const createServerSupabaseClient = cache(() => {
+const createServerSupabaseClient = cache(() => {
     const cookieStore = cookies()
     return createServerComponentClient({ cookies: () => cookieStore })
 })

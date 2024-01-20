@@ -12,19 +12,40 @@ import {
 } from "@/components/ui/card";
 import Link from 'next/link';
 import Tarjeta from "@/components/custom/tarjeta";
-import Category from "@/components/custom/category";
+import CategoriesSection from "@/components/custom/categoriesSection";
 
 export const createServerSupabaseClient = cache(() => {
   const cookieStore = cookies()
   return createServerComponentClient({ cookies: () => cookieStore })
 })
 
-export default async function Home() {
+export default async function Home({ searchParams }) {
+  // Inicializo cliente de supabase
+  const supabase = createServerSupabaseClient();
 
   // Traigo todas las categorias
-  const supabase = createServerSupabaseClient();
   const { data: categories } = await supabase.from("Category").select();
-  const { data: products } = await supabase.from("Product").select();
+
+  console.log('searchParams');
+  console.log(searchParams);
+
+  let resp;
+  if (searchParams.category){
+    console.log('entre en if');
+
+    let filteringCategories = searchParams.category.split('-');
+    resp = await supabase
+    .from("Product")
+    .select("*")
+    .in('category_id', filteringCategories);
+  }
+  else {
+    resp = await supabase
+    .from("Product")
+    .select("*");
+  }
+
+  console.log(resp);
 
   return (
     <div>
@@ -32,17 +53,13 @@ export default async function Home() {
         <div className="m-6 basis-1/4">
           <p className="font-semibold text-2xl mb-8">Buscar por Categoría</p>
 
-          {categories?.map((category) => (
-            <div key={category.id}>
-              <Category record={category}></Category>
-            </div>
-          ))}
+          <CategoriesSection records={categories}></CategoriesSection>
 
         </div>
         <div className="m-6 basis-2/3">
           <div className="flex flex-wrap">
 
-            {products?.map((product) => (
+            {resp.data?.map((product) => (
               <div key={product.id}>
                 <Tarjeta record={product}></Tarjeta>
               </div>

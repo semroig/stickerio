@@ -1,20 +1,10 @@
 'use client'
 
-import Image from 'next/image';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Link from 'next/link';
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox"
 
 export default function Category({ record }) {
-    const ref = useRef(null);
-    const [isActive, setIsActive] = useState(false);
+    const [checked, setChecked] = useState('indeterminate');
 
     // Docu de atributos que acepta el checkbox:
     // https://www.radix-ui.com/primitives/docs/components/checkbox
@@ -23,6 +13,10 @@ export default function Category({ record }) {
         <div className="flex items-center space-x-2">
             <Checkbox
                 id="terms"
+                onCheckedChange={(e) => {
+                    setChecked(e);
+                    console.log(checked);
+                }}
             />
             <label
                 htmlFor="terms"

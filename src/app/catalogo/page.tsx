@@ -1,5 +1,5 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cache } from 'react';
 
 import Tarjeta from "@/components/custom/tarjeta";

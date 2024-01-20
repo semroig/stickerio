@@ -7,7 +7,7 @@ import Category from "@/components/custom/category";
 
 export default function CategoriesSection({ records }: any) {
     const router = useRouter();
-    const [filteringCategoryIds, setFilteringCategoryIds] = useState([]);
+    const [filteringCategoryIds, setFilteringCategoryIds] = useState<any[]>([]);
 
     // Funcion para agregar id de catalogo a lista de filters y consumir ruta con params
     async function addFilteringCategoryId(id : any) {

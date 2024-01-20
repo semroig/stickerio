@@ -2,15 +2,6 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { cache } from 'react';
 
-import Image from 'next/image';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import Link from 'next/link';
 import Tarjeta from "@/components/custom/tarjeta";
 import CategoriesSection from "@/components/custom/categoriesSection";
 
@@ -26,13 +17,9 @@ export default async function Home({ searchParams }) {
   // Traigo todas las categorias
   const { data: categories } = await supabase.from("Category").select();
 
-  console.log('searchParams');
-  console.log(searchParams);
-
+  // Traigo los prods segun search params de categories seleccionados
   let resp;
   if (searchParams.category){
-    console.log('entre en if');
-
     let filteringCategories = searchParams.category.split('-');
     resp = await supabase
     .from("Product")
@@ -44,8 +31,6 @@ export default async function Home({ searchParams }) {
     .from("Product")
     .select("*");
   }
-
-  console.log(resp);
 
   return (
     <div>

@@ -1,11 +1,8 @@
 'use client'
 
-import { useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox"
 
-export default function Category({ record }) {
-    const [checked, setChecked] = useState('indeterminate');
-
+export default function Category({ record, addFilter, removeFilter }) {
     // Docu de atributos que acepta el checkbox:
     // https://www.radix-ui.com/primitives/docs/components/checkbox
 
@@ -13,10 +10,7 @@ export default function Category({ record }) {
         <div className="flex items-center space-x-2">
             <Checkbox
                 id="terms"
-                onCheckedChange={(e) => {
-                    setChecked(e);
-                    console.log(checked);
-                }}
+                onCheckedChange={(e) => e ? addFilter(record.id) : removeFilter(record.id)}
             />
             <label
                 htmlFor="terms"

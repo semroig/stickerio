@@ -1,24 +1,37 @@
+'use client'
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 import Category from "@/components/custom/category";
 
 export default function CategoriesSection({ records }) {
-    // // Busco prods filtrados por id de categoria cliqueada
-    // async function retrieveFilteredProds(event) {
-    //     const { data: registros } = await supabase
-    //         .from("Product")
-    //         .select("*")
-    //         .eq('category_id', record.id);
+    const router = useRouter();
+    const [filteringCategoryIds, setFilteringCategoryIds] = useState([]);
 
-    //     console.table(registros);
+    // Funcion para agregar id de catalogo a lista de filters y consumir ruta con params
+    async function addFilteringCategoryId(id) {
+        const newArray = [...filteringCategoryIds, id];
+        setFilteringCategoryIds(newArray);
+        router.push('/catalogo?category=' + newArray.join('-'));
+    }
 
-    //     event.currentTarget.className.add('font-medium');
-    //     setIsActive(!isActive);
-    // }
+    // Funcion para sacar id de catalogo a lista de filters y consumir ruta con params
+    async function removeFilteringCategoryId(id) {
+        const newArray = filteringCategoryIds.filter((cat) => cat !== id);
+        setFilteringCategoryIds(newArray)
+        router.push('/catalogo?category=' + newArray.join('-'));
+    }
 
     return (
         <div>
             {records?.map((category) => (
                 <div key={category.id}>
-                    <Category record={category}></Category>
+                    <Category
+                        record={category}
+                        addFilter={addFilteringCategoryId}
+                        removeFilter={removeFilteringCategoryId}
+                    ></Category>
                 </div>
             ))}
         </div>

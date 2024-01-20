@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import Link from 'next/link';
 
-export default function Tarjeta({ record }) {
+export default function Tarjeta({ record }: any) {
     return (
         <Card className="m-3">
             <Link href={`/producto/${record.id}`}>

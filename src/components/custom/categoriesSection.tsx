@@ -10,14 +10,14 @@ export default function CategoriesSection({ records }: any) {
     const [filteringCategoryIds, setFilteringCategoryIds] = useState([]);
 
     // Funcion para agregar id de catalogo a lista de filters y consumir ruta con params
-    async function addFilteringCategoryId(id) {
+    async function addFilteringCategoryId(id : any) {
         const newArray = [...filteringCategoryIds, id];
         setFilteringCategoryIds(newArray);
         router.push('/catalogo?category=' + newArray.join('-'));
     }
 
     // Funcion para sacar id de catalogo a lista de filters y consumir ruta con params
-    async function removeFilteringCategoryId(id) {
+    async function removeFilteringCategoryId(id : any) {
         const newArray = filteringCategoryIds.filter((cat) => cat !== id);
         setFilteringCategoryIds(newArray)
         router.push('/catalogo?category=' + newArray.join('-'));
@@ -25,7 +25,7 @@ export default function CategoriesSection({ records }: any) {
 
     return (
         <div>
-            {records?.map((category) => (
+            {records?.map((category : any) => (
                 <div key={category.id}>
                     <Category
                         record={category}

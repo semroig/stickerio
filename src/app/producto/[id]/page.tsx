@@ -43,9 +43,9 @@ export default async function Home({ params }: any) {
             </div>
             <div className="m-6 basis-2/5">
 
-                <p className="font-semibold text-3xl">{ products[0].name }</p>
+                <p className="font-semibold text-3xl">{ products![0].name }</p>
                 <p className="text-lg mt-3">Descripción bla bla</p>
-                <p className="font-semibold text-5xl my-10">$ { products[0].price }</p>
+                <p className="font-semibold text-5xl my-10">$ { products![0].price }</p>
 
                 <div className="flex flex-row justify-start mt-8">
                     <div className="basis-1/2">

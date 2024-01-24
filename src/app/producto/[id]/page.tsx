@@ -1,8 +1,9 @@
+import 'server-only'
+
 import { cookies } from "next/headers";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cache } from 'react';
 
-import { Button } from "@/components/ui/button"
 import Image from 'next/image';
 import {
   Card,
@@ -12,13 +13,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import ProductInputSection from "@/components/custom/productInputSection";
+
 const createServerSupabaseClient = cache(() => {
     const cookieStore = cookies()
     return createServerComponentClient({ cookies: () => cookieStore })
 })
 
 export default async function Home({ params }: any) {
-
     // Obtengo id de prod y busco registro
     const { id } = params;
     const supabase = createServerSupabaseClient();
@@ -47,19 +49,7 @@ export default async function Home({ params }: any) {
                 <p className="text-lg mt-3">Descripción bla bla</p>
                 <p className="font-semibold text-5xl my-10">$ { products![0].price }</p>
 
-                <div className="flex flex-row justify-start mt-8">
-                    <div className="basis-1/2">
-                        <p className="text-lg my-4">Tamaño:</p>
-                        <Button>Click me</Button>
-                    </div>
-                    <div className="basis-1/2">
-                        <p className="text-lg my-4">Cantidad:</p>
-                        <Button>Click me</Button>
-                    </div>
-                </div>
-                
-                <Button className="mt-8">Click me</Button>
-
+                <ProductInputSection></ProductInputSection>
             </div>
         </div>
     )

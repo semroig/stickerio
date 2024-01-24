@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { Button } from "@/components/ui/button";
 import {
   Card,

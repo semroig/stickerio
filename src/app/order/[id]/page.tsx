@@ -1,3 +1,5 @@
+import 'server-only'
+
 import { Button } from "@/components/ui/button"
 
 export default function Home({ params }: any) {

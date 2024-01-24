@@ -15,9 +15,9 @@ export default function TarjetaCarrito({ record }: any) {
                         height={100}
                         alt="Picture of the author"
                     />
-                    <p className="basis-2/5 text-lg">Product name bla bla</p>
-                    <p className="basis-1/5 text-lg">Quantity</p>
-                    <p className="basis-1/5 text-lg">$ Price</p>
+                    <p className="basis-2/5 text-lg">{record.Product.name}</p>
+                    <p className="basis-1/5 text-lg">{record.quantity}</p>
+                    <p className="basis-1/5 text-lg">{record.Product.price}</p>
                     <p className="basis-1/5 text-lg">Delete</p>
                 </div>
             </CardContent>

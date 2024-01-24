@@ -1,5 +1,9 @@
 import 'server-only'
 
+import { cookies } from "next/headers";
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cache } from 'react';
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,13 +13,33 @@ import {
 
 import TarjetaCarrito from "@/components/custom/tarjetaCarrito";
 
-export default function Home() {
+const createServerSupabaseClient = cache(() => {
+  const cookieStore = cookies()
+  return createServerComponentClient({ cookies: () => cookieStore })
+})
+
+export default async function Home() {
+  // Inicializo cliente de supabase
+  const supabase = createServerSupabaseClient();
+
+  // Traigo todo los cart items
+  const { data: items } = await supabase.from("CartItem")
+    .select(`*, Product(*)`);
+  
+  console.log('items');
+  console.log(items);
+
   return (
     <div className="flex flex-row justify-center px-20 mt-5">
       <div className="m-6 basis-2/3">
         <p className="font-semibold text-2xl">Carrito</p>
-        <TarjetaCarrito></TarjetaCarrito>
-        <TarjetaCarrito></TarjetaCarrito>
+
+          {items?.map((item : any) => (
+            <div key={item.id}>
+              <TarjetaCarrito record={item}></TarjetaCarrito>
+            </div>
+          ))}
+
       </div>
       <div className="m-6 basis-1/3">
         <p className="font-semibold text-2xl">Resumen de compra</p>

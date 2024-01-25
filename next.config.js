@@ -1,9 +1,5 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  images: {
-    domains: ["t3.ftcdn.net"],
-  },
-};
+const nextConfig = {};
 
 module.exports = {
   async redirects() {
@@ -14,5 +10,8 @@ module.exports = {
         permanent: true,
       },
     ];
+  },
+  images: {
+    domains: ["t3.ftcdn.net", "tailwindui.com"],
   },
 };

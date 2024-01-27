@@ -1,33 +1,9 @@
-'use client'
-
-import { useState } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
-
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
 export default function LogInForm() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const router = useRouter();
-
-    const supabase = createClientComponentClient();
-
-    const handleSignIn = async () => {
-        await supabase.auth.signInWithPassword({
-            email,
-            password
-        })
-        router.refresh();
-
-        // Refresh data states
-        setEmail('');
-        setPassword('');
-    }
-
     return (
-        <form className="space-y-6">
+        <form className="space-y-6" action="/auth/login" method="POST">
             <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
             <div className="mt-2">
@@ -37,7 +13,6 @@ export default function LogInForm() {
                     type="email"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     required
-                    onChange={(e) => setEmail(e.target.value)}
                 ></Input>
             </div>
             </div>
@@ -57,7 +32,6 @@ export default function LogInForm() {
                     autoComplete="current-password"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     required
-                    onChange={(e) => setPassword(e.target.value)}
                 ></Input>
             </div>
             </div>
@@ -65,7 +39,6 @@ export default function LogInForm() {
             <div>
             <Button
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                onClick={handleSignIn}
             >
                 Sign in
             </Button>

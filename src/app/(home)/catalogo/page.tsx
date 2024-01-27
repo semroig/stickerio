@@ -1,18 +1,23 @@
 import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cache } from 'react';
+import { createServerClient } from '@supabase/ssr'
 
 import Tarjeta from "@/components/custom/tarjeta";
 import CategoriesSection from "@/components/custom/categoriesSection";
 
-const createServerSupabaseClient = cache(() => {
-  const cookieStore = cookies()
-  return createServerComponentClient({ cookies: () => cookieStore })
-})
-
 export default async function Home({ searchParams }: any) {
   // Inicializo cliente de supabase
-  const supabase = createServerSupabaseClient();
+  const cookieStore = cookies()
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+      },
+    }
+  )
 
   // Traigo todas las categorias
   const { data: categories } = await supabase.from("Category").select();

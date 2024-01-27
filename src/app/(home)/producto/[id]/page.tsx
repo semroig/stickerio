@@ -1,6 +1,5 @@
 import { cookies } from "next/headers";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cache } from 'react';
+import { createServerClient } from '@supabase/ssr'
 
 import Image from 'next/image';
 import {
@@ -13,15 +12,21 @@ import {
 
 import ProductInputSection from "@/components/custom/productInputSection";
 
-const createServerSupabaseClient = cache(() => {
-    const cookieStore = cookies()
-    return createServerComponentClient({ cookies: () => cookieStore })
-})
-
 export default async function Home({ params }: any) {
     // Obtengo id de prod y busco registro
     const { id } = params;
-    const supabase = createServerSupabaseClient();
+    const cookieStore = cookies()
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get(name: string) {
+            return cookieStore.get(name)?.value
+          },
+        },
+      }
+    )    
     const { data: products } = await supabase
         .from("Product").select().eq('id', id);
 

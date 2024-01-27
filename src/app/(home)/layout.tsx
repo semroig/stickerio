@@ -32,6 +32,7 @@ export default function RootLayout({
                   <Link href="/catalogo" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Catalogo</Link>
                   <Link href="/profile" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Perfil</Link>
                   <Link href="/carrito" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Carrito</Link>
+                  <Link href="/auth/logout" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Salir</Link>
                 </div>
               </div>
             </div>

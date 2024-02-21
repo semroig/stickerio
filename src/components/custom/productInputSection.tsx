@@ -36,7 +36,7 @@ export default function ProductInputSection({ records }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
 
-    // No permitir numeros negativos en input de cantidad
+    // TO DO: No permitir numeros negativos en input de cantidad
 
     return (
         <div>

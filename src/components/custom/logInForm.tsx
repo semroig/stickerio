@@ -1,6 +1,8 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
+import { login } from '../../app/(auth)/login/actions'
+
 export default function LogInForm() {
     return (
         <form className="space-y-6" action="/auth/login" method="POST">
@@ -38,6 +40,7 @@ export default function LogInForm() {
 
             <div>
             <Button
+                formAction={login}
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
                 Sign in

@@ -31,29 +31,27 @@ export default async function Home({ params }: any) {
         .from("Product").select().eq('id', id);
 
     return (
-        <div className="flex flex-row justify-center px-20 mt-8">
-            <div className="m-6 basis-2/5">
-
-                <Card className="m-3" >
-                    <CardContent>
-                        <Image
-                            src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
-                            width={450}
-                            height={450}
-                            alt="Picture of the author"
-                        />
-                    </CardContent>
-                </Card>
-
-            </div>
-            <div className="m-6 basis-2/5">
-
-                <p className="font-semibold text-3xl">{ products![0].name }</p>
-                <p className="text-lg mt-3">Descripción bla bla</p>
-                <p className="font-semibold text-5xl my-10">$ { products![0].price }</p>
-
-                <ProductInputSection></ProductInputSection>
-            </div>
+      <div className="flex flex-row justify-center px-20 mt-8">
+        <div className="m-6 basis-2/5">
+          <Card className="m-3" >
+              <CardContent>
+                  <Image
+                      src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
+                      width={450}
+                      height={450}
+                      alt="Picture of the author"
+                  />
+              </CardContent>
+          </Card>
         </div>
+        <div className="m-6 basis-2/5">
+
+          <p className="font-semibold text-3xl">{ products![0].name }</p>
+          <p className="text-lg mt-3">Descripción bla bla</p>
+          <p className="font-semibold text-5xl my-10">$ { products![0].price }</p>
+
+          <ProductInputSection></ProductInputSection>
+        </div>
+      </div>
     )
 }

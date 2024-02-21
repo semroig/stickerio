@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from "react";
+import { useFormState, useFormStatus } from "react-dom";
+import addItem from "@/app/actions";
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -17,7 +19,7 @@ import {
 import { Check, ChevronsUpDown } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const frameworks = [
+const sizes = [
     {
       value: "chico",
       label: "4x4 - $300",
@@ -32,14 +34,33 @@ const frameworks = [
     }
 ]
 
+const initialState = {
+    message: "",
+};
+
+function SubmitButton() {
+    const { pending } = useFormStatus();
+  
+    return (
+        <Button 
+            className="mt-8"
+            type="submit"
+            aria-disabled={pending}
+        >
+            Agregar al carrito
+        </Button>
+    );
+}
+
 export default function ProductInputSection({ records }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
+    const [state, formAction] = useFormState(addItem, initialState);
 
     // TO DO: No permitir numeros negativos en input de cantidad
 
     return (
-        <div>
+        <form action={formAction}>
             <div className="flex flex-row justify-start mt-8">
                 <div className="basis-1/2">
                     <p className="text-lg my-4">Tamaño:</p>
@@ -52,7 +73,7 @@ export default function ProductInputSection({ records }: any) {
                             className="w-[200px] justify-between"
                             >
                             {value
-                                ? frameworks.find((framework) => framework.value === value)?.label
+                                ? sizes.find((size) => size.value === value)?.label
                                 : "Elegir tamaño..."}
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
@@ -60,10 +81,10 @@ export default function ProductInputSection({ records }: any) {
                         <PopoverContent className="w-[200px] p-0">
                             <Command>
                                 <CommandGroup>
-                                    {frameworks.map((framework) => (
+                                    {sizes.map((size) => (
                                     <CommandItem
-                                        key={framework.value}
-                                        value={framework.value}
+                                        key={size.value}
+                                        value={size.value}
                                         onSelect={(currentValue) => {
                                         setValue(currentValue === value ? "" : currentValue)
                                         setOpen(false)
@@ -72,10 +93,10 @@ export default function ProductInputSection({ records }: any) {
                                         <Check
                                             className={cn(
                                                 "mr-2 h-4 w-4",
-                                                value === framework.value ? "opacity-100" : "opacity-0"
+                                                value === size.value ? "opacity-100" : "opacity-0"
                                             )}
                                         />
-                                        {framework.label}
+                                        {size.label}
                                     </CommandItem>
                                     ))}
                                 </CommandGroup>
@@ -85,12 +106,16 @@ export default function ProductInputSection({ records }: any) {
                 </div>
                 <div className="basis-1/3">
                     <p className="text-lg my-4">Cantidad:</p>
-                    <Input type="number"></Input>
+                    <Input type="number" name="cantidad" required></Input>
+                    <input type="hidden" name="size" value={value} />
                 </div>
             </div>
 
-            <Button className="mt-8">Agregar al carrito</Button>
+            <SubmitButton />
 
-        </div>
+            <p aria-live="polite" className="sr-only" role="status">
+                {state?.message}
+            </p>
+        </form>
     )
 }

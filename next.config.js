@@ -14,7 +14,4 @@ module.exports = {
   images: {
     domains: ["t3.ftcdn.net", "tailwindui.com"],
   },
-  experimental: {
-    serverActions: true,
-  },
 };

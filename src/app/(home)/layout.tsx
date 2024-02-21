@@ -9,27 +9,27 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
 
-  // Inicializo cliente de supabase
-  const cookieStore = cookies()
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value
-        },
-      },
-    }
-  )
+  // // Inicializo cliente de supabase
+  // const cookieStore = cookies()
+  // const supabase = createServerClient(
+  //   process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  //   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  //   {
+  //     cookies: {
+  //       get(name: string) {
+  //         return cookieStore.get(name)?.value
+  //       },
+  //     },
+  //   }
+  // )
 
-  // Traigo todos los cart items
-  const { data: items, error } = await supabase
-    .from("CartItem")
-    .select(`*, Product(*)`);
+  // // Traigo todos los cart items
+  // const { data: items, error } = await supabase
+  //   .from("CartItem")
+  //   .select(`*, Product(*)`);
 
-  if (items) console.table(items);
-  if (error) console.error(error);
+  // if (items) console.table(items);
+  // if (error) console.error(error);
 
   return (
     <>
@@ -66,7 +66,7 @@ export default async function RootLayout({
                 href="/carrito"
                 className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
               >
-                Carrito: {items.length}
+                {/* Carrito: {items.length} */}
               </Link>
               
               <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">

@@ -1,10 +1,36 @@
+import { cookies } from "next/headers";
+import { createServerClient } from '@supabase/ssr'
+
 import Link from 'next/link'
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+
+  // Inicializo cliente de supabase
+  const cookieStore = cookies()
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+      },
+    }
+  )
+
+  // Traigo todos los cart items
+  const { data: items, error } = await supabase
+    .from("CartItem")
+    .select(`*, Product(*)`);
+
+  if (items) console.table(items);
+  if (error) console.error(error);
+
   return (
     <>
       <nav className="bg-gray-800">
@@ -31,12 +57,18 @@ export default function RootLayout({
                   <Link href="/" className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium">Home</Link>
                   <Link href="/catalogo" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Catalogo</Link>
                   <Link href="/profile" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Perfil</Link>
-                  <Link href="/carrito" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Carrito</Link>
                   <Link href="/auth/logout" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Salir</Link>
                 </div>
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+              <Link
+                href="/carrito"
+                className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >
+                Carrito: {items.length}
+              </Link>
+              
               <button type="button" className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span className="absolute -inset-1.5"></span>
                 <span className="sr-only">View notifications</span>

@@ -25,7 +25,7 @@ export default async function Home() {
     }
   )
 
-  // Traigo todo los cart items
+  // Traigo todos los cart items
   const { data: items, error } = await supabase
     .from("CartItem")
     .select(`*, Product(*)`);

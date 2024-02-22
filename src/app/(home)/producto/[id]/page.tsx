@@ -4,10 +4,7 @@ import { createServerClient } from '@supabase/ssr'
 import Image from 'next/image';
 import {
   Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+  CardContent
 } from "@/components/ui/card";
 
 import ProductInputSection from "@/components/custom/productInputSection";

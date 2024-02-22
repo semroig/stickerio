@@ -24,11 +24,6 @@ export default async function addItem(
   },
   formData: FormData,
 ) {
-    console.log('en el action')
-    console.log(formData.get("size"))
-    console.log(formData.get("cantidad"))
-    console.log(formData)
-
     const schema = z.object({
         size: z.string().min(1),
         cantidad: z.string().min(1),

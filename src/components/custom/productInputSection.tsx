@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import addItem from "@/app/actions";
 import { useRouter } from 'next/navigation';
@@ -18,7 +18,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { Check, ChevronsUpDown } from "lucide-react"
+import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const sizes = [
@@ -35,10 +35,6 @@ const sizes = [
       label: "8x8 - $500",
     }
 ]
-
-const initialState = {
-    message: "",
-};
 
 function SubmitButton() {
     const { pending } = useFormStatus();
@@ -61,6 +57,7 @@ function AlertBox(props) {
         // Luego valido si es error o exito
         if (props.msg === 'Success') return (
             <Alert>
+                <Check className="h-4 w-4" />
                 <AlertTitle>Listo!</AlertTitle>
                 <AlertDescription>
                     Producto agregado al carrito exitosamente.
@@ -69,6 +66,7 @@ function AlertBox(props) {
         )
         else return (
             <Alert variant="destructive">
+                <AlertCircle className="h-4 w-4" />
                 <AlertTitle>Error</AlertTitle>
                 <AlertDescription>
                     {props.msg}
@@ -82,7 +80,7 @@ function AlertBox(props) {
 export default function ProductInputSection({ record }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
-    const [state, formAction] = useFormState(addItem, initialState);
+    const [state, formAction] = useFormState(addItem, { message: "" });
     const router = useRouter();
 
     // TO DO: No permitir numeros negativos en input de cantidad

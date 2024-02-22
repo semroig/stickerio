@@ -1,9 +1,11 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import addItem from "@/app/actions";
+import { useRouter } from 'next/navigation';
 
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import {
@@ -40,7 +42,7 @@ const initialState = {
 
 function SubmitButton() {
     const { pending } = useFormStatus();
-  
+
     return (
         <Button 
             className="mt-8"
@@ -52,15 +54,43 @@ function SubmitButton() {
     );
 }
 
-export default function ProductInputSection({ records }: any) {
+// Componente de alert usando state message del form action
+function AlertBox(props) {
+    // Primero valido que haya algun mensaje
+    if (props.msg){
+        // Luego valido si es error o exito
+        if (props.msg === 'Success') return (
+            <Alert>
+                <AlertTitle>Listo!</AlertTitle>
+                <AlertDescription>
+                    Producto agregado al carrito exitosamente.
+                </AlertDescription>
+            </Alert>
+        )
+        else return (
+            <Alert variant="destructive">
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription>
+                    {props.msg}
+                </AlertDescription>
+            </Alert>
+        )
+    }
+    else return <></>
+}
+
+export default function ProductInputSection({ record }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
     const [state, formAction] = useFormState(addItem, initialState);
+    const router = useRouter();
 
     // TO DO: No permitir numeros negativos en input de cantidad
+    // TO DO: El alert debe desaparecer luego de algunos segundos
 
     return (
         <form action={formAction}>
+
             <div className="flex flex-row justify-start mt-8">
                 <div className="basis-1/2">
                     <p className="text-lg my-4">Tamaño:</p>
@@ -108,14 +138,15 @@ export default function ProductInputSection({ records }: any) {
                     <p className="text-lg my-4">Cantidad:</p>
                     <Input type="number" name="cantidad" required></Input>
                     <input type="hidden" name="size" value={value} />
+                    <input type="hidden" name="id" value={record.id} />
                 </div>
             </div>
 
             <SubmitButton />
 
-            <p aria-live="polite" className="sr-only" role="status">
-                {state?.message}
-            </p>
+            <div className="mt-3">
+                <AlertBox msg={state?.message}></AlertBox>
+            </div>
         </form>
     )
 }

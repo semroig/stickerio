@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { createServerClient } from '@supabase/ssr'
 import { z } from "zod";
@@ -33,10 +32,12 @@ export default async function addItem(
     const schema = z.object({
         size: z.string().min(1),
         cantidad: z.string().min(1),
+        id: z.string().min(1)
     });
     const parse = schema.safeParse({
         size: formData.get("size"),
         cantidad: formData.get("cantidad"),
+        id: formData.get("id")
     });
 
     if (!parse.success) {
@@ -49,7 +50,7 @@ export default async function addItem(
     const { data, error } = await supabase
         .from('CartItem')
         .insert([{ 
-            product_id: '1',
+            product_id: parsedData.id,
             size: parsedData.size,
             quantity: parsedData.cantidad
         }])
@@ -61,8 +62,7 @@ export default async function addItem(
     }
     if (data) {
         console.log(data)
-        revalidatePath("/catalogo");
-        return { message: `Added cart item` };
+        return { message: "Success" };
     }
 }
 

@@ -27,7 +27,7 @@ export default async function Home({ params }: any) {
         },
       }
     )    
-    const { data: products } = await supabase
+    const { data: product } = await supabase
         .from("Product").select().eq('id', id);
 
     return (
@@ -46,11 +46,11 @@ export default async function Home({ params }: any) {
         </div>
         <div className="m-6 basis-2/5">
 
-          <p className="font-semibold text-3xl">{ products![0].name }</p>
+          <p className="font-semibold text-3xl">{ product![0].name }</p>
           <p className="text-lg mt-3">Descripción bla bla</p>
-          <p className="font-semibold text-5xl my-10">$ { products![0].price }</p>
+          <p className="font-semibold text-5xl my-10">$ { product![0].price }</p>
 
-          <ProductInputSection></ProductInputSection>
+          <ProductInputSection record={product![0]}></ProductInputSection>
         </div>
       </div>
     )

@@ -60,31 +60,3 @@ export default async function addItem(
         return { message: "Success" };
     }
 }
-
-// export async function deleteTodo(
-//   prevState: {
-//     message: string;
-//   },
-//   formData: FormData,
-// ) {
-//   const schema = z.object({
-//     id: z.string().min(1),
-//     todo: z.string().min(1),
-//   });
-//   const data = schema.parse({
-//     id: formData.get("id"),
-//     todo: formData.get("todo"),
-//   });
-
-//   try {
-//     await sql`
-//       DELETE FROM todos
-//       WHERE id = ${data.id};
-//     `;
-
-//     revalidatePath("/");
-//     return { message: `Deleted todo ${data.todo}` };
-//   } catch (e) {
-//     return { message: "Failed to delete todo" };
-//   }
-// }

@@ -47,9 +47,9 @@ export default function SignUpForm() {
 
 	async function onSubmit(datos: z.infer<typeof FormSchema>) {
     const result = await signUpWithEmailAndPassword(datos);
-    const { data, error }  = JSON.parse(result);
-    if(data) console.log(data);
-    if(error) console.error(error);
+    const { error }  = JSON.parse(result);
+    if(error) console.error(error.message)
+    else console.log('todo ok el registro');
 
 		// toast({
 		// 	title: "You submitted the following values:",

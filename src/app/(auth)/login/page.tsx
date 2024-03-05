@@ -1,8 +1,13 @@
 import Link from 'next/link'
 
 import LogInForm from '@/components/custom/logInForm'
+import readUserSession from '@/lib/actions'
+import { redirect } from 'next/navigation';
 
-export default function Home() {
+export default async function Home() {
+  const { data } = await readUserSession();
+  if(data.session) return redirect('/catalogo');
+
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">

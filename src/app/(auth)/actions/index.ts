@@ -3,6 +3,7 @@
 import createSupabaseServerClient from "@/lib/supabase/server";
 
 export async function signUpWithEmailAndPassword(data: {
+    name: string;
     email: string;
     password: string;
     confirm: string;

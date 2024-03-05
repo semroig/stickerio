@@ -1,5 +1,7 @@
 import { cookies } from "next/headers";
 import { createServerClient } from '@supabase/ssr'
+import readUserSession from '@/lib/actions'
+import { redirect } from 'next/navigation';
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,6 +13,9 @@ import {
 import TarjetaCarrito from "@/components/custom/tarjetaCarrito";
 
 export default async function Home() {
+  const { data } = await readUserSession();
+  if(!data.session) return redirect('/login');
+
   // Inicializo cliente de supabase
   const cookieStore = cookies()
   const supabase = createServerClient(

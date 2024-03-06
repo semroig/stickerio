@@ -46,6 +46,8 @@ export default function SignUpForm() {
 	});
 
 	async function onSubmit(datos: z.infer<typeof FormSchema>) {
+    // NO esta agarrando bien las fallas. Por ejemplo, si no se crea el user por emial repetido
+
     const result = await signUpWithEmailAndPassword(datos);
     const { error }  = JSON.parse(result);
     if(error) console.error(error.message)

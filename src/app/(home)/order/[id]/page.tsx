@@ -1,6 +1,12 @@
+import readUserSession from '@/lib/actions'
+import { redirect } from 'next/navigation';
+
 import { Button } from "@/components/ui/button"
 
-export default function Home({ params }: any) {
+export default async function Home({ params }: any) {
+    const { data } = await readUserSession();
+    if(!data.session) return redirect('/login');
+
     const { id } = params;
     return (
         <main>

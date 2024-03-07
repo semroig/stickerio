@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useTransition } from "react";
 
 import {
   Form,
@@ -15,6 +16,8 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { signUpWithEmailAndPassword } from "@/app/(auth)/actions"
+
+import { Loader2 } from "lucide-react"
 
 const FormSchema = z
 	.object({
@@ -35,6 +38,8 @@ const FormSchema = z
 	});
 
 export default function SignUpForm() {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
@@ -48,10 +53,12 @@ export default function SignUpForm() {
 	async function onSubmit(datos: z.infer<typeof FormSchema>) {
     // NO esta agarrando bien las fallas. Por ejemplo, si no se crea el user por emial repetido
 
-    const result = await signUpWithEmailAndPassword(datos);
-    const { error }  = JSON.parse(result);
-    if(error) console.error(error.message)
-    else console.log('todo ok el registro');
+    startTransition(async () => {
+      const result = await signUpWithEmailAndPassword(datos);
+      const { error }  = JSON.parse(result);
+      if(error) console.error(error.message)
+      else console.log('todo ok el registro');
+    })
 
 		// toast({
 		// 	title: "You submitted the following values:",
@@ -127,7 +134,10 @@ export default function SignUpForm() {
           )}
         />
 
-        <Button type="submit">Registrarse</Button>
+        <Button type="submit" disabled={isPending}>
+          Registrarse
+          { isPending ? <Loader2 className="ml-2 h-4 w-4 animate-spin" /> : <></>}
+        </Button>
       </form>
     </Form>
   )

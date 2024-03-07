@@ -1,7 +1,13 @@
+import readUserSession from '@/lib/actions'
+import { redirect } from 'next/navigation';
+
 import ProfileDataCard from "@/components/custom/profileDataCard"
 import ProfileAddressCard from "@/components/custom/profileAddressCard"
 
-export default function Home() {
+export default async function Home() {
+  const { data } = await readUserSession();
+  if(!data.session) return redirect('/login');
+
   return (
     <div>
       <div className="flex flex-row justify-center px-20 mt-5">

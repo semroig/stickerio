@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button"
 import { signInWithEmailAndPassword } from "@/app/(auth)/actions"
 import { useTransition } from "react";
 
+import { Loader2 } from "lucide-react"
+
 const FormSchema = z
 	.object({
 		email: z.string().email(),
@@ -51,37 +53,40 @@ export default function LogInForm() {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
     
-            <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                    <Input type="email" placeholder="carlos@mail.com" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
-                )}
-            />
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                        <Input type="email" placeholder="carlos@mail.com" {...field} required />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
     
-            <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                <FormItem>
-                    <FormLabel>Contraseña</FormLabel>
-                    <FormControl>
-                    <Input type="password" placeholder="******" {...field} required />
-                    </FormControl>
-                    <FormMessage />
-                </FormItem>
-                )}
-            />
+                <FormField
+                    control={form.control}
+                    name="password"
+                    render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>Contraseña</FormLabel>
+                        <FormControl>
+                        <Input type="password" placeholder="******" {...field} required />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                    )}
+                />
 
-            {/* Usar isPending para renderizado condicional de boton con spinner */}
-    
-            <Button type="submit">Ingresar</Button>
+                {/* Usar isPending para renderizado condicional de boton con spinner */}
+        
+                <Button type="submit" disabled={isPending}>
+                    Ingresar
+                    { isPending ? <Loader2 className="ml-2 h-4 w-4 animate-spin" /> : <></>}
+                </Button>
             </form>
         </Form>
     )

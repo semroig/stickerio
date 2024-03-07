@@ -20,7 +20,7 @@ export default async function Home() {
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Ya tenés una cuenta? {" "}
-          <Link href="/log-in" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Ingresar con mi cuenta</Link>
+          <Link href="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Ingresar con mi cuenta</Link>
         </p>
       </div>
     </div>

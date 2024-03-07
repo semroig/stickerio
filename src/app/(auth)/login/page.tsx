@@ -21,7 +21,7 @@ export default async function Home() {
         <p className="mt-10 text-center text-sm text-gray-500">
           No estás registrado? {" "}
           <Link
-            href="/sign-up"
+            href="/signup"
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >Creá tu cuenta</Link>
         </p>

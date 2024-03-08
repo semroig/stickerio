@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import LogInForm from '@/components/custom/logInForm'
+import OAuthForm from '@/components/custom/oAuthForm';
 import readUserSession from '@/lib/actions'
 import { redirect } from 'next/navigation';
 
@@ -17,6 +18,7 @@ export default async function Home() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <LogInForm></LogInForm>
+        <OAuthForm></OAuthForm>
 
         <p className="mt-10 text-center text-sm text-gray-500">
           No estás registrado? {" "}

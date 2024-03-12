@@ -38,18 +38,18 @@ export default async function Home() {
   if (error) console.error(error);
 
   return (
-    <div className="flex flex-row justify-center px-20 mt-5">
-      <div className="m-6 basis-2/3">
+    <div className="flex m-20">
+      <div className="basis-3/4 ml-10">
         <p className="font-semibold text-2xl">Carrito</p>
 
-          {items?.map((item : any) => (
-            <div key={item.id}>
-              <TarjetaCarrito record={item}></TarjetaCarrito>
-            </div>
-          ))}
-
+        {items?.map((item : any) => (
+          <div key={item.id} className="flex items-center">
+            <div className="basis-4/5"><TarjetaCarrito record={item}></TarjetaCarrito></div>
+            <p className="basis-1/5 ml-5">delete</p>
+          </div>
+        ))}
       </div>
-      <div className="m-6 basis-1/3">
+      <div className="m-6 basis-1/4">
         <p className="font-semibold text-2xl">Resumen de compra</p>
         <Card className="mt-4 pt-5">
           <CardContent>
@@ -61,7 +61,7 @@ export default async function Home() {
             <p className="text-lg">Buenos Aires</p>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Button variant="outline">Editar</Button>
+            <Button>Comprar carrito</Button>
           </CardFooter>
         </Card>
       </div>

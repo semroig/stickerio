@@ -8,17 +8,17 @@ export default function TarjetaCarrito({ record }: any) {
     return (
         <Card className="mt-4">
             <CardContent>
-                <div className="flex flex-row mt-5">
+                <div className="flex flex-row items-center mt-5">
                     <Image
                         src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
                         width={100}
                         height={100}
-                        alt="Picture of the author"
+                        alt="Sticker image"
                     />
                     <p className="basis-2/5 text-lg">{record.Product.name}</p>
                     <p className="basis-1/5 text-lg">{record.quantity}</p>
+                    <p className="basis-1/5 text-lg">{record.size}</p>
                     <p className="basis-1/5 text-lg">{record.Product.price}</p>
-                    <p className="basis-1/5 text-lg">Delete</p>
                 </div>
             </CardContent>
         </Card>

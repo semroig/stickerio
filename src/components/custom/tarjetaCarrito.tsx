@@ -18,7 +18,7 @@ export default function TarjetaCarrito({ record }: any) {
                     <p className="basis-2/5 text-lg">{record.Product.name}</p>
                     <p className="basis-1/5 text-lg">{record.quantity}</p>
                     <p className="basis-1/5 text-lg">{record.size}</p>
-                    <p className="basis-1/5 text-lg">{record.Product.price}</p>
+                    <p className="basis-1/5 text-lg">$ 200</p>
                 </div>
             </CardContent>
         </Card>

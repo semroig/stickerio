@@ -45,7 +45,7 @@ export default async function Home({ params }: any) {
 
           <p className="font-semibold text-3xl">{ product![0].name }</p>
           <p className="text-lg mt-3">Descripción bla bla</p>
-          <p className="font-semibold text-5xl my-10">$ { product![0].price }</p>
+          <p className="font-semibold text-5xl my-10">$ 200</p>
 
           <ProductInputSection record={product![0]}></ProductInputSection>
         </div>

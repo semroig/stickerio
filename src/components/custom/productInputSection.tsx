@@ -81,7 +81,6 @@ export default function ProductInputSection({ record }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
     const [state, formAction] = useFormState(addItem, { message: "" });
-    const router = useRouter();
 
     // TO DO: No permitir numeros negativos en input de cantidad
     // TO DO: El alert debe desaparecer luego de algunos segundos
@@ -95,14 +94,16 @@ export default function ProductInputSection({ record }: any) {
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                             <Button
-                            variant="outline"
-                            role="combobox"
-                            aria-expanded={open}
-                            className="w-[200px] justify-between"
+                                variant="outline"
+                                role="combobox"
+                                aria-expanded={open}
+                                className="w-[200px] justify-between"
                             >
-                            {value
-                                ? sizes.find((size) => size.value === value)?.label
-                                : "Elegir tamaño..."}
+                                {   
+                                    value
+                                    ? sizes.find((size) => size.value === value)?.label
+                                    : "Elegir tamaño..."
+                                }
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </PopoverTrigger>
@@ -114,8 +115,8 @@ export default function ProductInputSection({ record }: any) {
                                         key={size.value}
                                         value={size.value}
                                         onSelect={(currentValue) => {
-                                        setValue(currentValue === value ? "" : currentValue)
-                                        setOpen(false)
+                                            setValue(currentValue === value ? "" : currentValue)
+                                            setOpen(false)
                                         }}
                                     >
                                         <Check

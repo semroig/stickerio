@@ -9,10 +9,10 @@ import {
   CardContent,
   CardFooter
 } from "@/components/ui/card";
-import { Trash2 } from "lucide-react"
 import Link from "next/link";
 
 import TarjetaCarrito from "@/components/custom/tarjetaCarrito";
+import DeleteCartItemButton from "@/components/custom/deleteCartItemButton";
 
 export default async function Home() {
   const { data } = await readUserSession();
@@ -54,7 +54,9 @@ export default async function Home() {
         {items?.map((item : any) => (
           <div key={item.id} className="flex items-center">
             <div className="basis-4/5"><TarjetaCarrito record={item}></TarjetaCarrito></div>
-            <div className="basis-1/5 ml-5"><Trash2></Trash2></div>
+            <div className="basis-1/5 ml-5">
+              <DeleteCartItemButton recordId={item.id}></DeleteCartItemButton>
+            </div>
           </div>
         ))}
       </div>

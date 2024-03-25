@@ -76,7 +76,7 @@ export default function CheckoutFinalSection ({ records }: any) {
                 product_id: linea.product_id,
                 quantity: linea.quantity,
                 size: linea.size,
-                order: order[0].id
+                order_id: order[0].id
             })
         });
 

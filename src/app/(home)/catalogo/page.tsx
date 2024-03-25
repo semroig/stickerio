@@ -20,7 +20,7 @@ export default async function Home({ searchParams }: any) {
   )
 
   // Traigo todas las categorias
-  const { data: categories } = await supabase.from("Category").select();
+  const { data: categories } = await supabase.from("Collection").select();
 
   // Traigo los prods segun search params de categories seleccionados
   let resp;
@@ -29,7 +29,7 @@ export default async function Home({ searchParams }: any) {
     resp = await supabase
     .from("Product")
     .select("*")
-    .in('category_id', filteringCategories);
+    .in('collection_id', filteringCategories);
   }
   else {
     resp = await supabase

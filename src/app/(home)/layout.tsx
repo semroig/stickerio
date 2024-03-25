@@ -35,7 +35,7 @@ export default async function RootLayout({
 
   return (
     <>
-      <nav className="bg-gray-800">
+      {/* <nav className="bg-gray-800">
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -58,10 +58,8 @@ export default async function RootLayout({
               </div>
               <div className="hidden sm:ml-6 sm:block">
                 <div className="flex space-x-4">
-                  {/* <Link href="/" className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium">Home</Link> */}
                   <Link href="/catalogo" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Catalogo</Link>
-                  {/* <Link href="/profile" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Perfil</Link>
-                  <Link href="/auth/logout" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Salir</Link> */}
+                 
                 </div>
               </div>
             </div>
@@ -70,24 +68,12 @@ export default async function RootLayout({
                 href="/carrito"
                 className="text-gray-300 hover:bg-gray-700 rounded-md px-3 py-2"
               >
-                {/* Carrito: {items.length} */}
                 <ShoppingCart className="h-5 w-5" color="#D1D5DB"></ShoppingCart>
               </Link>
 
               <div className="relative ml-3">
                 <SignOut></SignOut>
-                {/* <div>
-                  <button type="button" className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                    <span className="absolute -inset-1.5"></span>
-                    <span className="sr-only">Open user menu</span>
-                    <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
-                  </button>
-                </div> */}
-                {/* <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button">
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-0">Your Profile</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-1">Settings</a>
-                  <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" id="user-menu-item-2">Sign out</a>
-                </div> */}
+                
               </div>
             </div>
           </div>
@@ -101,7 +87,21 @@ export default async function RootLayout({
             <a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
           </div>
         </div>
-      </nav>
+      </nav> */}
+
+      <header className="flex justify-center items-center px-20 py-6 w-full text-lg font-semibold text-orange-600 whitespace-nowrap max-md:px-5 max-md:max-w-full">
+        <div className="flex gap-5 justify-between w-full max-md:flex-wrap max-md:max-w-full mx-12" >
+          <img
+            loading="lazy"
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/30921df5111aa506c586a7551e38e7484402027c4872fe944ecc79a426346910?apiKey=6c89b4a2db244c5d969134d9199949c2&"
+            alt="Logo"
+            className="shrink-0 my-auto max-w-full aspect-[6.67] fill-neutral-700 w-[189px]"
+          />
+          <div className="justify-center px-5 py-2 border-2 border-orange-600 border-solid rounded-[50px] max-md:px-5">
+            Ingresar
+          </div>
+        </div>
+      </header>
 
       {children}
     </> 

@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useFormState, useFormStatus } from "react-dom";
 import addItem from "@/app/actions";
-import { useRouter } from 'next/navigation';
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Button } from "@/components/ui/button"
@@ -51,7 +50,7 @@ function SubmitButton() {
 }
 
 // Componente de alert usando state message del form action
-function AlertBox(props) {
+function AlertBox({props}: any) {
     // Primero valido que haya algun mensaje
     if (props.msg){
         // Luego valido si es error o exito
@@ -80,7 +79,7 @@ function AlertBox(props) {
 export default function ProductInputSection({ record }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
-    const [state, formAction] = useFormState(addItem, { message: "" });
+    // const [state, formAction] = useFormState<State, FormData>(addItem, { message: "" });
 
     // TO DO: No permitir numeros negativos en input de cantidad
     // TO DO: El alert debe desaparecer luego de algunos segundos

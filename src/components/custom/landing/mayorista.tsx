@@ -17,7 +17,7 @@ interface MyComponentProps {
   imageAlt: string;
 }
 
-const Mayorista: React.FC<MyComponentProps> = ({ imageUrl, imageAlt }) => {
+const Mayorista: React.FC<MyComponentProps> = () => {
   return (
     <div className="flex justify-center items-center px-16 py-12 bg-zinc-100 max-md:px-5">
       <div className="w-full max-w-[1082px] max-md:max-w-full">
@@ -39,7 +39,7 @@ const Mayorista: React.FC<MyComponentProps> = ({ imageUrl, imageAlt }) => {
             <img
               loading="lazy"
               src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/cuaderno.png"
-              alt={imageAlt}
+              alt="mock up de cuaderno"
               className="grow w-full max-md:mt-10 max-md:max-w-full"
             />
           </div>

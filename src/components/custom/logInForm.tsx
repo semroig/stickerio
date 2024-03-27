@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { signInWithEmailAndPassword } from "@/app/(auth)/actions"
+import { signInWithEmailAndPassword } from "@/app/actions"
 import { useTransition } from "react";
 
 import { Loader2 } from "lucide-react"

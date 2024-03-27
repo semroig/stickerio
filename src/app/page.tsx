@@ -1,3 +1,4 @@
+import Navbar from "@/components/custom/landing/navbar"
 import Hero from "@/components/custom/landing/hero"
 import Precios from "@/components/custom/landing/precios"
 import Colecciones from "@/components/custom/landing/colecciones"
@@ -7,11 +8,12 @@ import Footer from "@/components/custom/landing/footer"
 export default async function Landing() {
   return (
     <div>
-      <Hero></Hero>
-      <Precios></Precios>
-      <Colecciones></Colecciones>
-      <Mayorista></Mayorista>
-      <Footer></Footer>
+        <Navbar></Navbar>
+        <Hero></Hero>
+        <Precios></Precios>
+        <Colecciones></Colecciones>
+        <Mayorista></Mayorista>
+        <Footer></Footer>
     </div>
   )
 }

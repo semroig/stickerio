@@ -12,12 +12,7 @@ const WhatsappChatButton: React.FC<WhatsappChatButtonProps> = ({ label }) => {
   );
 };
 
-interface MyComponentProps {
-  imageUrl: string;
-  imageAlt: string;
-}
-
-const Mayorista: React.FC<MyComponentProps> = () => {
+const Mayorista: React.FC = () => {
   return (
     <div className="flex justify-center items-center px-16 py-12 bg-zinc-100 max-md:px-5">
       <div className="w-full max-w-[1082px] max-md:max-w-full">

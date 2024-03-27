@@ -40,7 +40,7 @@ export default function CheckoutFinalSection ({ records }: any) {
 
     // Itero por los items para sumar totales
     let subTotal = 0;
-    records?.forEach(element => {
+    records?.forEach((element: any) => {
         if (element.size === 'grande') subTotal += 550;
         if (element.size === 'chico') subTotal += 400;
     })
@@ -71,7 +71,7 @@ export default function CheckoutFinalSection ({ records }: any) {
 
         // Armo body para insert de items
         let body: any[] = [];
-        records.forEach(linea => {
+        records.forEach((linea: any) => {
             body.push({
                 product_id: linea.product_id,
                 quantity: linea.quantity,
@@ -105,7 +105,7 @@ export default function CheckoutFinalSection ({ records }: any) {
         router.push(`/order/${order[0].id}`);
     }
 
-    async function changeEntrega(event) {
+    async function changeEntrega({event}: any) {
         opcionesEntrega.forEach(opcion => {
             if (opcion.value === event) setEntrega(opcion);
         })

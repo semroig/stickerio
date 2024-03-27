@@ -2,21 +2,27 @@ import * as React from "react";
 
 interface CountdownItemProps {
   value: number;
-  unit: string;
+  label: string;
 }
 
-const CountdownItem: React.FC<CountdownItemProps> = ({ value, unit }) => (
-  <div className="flex flex-col flex-1 px-2.5 py-1 bg-sky-200 rounded-lg">
+const CountdownItem: React.FC<CountdownItemProps> = ({ value, label }) => (
+  <div className="flex flex-col p-1 bg-sky-200 rounded-lg">
     <div className="text-2xl font-medium tracking-tight">{value}</div>
-    <div className="text-sm tracking-normal">{unit}</div>
+    <div className="text-sm tracking-normal">{label}</div>
   </div>
 );
 
-const Hero: React.FC = () => {
+const Landing: React.FC = () => {
+  const countdownItems = [
+    { value: 74, label: "dias" },
+    { value: 90, label: "horas" },
+    { value: 36, label: "min" },
+  ];
+
   return (
-    <div className="flex flex-col pb-10 bg-white">
-      <main className="self-center w-full max-md:max-w-full" >
-        <div className="flex gap-1 max-md:flex-col max-md:gap-0 mx-16">
+    <div className="flex flex-col pb-10 bg-neutral-100">
+      <main className="self-center mt-4 w-full max-w-[1214px] max-md:max-w-full">
+        <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           <section className="flex flex-col w-[58%] max-md:ml-0 max-md:w-full">
             <div className="flex flex-col grow justify-center items-start px-16 py-16 border-2 border-emerald-800 border-solid rounded-[40px] max-md:px-5 max-md:mt-5 max-md:max-w-full">
               <div className="flex flex-col mt-6 max-w-full w-[486px]">
@@ -35,18 +41,22 @@ const Hero: React.FC = () => {
                     Lanzamiento en:
                   </div>
                   <div className="flex gap-2 justify-center mt-2 text-emerald-800 whitespace-nowrap">
-                    <CountdownItem value={74} unit="dias" />
-                    <CountdownItem value={90} unit="horas" />
-                    <CountdownItem value={36} unit="min" />
+                    {countdownItems.map((item, index) => (
+                      <CountdownItem
+                        key={index}
+                        value={item.value}
+                        label={item.label}
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
           </section>
-          <div className="flex flex-col ml-5 w-[42%] max-md:ml-0 max-md:w-full">
+          <div className="flex flex-col ml-5 max-md:ml-0 max-md:w-full">
             <img
               loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/7a645ffd872c2c68129f096d2e1e2c6c7c4298b75f5bd6d1caa94ffcce43abab?apiKey=6c89b4a2db244c5d969134d9199949c2&"
+              src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/original%20hero.png"
               alt="Stickers"
               className="grow w-full aspect-[0.85] max-md:mt-5 max-md:max-w-full"
             />
@@ -57,4 +67,4 @@ const Hero: React.FC = () => {
   );
 };
 
-export default Hero;
+export default Landing;

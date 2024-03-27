@@ -1,18 +1,19 @@
 import * as React from "react";
 
+import { ArrowUpRight } from "lucide-react"
+
 interface CollectionCardProps {
   imageSrc: string;
   title: string;
-  iconSrc: string;
 }
 
-const CollectionCard: React.FC<CollectionCardProps> = ({ imageSrc, title, iconSrc }) => (
+const CollectionCard: React.FC<CollectionCardProps> = ({ imageSrc, title }) => (
   <div className="flex flex-col w-[33%] max-md:ml-0 max-md:w-full">
     <div className="flex overflow-hidden relative flex-col grow justify-center p-2.5 text-xl text-white whitespace-nowrap rounded-2xl aspect-[0.81] max-md:mt-6">
       <img src={imageSrc} alt={`${title} collection`} className="object-cover absolute inset-0 size-full" />
-      <div className="flex relative gap-2.5 justify-between p-4 mt-52 rounded-2xl border-2 border-white border-solid bg-black bg-opacity-60 max-md:mt-10">
+      <div className="flex relative justify-between mt-64 p-3 rounded-2xl border-2 border-white border-solid bg-black bg-opacity-60 max-md:mt-10">
         <div>{title}</div>
-        <img src={iconSrc} alt="" className="shrink-0 border-white border-solid aspect-square border-[3px] stroke-[3px] stroke-white w-[18px]" />
+        <ArrowUpRight />
       </div>
     </div>
   </div>
@@ -21,18 +22,15 @@ const CollectionCard: React.FC<CollectionCardProps> = ({ imageSrc, title, iconSr
 const collections = [
   {
     imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/635385e0017435f8ef0809881b5ec73044f656fe6d4c7707c0c4a80f9bfb5311?apiKey=6c89b4a2db244c5d969134d9199949c2&",
-    title: "Argentina",
-    iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/586f00e501af82227d47d3eb687c35320d5a5ebe9d512e4d28729c0aa0e35f49?apiKey=6c89b4a2db244c5d969134d9199949c2&",
+    title: "Argentina"
   },
   {
     imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/c37168cf7b783b235c620450e84dcc848efc6328e46886b8b25270b0fb705b67?apiKey=6c89b4a2db244c5d969134d9199949c2&",
-    title: "Disney",
-    iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/586f00e501af82227d47d3eb687c35320d5a5ebe9d512e4d28729c0aa0e35f49?apiKey=6c89b4a2db244c5d969134d9199949c2&",
+    title: "Disney"
   },
   {
     imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/9679356f04f3f1e5edd46c469f17002e09c93c1898d39bbd1cd7fc82b145ce50?apiKey=6c89b4a2db244c5d969134d9199949c2&",
-    title: "Flores",
-    iconSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/f65a2aea17409b059a1472e1365290767e7a7c5abdf48ec9d5fca4939f3ee99c?apiKey=6c89b4a2db244c5d969134d9199949c2&",
+    title: "Flores"
   },
 ];
 
@@ -49,7 +47,7 @@ function Colecciones() {
           </p>
         </div>
         <div className="mt-10 max-md:max-w-full">
-          <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+          <div className="flex items-end gap-5 max-md:flex-col max-md:gap-0">
             {collections.map((collection, index) => (
               <CollectionCard key={index} {...collection} />
             ))}

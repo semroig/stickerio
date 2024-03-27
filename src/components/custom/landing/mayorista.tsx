@@ -38,9 +38,9 @@ const Mayorista: React.FC<MyComponentProps> = ({ imageUrl, imageAlt }) => {
           <div className="flex flex-col ml-5 w-[54%] max-md:ml-0 max-md:w-full">
             <img
               loading="lazy"
-              src={imageUrl}
+              src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/cuaderno.png"
               alt={imageAlt}
-              className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full"
+              className="grow w-full max-md:mt-10 max-md:max-w-full"
             />
           </div>
         </div>

@@ -29,7 +29,7 @@ export default async function Home({ params }: any) {
                 </div>
             </div>
             <div className="mx-20 mt-10">
-                <ProgressBar estado={order[0].estado} ></ProgressBar>
+                <ProgressBar estado={order![0].estado} ></ProgressBar>
             </div>
         </div>
     )

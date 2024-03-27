@@ -84,8 +84,10 @@ export default function ProductInputSection({ record }: any) {
     // TO DO: No permitir numeros negativos en input de cantidad
     // TO DO: El alert debe desaparecer luego de algunos segundos
 
+    // action={formAction}
+
     return (
-        <form action={formAction}>
+        <form>
 
             <div className="flex flex-row justify-start mt-8">
                 <div className="basis-1/2">
@@ -143,7 +145,7 @@ export default function ProductInputSection({ record }: any) {
             <SubmitButton />
 
             <div className="mt-3">
-                <AlertBox msg={state?.message}></AlertBox>
+                {/* <AlertBox msg={state?.message}></AlertBox> */}
             </div>
         </form>
     )

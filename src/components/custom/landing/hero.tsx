@@ -43,7 +43,7 @@ const Landing: React.FC = () => {
           </section>
           <div className="flex flex-col w-2/5 relative">
             <Image
-              src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/original%20hero.png"
+              src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/hero.png"
               fill={true}
               alt="Mock up celular"
               className="rounded-[40px]"

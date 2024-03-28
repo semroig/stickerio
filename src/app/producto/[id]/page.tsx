@@ -1,6 +1,9 @@
 import { cookies } from "next/headers";
 import { createServerClient } from '@supabase/ssr'
 
+import Navbar from "@/components/custom/landing/navbar"
+import Footer from "@/components/custom/landing/footer"
+
 import Image from 'next/image';
 import {
   Card,
@@ -28,27 +31,31 @@ export default async function Home({ params }: any) {
         .from("Product").select().eq('id', id);
 
     return (
-      <div className="flex flex-row justify-center px-20 mt-8">
-        <div className="m-6 basis-2/5">
-          <Card className="m-3" >
-              <CardContent>
-                  <Image
-                      src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
-                      width={450}
-                      height={450}
-                      alt="Picture of the author"
-                  />
-              </CardContent>
-          </Card>
-        </div>
-        <div className="m-6 basis-2/5">
+      <>
+        <Navbar />
+        <div className="flex flex-row justify-center px-20 mt-8">
+          <div className="m-6 basis-2/5">
+            <Card className="m-3" >
+                <CardContent>
+                    <Image
+                        src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
+                        width={450}
+                        height={450}
+                        alt="Picture of the author"
+                    />
+                </CardContent>
+            </Card>
+          </div>
+          <div className="m-6 basis-2/5">
 
-          <p className="font-semibold text-3xl">{ product![0].name }</p>
-          <p className="text-lg mt-3">Descripción bla bla</p>
-          <p className="font-semibold text-5xl my-10">$ 200</p>
+            <p className="font-semibold text-3xl">{ product![0].name }</p>
+            <p className="text-lg mt-3">Descripción bla bla</p>
+            <p className="font-semibold text-5xl my-10">$ 200</p>
 
-          <ProductInputSection record={product![0]}></ProductInputSection>
+            <ProductInputSection record={product![0]}></ProductInputSection>
+          </div>
         </div>
-      </div>
+        <Footer />
+      </>
     )
 }

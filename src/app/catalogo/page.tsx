@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { createServerClient } from '@supabase/ssr'
 
+import Navbar from "@/components/custom/landing/navbar"
 import Tarjeta from "@/components/custom/tarjeta";
 import CategoriesSection from "@/components/custom/categoriesSection";
 
@@ -39,6 +40,8 @@ export default async function Home({ searchParams }: any) {
 
   return (
     <div>
+      <Navbar />
+
       <div className="flex flex-row justify-center px-20 mt-5">
         <div className="m-6 basis-1/4">
           <p className="font-semibold text-2xl mb-8">Buscar por Categoría</p>

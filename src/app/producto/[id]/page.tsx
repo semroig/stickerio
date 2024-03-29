@@ -38,7 +38,7 @@ export default async function Home({ params }: any) {
             <Card className="m-3" >
                 <CardContent>
                     <Image
-                        src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
+                        src={product![0].image_url}
                         width={450}
                         height={450}
                         alt="Picture of the author"

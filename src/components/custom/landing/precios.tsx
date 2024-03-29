@@ -37,12 +37,12 @@ function Precios() {
   return (
     <div className="flex justify-center mt-32 mx-32">
       <div className="flex flex-col w-1/2">
-        <div className="flex relative flex-col grow text-lg font-bold text-white min-h-[555px] rounded-[40px]">
+        <div className="flex relative flex-col grow text-lg font-bold text-white min-h-[555px]">
           <img
             loading="lazy"
             src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/precios.png"
             alt="Background"
-            className="object-cover absolute inset-0 size-full"
+            className="object-cover absolute inset-0 size-full rounded-[40px]"
           />
         </div>
       </div>

@@ -18,7 +18,7 @@ export default function Tarjeta({ record }: any) {
                 </CardHeader>
                 <CardContent>
                     <Image
-                        src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
+                        src={record.image_url}
                         width={200}
                         height={200}
                         alt="Picture of the author"

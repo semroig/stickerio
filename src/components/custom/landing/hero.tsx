@@ -27,7 +27,7 @@ const Landing: React.FC = () => {
     //     <div className="w-3/5">
     //       <div className="px-16 py-28 border-2 border-emerald-800 border-solid rounded-[40px]">
     //         <div className="mt-6 pr-14">
-    //           <h1 className="text-7xl font-medium tracking-tighter text-verde leading-[60px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
+    //           <h1 className="text-7xl font-medium text-verde max-md:max-w-full max-md:text-4xl max-md:leading-10">
     //             Ponele onda a tus cosas con nuestros stickers
     //           </h1>
     //           <p className="mt-6 text-xl text-gris font-light">
@@ -55,34 +55,33 @@ const Landing: React.FC = () => {
     //     </div>
     //   </div>
     // </div>
-    <div className="lg:flex lg:flex-row items-center justify-center mt-5 mx-16">
-            {/* Left column for text content */}
-            <div className="basis-3/5">
-                <div className="px-16 py-28 lg:border-2 border-emerald-800 rounded-[40px]">
-                  <h1 className="text-7xl font-medium tracking-tighter text-verde leading-[60px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
-                    Ponele onda a tus cosas con nuestros stickers
-                  </h1>
-                  <p className="mt-6 text-xl text-gris font-light">
-                    Mirá nuestras selecciónes de stickers desde la comodidad de tu
-                    casa!
-                  </p>
-                  <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-semibold text-crema whitespace-nowrap bg-naranja rounded-[50px] max-md:px-5">
-                    Comenzar
-                  </button>
-              </div>
-            </div>
+    <div className="lg:flex lg:flex-row items-center justify-center mt-10 lg:mt-1 lg:mx-14">
+      {/* Left column for text content */}
+      <div className="basis-3/5">
+        <div className="px-16 lg:pl-20 lg:pr-44 lg:py-28 lg:border-2 border-emerald-800 rounded-[40px]">
+          <p className="lg:tracking-tight lg:text-6xl text-4xl font-medium text-verde">
+            Ponele<span className="highlight highlight-celeste"> onda </span>a tus cosas con nuestros stickers
+          </p>
+          <p className="mt-6 text-xl text-gris font-light">
+            Mirá nuestras selecciónes de stickers desde la comodidad de tu
+            casa!
+          </p>
+          <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-medium text-crema whitespace-nowrap bg-naranja rounded-[50px] max-md:px-5">
+            Comenzar
+          </button>
+        </div>
+      </div>
 
-            
-            {/* Right column for image */}
-            <div className="basis-2/5 lg:ml-5">
-                <Image
-                    src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/hero.png"
-                    alt="Description of your image"
-                    width={500}
-                    height={500}
-                    className="object-cover w-full h-full rounded-[40px]"
-                />
-            </div>
+      {/* Right column for image */}
+      <div className="basis-2/5 lg:ml-5 m-10">
+          <Image
+              src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/hero.png"
+              alt="Description of your image"
+              width={500}
+              height={500}
+              className="object-cover w-full h-full rounded-[40px]"
+          />
+      </div>
     </div>
   );
 };

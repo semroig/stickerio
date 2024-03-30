@@ -10,7 +10,7 @@ interface PriceCardProps {
 
 const PriceCard: React.FC<PriceCardProps> = ({ size, price, measurement }) => {
   return (
-    <div className="px-10 py-7 bg-white rounded-3xl shadow-lg">
+    <div className="m-5 lg:m-4 px-10 lg:px-7 py-7 bg-white rounded-3xl shadow-lg">
       <div className="text-base">{size}</div>
       <div className="mt-2 text-4xl font-semibold whitespace-nowrap text-neutral-700">
         {price}
@@ -37,7 +37,7 @@ function Precios() {
   ];
 
   return (
-    <div className="lg:flex items-center justify-center mt-32 lg:mx-32">
+    <div className="lg:flex lg:items-center lg:justify-center mt-20 mx-10 lg:mx-28">
       <div className="basis-1/2">
         <Image
             src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/precios.png"
@@ -47,16 +47,16 @@ function Precios() {
             className="object-cover w-full h-full rounded-[40px]"
         />
       </div>
-      <div className="basis-1/2 lg:px-20 sm:mt-10">
+      <div className="basis-1/2 lg:px-20 mt-10">
         <div className="flex flex-col self-stretch my-auto">
-          <h2 className="text-5xl font-medium tracking-tighter leading-10 text-verde">
-            Nuestros precios
-          </h2>
+          <p className="text-5xl font-medium text-verde">
+            Nuestros<span className="highlight highlight-celeste highlight-variant-1"> precios</span>
+          </p>
           <p className="mt-6 text-lg text-gris font-light">
             Elegí el tamaño que más te guste y pegalo donde quieras!
             Nuestros stickers son de vinilo resistentes a la humedad.
           </p>
-          <div className="flex gap-10 justify-center mt-6 text-neutral-600">
+          <div className="lg:flex gap-5 justify-center mt-6 text-neutral-600">
             {priceData.map((item, index) => (
               <PriceCard
                 key={index}

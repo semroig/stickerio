@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
             <div className="flex flex-col self-stretch my-auto max-md:mt-10 max-md:max-w-full">
               <div className="flex flex-col justify-end self-end max-w-full w-[254px]">
                 <div className="flex flex-col pl-11 max-md:pl-5">
-                  <h2 className="text-3xl font-bold text-neutral-700">Contactanos!</h2>
+                  <h2 className="text-3xl font-medium text-neutral-700">Contactanos!</h2>
                   <div className="flex justify-end mt-3">
                     <a href="https://www.instagram.com/thesticker.company/" target="_blank">
                       <Instagram color="#FFAB02" size={32}/>

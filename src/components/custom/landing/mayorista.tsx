@@ -6,7 +6,7 @@ interface WhatsappChatButtonProps {
 
 const WhatsappChatButton: React.FC<WhatsappChatButtonProps> = ({ label }) => {
   return (
-    <button className="w-fit justify-center py-3 px-7 mt-6 font-semibold text-orange-50 bg-orange-600 rounded-[50px]">
+    <button className="w-fit justify-center py-3 px-7 mt-6 font-semibold text-crema bg-naranja rounded-[50px]">
       {label}
     </button>
   );
@@ -18,10 +18,10 @@ const Mayorista: React.FC = () => {
       <div className="flex gap-20 max-md:flex-col max-md:gap-0">
         <div className="flex flex-col w-1/2">
           <div className="flex flex-col self-stretch my-auto text-lg px-10">
-            <h2 className="text-5xl font-bold tracking-tighter leading-10 text-emerald-800 max-md:max-w-full max-md:text-4xl max-md:leading-10">
+            <h2 className="text-5xl font-medium tracking-tighter leading-10 text-verde">
               ¿Querés hacer un pedido por mayor?
             </h2>
-            <p className="mt-6 text-neutral-700 max-md:max-w-full">
+            <p className="mt-6 text-gris font-light">
               Ya sea para regalar stickers a tus empleados o para tu empresa,
               un evento o emprendimiento, nosotros te armamos un presupuesto a
               medida para vos. Contactanos!{" "}

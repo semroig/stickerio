@@ -22,20 +22,20 @@ const Landing: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col bg-neutral-100">
+    <div className="flex flex-col">
       <main className="self-center mt-4 mx-20">
         <div className="flex gap-4">
           <section className="flex flex-col w-3/5">
             <div className="flex flex-col justify-center items-start px-16 py-40 border-2 border-emerald-800 border-solid rounded-[40px]">
-              <div className="flex flex-col mt-6">
-                <h1 className="text-6xl font-bold tracking-tighter text-emerald-800 leading-[60px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
+              <div className="flex flex-col mt-6 pr-14">
+                <h1 className="text-7xl font-medium tracking-tighter text-verde leading-[60px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
                   Ponele onda a tus cosas con nuestros stickers
                 </h1>
-                <p className="mt-6 text-lg text-neutral-700 max-md:max-w-full">
+                <p className="mt-6 text-xl text-gris font-light">
                   Mirá nuestras selecciónes de stickers desde la comodidad de tu
                   casa!
                 </p>
-                <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-semibold text-orange-50 whitespace-nowrap bg-orange-600 rounded-[50px] max-md:px-5">
+                <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-semibold text-crema whitespace-nowrap bg-naranja rounded-[50px] max-md:px-5">
                   Comenzar
                 </button>
               </div>

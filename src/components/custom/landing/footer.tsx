@@ -6,7 +6,7 @@ import { Instagram, MessageCircle, MapPin } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <section className="flex justify-center items-center px-16 py-16 mt-24 shadow-2xl">
+    <section className="flex justify-center items-center px-16 py-10 mt-24 shadow-2xl">
       <div className="justify-center mt-2.5 w-full max-w-[1078px] max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
           <div className="flex flex-col w-[16%] max-md:ml-0 max-md:w-full">

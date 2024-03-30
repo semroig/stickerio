@@ -29,7 +29,7 @@ function Precios() {
     },
     {
       size: "Grande",
-      price: "$700",
+      price: "$550",
       measurement: "7x7 cm",
     },
   ];
@@ -48,10 +48,10 @@ function Precios() {
       </div>
       <div className="flex flex-col w-1/2 px-20">
         <div className="flex flex-col self-stretch my-auto max-md:mt-10">
-          <h2 className="text-5xl font-bold tracking-tighter leading-10 text-emerald-800 max-md:text-4xl">
+          <h2 className="text-5xl font-medium tracking-tighter leading-10 text-verde max-md:text-4xl">
             Nuestros precios
           </h2>
-          <p className="mt-6 text-lg text-neutral-700">
+          <p className="mt-6 text-lg text-gris font-light">
             Elegí el tamaño que más te guste y pegalo donde quieras!
             Nuestros stickers son de vinilo resistentes a la humedad.
           </p>

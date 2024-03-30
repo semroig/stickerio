@@ -38,11 +38,11 @@ function Colecciones() {
   return (
     <section className="flex justify-center items-center mt-32 mx-52">
       <div className="flex flex-col justify-center mt-2.5 w-full">
-        <div className="flex flex-col self-center max-w-full text-center w-[542px]">
-          <h2 className="text-5xl font-bold tracking-tighter leading-10 text-emerald-800 max-md:max-w-full max-md:text-4xl">
+        <div className="flex flex-col self-center max-w-full text-center px-40">
+          <h2 className="text-5xl font-medium tracking-tighter leading-10 text-verde">
             Mirá nuestras colecciones
           </h2>
-          <p className="self-center mt-6 text-xl text-neutral-700 max-md:max-w-full">
+          <p className="self-center mt-6 text-xl text-gris font-light">
             Lorem ipsum dolor sit amet consectetur. Cursus sem adipiscing est diam pulvinar adipiscing ut sit.
           </p>
         </div>

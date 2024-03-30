@@ -23,8 +23,12 @@ const Footer: React.FC = () => {
                 <div className="flex flex-col pl-11 max-md:pl-5">
                   <h2 className="text-3xl font-bold text-neutral-700">Contactanos!</h2>
                   <div className="flex justify-end mt-3">
-                    <Link href="/"><Instagram color="#FFAB02" size={32}/></Link>
-                    <Link href="/"><MessageCircle color="#FFAB02" size={32} className="mx-4"/></Link>
+                    <a href="https://www.instagram.com/thesticker.company/" target="_blank">
+                      <Instagram color="#FFAB02" size={32}/>
+                    </a>
+                    <a target='_blank' href="https://api.whatsapp.com/send?phone=5491123920584&text=Hola!%20C%C3%B3mo%20est%C3%A1n%3F%0AQuiero%20hacerles%20una%20consulta%20antes%20de%20armar%20mi%20pedido">
+                      <MessageCircle color="#FFAB02" size={32} className="mx-4"/>
+                    </a>
                   </div>
                 </div>
                 <div className="flex gap-2 justify-end mt-3 text-base text-right text-neutral-700">

@@ -2,7 +2,6 @@ import Image from 'next/image';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -10,11 +9,10 @@ import Link from 'next/link';
 
 export default function Tarjeta({ record }: any) {
     return (
-        <Card className="m-3">
+        <Card className="m-3 rounded-lg shadow-md hover:shadow-xl">
             <Link href={`/producto/${record.id}`}>
                 <CardHeader>
-                <CardTitle>{record.name}</CardTitle>
-                <CardDescription>Deploy your new one-click.</CardDescription>
+                <CardTitle className='font-normal font-sm text-gris'>{record.name}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Image
@@ -22,6 +20,7 @@ export default function Tarjeta({ record }: any) {
                         width={200}
                         height={200}
                         alt="Picture of the author"
+                        className='rounded-lg'
                     />
                 </CardContent>
             </Link>

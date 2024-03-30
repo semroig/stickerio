@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import Image from 'next/image';
+
 interface PriceCardProps {
   size: string;
   price: string;
@@ -35,20 +37,19 @@ function Precios() {
   ];
 
   return (
-    <div className="flex justify-center mt-32 mx-32">
-      <div className="flex flex-col w-1/2">
-        <div className="flex relative flex-col grow text-lg font-bold text-white min-h-[555px]">
-          <img
-            loading="lazy"
+    <div className="lg:flex items-center justify-center mt-32 lg:mx-32">
+      <div className="basis-1/2">
+        <Image
             src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/precios.png"
-            alt="Background"
-            className="object-cover absolute inset-0 size-full rounded-[40px]"
-          />
-        </div>
+            alt="Description of your image"
+            width={500}
+            height={500}
+            className="object-cover w-full h-full rounded-[40px]"
+        />
       </div>
-      <div className="flex flex-col w-1/2 px-20">
-        <div className="flex flex-col self-stretch my-auto max-md:mt-10">
-          <h2 className="text-5xl font-medium tracking-tighter leading-10 text-verde max-md:text-4xl">
+      <div className="basis-1/2 lg:px-20 sm:mt-10">
+        <div className="flex flex-col self-stretch my-auto">
+          <h2 className="text-5xl font-medium tracking-tighter leading-10 text-verde">
             Nuestros precios
           </h2>
           <p className="mt-6 text-lg text-gris font-light">

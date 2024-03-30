@@ -6,9 +6,12 @@ interface WhatsappChatButtonProps {
 
 const WhatsappChatButton: React.FC<WhatsappChatButtonProps> = ({ label }) => {
   return (
-    <button className="w-fit justify-center py-3 px-7 mt-6 font-semibold text-crema bg-naranja rounded-[50px]">
+    <a
+      target='_blank'
+      href='https://api.whatsapp.com/send?phone=5491123920584&text=Hola!%20C%C3%B3mo%20est%C3%A1n%3F%0AQuiero%20pedir%20una%20cotizaci%C3%B3n%20para%20un%20pedido%20por%20mayor'
+      className="w-fit justify-center py-3 px-7 mt-6 font-semibold text-crema bg-naranja rounded-[50px]">
       {label}
-    </button>
+    </a>
   );
 };
 

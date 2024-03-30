@@ -24,7 +24,7 @@ export default function CategoriesSection({ records }: any) {
     }
 
     return (
-        <div>
+        <div className="mt-5 text-gris">
             {records?.map((category : any) => (
                 <div key={category.id}>
                     <Category

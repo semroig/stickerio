@@ -62,7 +62,7 @@ export default async function Home({ searchParams }: any) {
 
       <div className="flex flex-row justify-center px-20 mt-5">
         <div className="m-6 basis-1/4">
-          <p className="font-semibold text-2xl mb-8">Buscar por Categoría</p>
+          <p className="font-medium text-2xl text-verde">Buscar por Colección</p>
           <CategoriesSection records={categories}></CategoriesSection>
         </div>
         <div className="basis-2/3">

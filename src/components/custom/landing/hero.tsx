@@ -22,35 +22,67 @@ const Landing: React.FC = () => {
   ];
 
   return (
-    <div className="flex flex-col">
-      <main className="self-center mt-4 mx-20">
-        <div className="flex gap-4">
-          <section className="flex flex-col w-3/5">
-            <div className="flex flex-col justify-center items-start px-16 py-40 border-2 border-emerald-800 border-solid rounded-[40px]">
-              <div className="flex flex-col mt-6 pr-14">
-                <h1 className="text-7xl font-medium tracking-tighter text-verde leading-[60px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
-                  Ponele onda a tus cosas con nuestros stickers
-                </h1>
-                <p className="mt-6 text-xl text-gris font-light">
-                  Mirá nuestras selecciónes de stickers desde la comodidad de tu
-                  casa!
-                </p>
-                <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-semibold text-crema whitespace-nowrap bg-naranja rounded-[50px] max-md:px-5">
-                  Comenzar
-                </button>
+    // <div className="mt-4 mx-20">
+    //   <div className="flex gap-4">
+    //     <div className="w-3/5">
+    //       <div className="px-16 py-28 border-2 border-emerald-800 border-solid rounded-[40px]">
+    //         <div className="mt-6 pr-14">
+    //           <h1 className="text-7xl font-medium tracking-tighter text-verde leading-[60px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
+    //             Ponele onda a tus cosas con nuestros stickers
+    //           </h1>
+    //           <p className="mt-6 text-xl text-gris font-light">
+    //             Mirá nuestras selecciónes de stickers desde la comodidad de tu
+    //             casa!
+    //           </p>
+    //           <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-semibold text-crema whitespace-nowrap bg-naranja rounded-[50px] max-md:px-5">
+    //             Comenzar
+    //           </button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //     <div className="w-2/5">
+    //       <div className="container my-auto">
+    //         <Image
+    //           src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/hero.png"
+    //           className="object-cover w-full h-full"
+    //           width={500}
+    //           height={500}
+    //           alt="Mock up celular"
+    //         />
+
+    //       </div>
+
+    //     </div>
+    //   </div>
+    // </div>
+    <div className="lg:flex lg:flex-row items-center justify-center mt-5 mx-16">
+            {/* Left column for text content */}
+            <div className="basis-3/5">
+                <div className="px-16 py-28 lg:border-2 border-emerald-800 rounded-[40px]">
+                  <h1 className="text-7xl font-medium tracking-tighter text-verde leading-[60px] max-md:max-w-full max-md:text-4xl max-md:leading-10">
+                    Ponele onda a tus cosas con nuestros stickers
+                  </h1>
+                  <p className="mt-6 text-xl text-gris font-light">
+                    Mirá nuestras selecciónes de stickers desde la comodidad de tu
+                    casa!
+                  </p>
+                  <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-semibold text-crema whitespace-nowrap bg-naranja rounded-[50px] max-md:px-5">
+                    Comenzar
+                  </button>
               </div>
             </div>
-          </section>
-          <div className="flex flex-col w-2/5 relative">
-            <Image
-              src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/hero.png"
-              fill={true}
-              alt="Mock up celular"
-              className="rounded-[40px]"
-            />
-          </div>
-        </div>
-      </main>
+
+            
+            {/* Right column for image */}
+            <div className="basis-2/5 lg:ml-5">
+                <Image
+                    src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/hero.png"
+                    alt="Description of your image"
+                    width={500}
+                    height={500}
+                    className="object-cover w-full h-full rounded-[40px]"
+                />
+            </div>
     </div>
   );
 };

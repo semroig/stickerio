@@ -48,8 +48,9 @@ function Colecciones() {
         <p className="text-4xl lg:text-5xl font-medium text-verde">
           Mirá nuestras<span className="highlight highlight-celeste"> colecciones </span>
         </p>
-        <p className="lg:self-center mt-6 text-xl text-gris font-light">
-          Lorem ipsum dolor sit amet consectetur. Cursus sem adipiscing est diam pulvinar adipiscing ut sit.
+        <p className="lg:self-center mt-6 text-lg text-gris font-light">
+        Explorá nuestra selección de stickers que van desde personajes de
+        películas hasta diseños únicos. Encontrá la combinación ideal para vos!
         </p>
       </div>
       <div className="mt-10 lg:mt-5">

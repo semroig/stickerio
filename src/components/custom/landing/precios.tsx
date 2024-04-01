@@ -54,7 +54,7 @@ function Precios() {
           </p>
           <p className="mt-6 text-lg text-gris font-light">
             Elegí el tamaño que más te guste y pegalo donde quieras!
-            Nuestros stickers son de vinilo resistentes a la humedad.
+            Nuestros stickers son de vinilo resistentes al contacto con el agua.
           </p>
           <div className="lg:flex gap-5 justify-center mt-6 text-neutral-600">
             {priceData.map((item, index) => (

@@ -23,8 +23,9 @@ const Mayorista: React.FC = () => {
           ¿Querés hacer un pedido por<span className="highlight highlight-celeste"> mayor? </span>
         </p>
         <p className="text-lg mt-6 text-gris font-light">
-          Ya sea para regalar stickers a tus empleados o para tu empresa,
-          un evento o emprendimiento, nosotros te armamos un presupuesto a
+          Ya sea para regalar stickers a tus empleados, un evento o
+          para tu publicitar tu propio emprendimiento,
+          nosotros te armamos un presupuesto a
           medida para vos. Contactanos!
         </p>
         <a

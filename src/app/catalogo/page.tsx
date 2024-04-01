@@ -36,7 +36,7 @@ export default async function Home({ searchParams }: any) {
     .in('collection_id', filteringCategories)
     .range((pagina - 1) * 12, pagina * 12 - 1)
 
-    if (filteringCategories.length === 1) categoriaLanding = filteringCategories[0];
+    if (filteringCategories.length === 1) categoriaLanding = parseInt(filteringCategories[0]);
   }
   else {
     resp = await supabase

@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface CountdownItemProps {
   value: number;
@@ -63,12 +64,14 @@ const Landing: React.FC = () => {
             Ponele<span className="highlight highlight-celeste"> onda </span>a tus cosas con nuestros stickers
           </p>
           <p className="mt-6 text-xl text-gris font-light">
-            Mirá nuestras selecciónes de stickers desde la comodidad de tu
+            Mirá nuestra selección de stickers desde la comodidad de tu
             casa!
           </p>
-          <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-medium text-crema whitespace-nowrap bg-naranja rounded-[50px] max-md:px-5">
-            Comenzar
-          </button>
+          <Link href={'/catalogo'}>
+            <button className="justify-center self-start px-7 py-3 mt-6 text-lg font-medium text-crema whitespace-nowrap bg-naranja rounded-[50px] max-md:px-5">
+              Ver catálogo
+            </button>
+          </Link>
         </div>
       </div>
 

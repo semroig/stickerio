@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 import Category from "@/components/custom/category";
 
-export default function CategoriesSection({ records }: any) {
+export default function CategoriesSection({ records, categoriaChecked }: any) {
     const router = useRouter();
     const [filteringCategoryIds, setFilteringCategoryIds] = useState<any[]>([]);
 
@@ -31,6 +31,7 @@ export default function CategoriesSection({ records }: any) {
                         record={category}
                         addFilter={addFilteringCategoryId}
                         removeFilter={removeFilteringCategoryId}
+                        categoriaChecked={categoriaChecked == category.id ? true : false}
                     ></Category>
                 </div>
             ))}

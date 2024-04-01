@@ -12,7 +12,7 @@ interface CollectionCardProps {
 const CollectionCard: React.FC<CollectionCardProps> = ({ imageSrc, title, id }) => (
   <div className="basis-1/3">
     <Link href={"/catalogo" + "?category=" + id}>
-      <div className="m-5 lg:m-2 overflow-hidden relative justify-center p-2.5 text-xl text-white whitespace-nowrap rounded-2xl aspect-[0.81]">
+      <div className="hover:shadow-2xl shadow-md m-5 lg:m-2 overflow-hidden relative justify-center p-2.5 text-xl text-white whitespace-nowrap rounded-2xl aspect-[0.81]">
         <img src={imageSrc} alt={`${title} collection`} className="object-cover absolute inset-0 size-full" />
         <div className="flex relative justify-between lg:mt-80 p-3 rounded-2xl border-2 border-white border-solid bg-black bg-opacity-60">
           <div>{title}</div>
@@ -36,7 +36,7 @@ const collections = [
   },
   {
     imageSrc: "https://cdn.builder.io/api/v1/image/assets/TEMP/9679356f04f3f1e5edd46c469f17002e09c93c1898d39bbd1cd7fc82b145ce50?apiKey=6c89b4a2db244c5d969134d9199949c2&",
-    title: "Flores",
+    title: "Moods",
     id: '3'
   },
 ];
@@ -45,7 +45,7 @@ function Colecciones() {
   return (
     <div className="lg:justify-center mt-14 lg:mt-24 mx-10 lg:mx-52">
       <div className="lg:self-center lg:text-center lg:mx-40">
-        <p className="text-5xl font-medium text-verde">
+        <p className="text-4xl lg:text-5xl font-medium text-verde">
           Mirá nuestras<span className="highlight highlight-celeste"> colecciones </span>
         </p>
         <p className="lg:self-center mt-6 text-xl text-gris font-light">

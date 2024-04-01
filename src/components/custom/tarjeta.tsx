@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 export default function Tarjeta({ record }: any) {
     return (
-        <Card className="m-3 rounded-lg shadow-md hover:shadow-xl">
+        <Card className="m-5 lg:m-3 rounded-lg shadow-md hover:shadow-xl">
             <Link href={`/producto/${record.id}`}>
                 <CardHeader>
                 <CardTitle className='font-normal font-sm text-gris'>{record.name}</CardTitle>

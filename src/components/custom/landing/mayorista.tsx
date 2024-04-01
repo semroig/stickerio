@@ -19,7 +19,7 @@ const Mayorista: React.FC = () => {
   return (
     <div className="lg:flex justify-center items-center mt-20 mx-10 lg:mx-36">
       <div className="basis-1/2 lg:pr-28">
-        <p className="text-5xl font-medium text-verde">
+        <p className="text-4xl lg:text-5xl font-medium text-verde">
           ¿Querés hacer un pedido por<span className="highlight highlight-celeste"> mayor? </span>
         </p>
         <p className="text-lg mt-6 text-gris font-light">

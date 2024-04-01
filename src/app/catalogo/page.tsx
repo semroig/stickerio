@@ -27,6 +27,7 @@ export default async function Home({ searchParams }: any) {
 
   // Traigo los prods segun search params de categories seleccionados
   let resp;
+  let categoriaLanding;
   if (searchParams.category){
     const filteringCategories = searchParams.category.split('-');
     resp = await supabase
@@ -34,6 +35,8 @@ export default async function Home({ searchParams }: any) {
     .select("*", { count: 'exact' })
     .in('collection_id', filteringCategories)
     .range((pagina - 1) * 12, pagina * 12 - 1)
+
+    if (filteringCategories.length === 1) categoriaLanding = filteringCategories[0];
   }
   else {
     resp = await supabase
@@ -60,13 +63,13 @@ export default async function Home({ searchParams }: any) {
     <div>
       <Navbar />
 
-      <div className="flex flex-row justify-center px-20 mt-5">
-        <div className="m-6 basis-1/4">
+      <div className="lg:flex lg:flex-row justify-center mx-10 lg:mx-0 lg:px-20 mt-5">
+        <div className="m-2 lg:m-6 lg:basis-1/4">
           <p className="font-medium text-2xl text-verde">Buscar por Colección</p>
-          <CategoriesSection records={categories}></CategoriesSection>
+          <CategoriesSection records={categories} categoriaChecked={categoriaLanding} />
         </div>
-        <div className="basis-2/3">
-          <div className="flex flex-wrap">
+        <div className="lg:basis-2/3">
+          <div className="lg:flex lg:flex-wrap justify-center">
             {resp.data?.map((product) => (
               <div key={product.id}>
                 <Tarjeta record={product}></Tarjeta>
@@ -74,7 +77,7 @@ export default async function Home({ searchParams }: any) {
             ))}
           </div>
 
-          {/* Pagination */}
+          {/* Pagination TO DO: hacerlo un componente aparte */}
           <Pagination className="mt-7">
             <PaginationContent>
               {/* Previous button */}

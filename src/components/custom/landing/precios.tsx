@@ -49,7 +49,7 @@ function Precios() {
       </div>
       <div className="basis-1/2 lg:px-20 mt-10">
         <div className="flex flex-col self-stretch my-auto">
-          <p className="text-5xl font-medium text-verde">
+          <p className="text-4xl lg:text-5xl font-medium text-verde">
             Nuestros<span className="highlight highlight-celeste highlight-variant-1"> precios</span>
           </p>
           <p className="mt-6 text-lg text-gris font-light">

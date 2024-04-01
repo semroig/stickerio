@@ -13,6 +13,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
+import { Toaster } from "@/components/ui/toaster"
 
 export default async function Home({ searchParams }: any) {
   // Inicializo cliente de supabase
@@ -107,6 +108,7 @@ export default async function Home({ searchParams }: any) {
       </div>
 
       <Footer />
+      <Toaster />
     </div>
   )
 }

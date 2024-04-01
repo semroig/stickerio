@@ -20,7 +20,7 @@ export default function Tarjeta({ record }: any) {
 
     return (
         <Card 
-            className="w-fit m-2 lg:m-3 rounded-lg shadow-md hover:shadow-xl"
+            className="hover:cursor-pointer w-fit m-2 lg:m-3 rounded-lg shadow-md hover:shadow-xl"
             onClick={() => {
                 toast({
                     title: "Proximamente!",

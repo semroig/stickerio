@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Navbar: React.FC = () => {
   return (
-    <header className="sticky z-50 top-0 flex justify-center items-center px-20 py-6 w-full text-lg font-semibold text-orange-600 whitespace-nowrap max-md:px-5 max-md:max-w-full bg-white">
+    <header className="sticky z-50 top-0 flex justify-center items-center px-20 py-4 w-full text-naranja whitespace-nowrap max-md:px-5 max-md:max-w-full bg-white">
         <div className="flex gap-5 justify-between w-full max-md:flex-wrap max-md:max-w-full mx-12" >
           <Link href={"/"} className="my-auto">
             <img
@@ -14,9 +14,18 @@ const Navbar: React.FC = () => {
               className="shrink-0 max-w-full aspect-[6.67] fill-neutral-700 w-[189px]"
             />
           </Link>
-          {/* <div className="justify-center px-5 py-2 border-2 border-orange-600 border-solid rounded-[50px] max-md:px-5">
-            Ingresar
-          </div> */}
+          <div className="flex gap-5">
+          <Link href={"/signup"}>
+            <div className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
+              Registrarse
+            </div>
+          </Link>
+          <Link href={"/login"}>
+            <div className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
+              Ingresar
+            </div>
+          </Link>
+          </div>
         </div>
     </header>
   );

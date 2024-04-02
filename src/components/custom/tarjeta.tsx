@@ -9,11 +9,8 @@ import {
 } from "@/components/ui/card";
 // import Link from 'next/link';
 
-import { Button } from "@/components/ui/button"
 import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
-import { useState } from "react";
-
 
 export default function Tarjeta({ record }: any) {
     const { toast } = useToast()

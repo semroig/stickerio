@@ -48,6 +48,7 @@ export default function LogInForm() {
 	}
 
     // TO DO: que salga un asterisco rojo indicando que es required
+    // TO DO: cuando hace login fue exitoso, que muestre un toast mientras se hace el redirect
 
     return (
         <Form {...form}>
@@ -83,7 +84,7 @@ export default function LogInForm() {
 
                 {/* Usar isPending para renderizado condicional de boton con spinner */}
         
-                <Button type="submit" disabled={isPending}>
+                <Button type="submit" disabled={isPending} className="w-full">
                     Ingresar
                     { isPending ? <Loader2 className="ml-2 h-4 w-4 animate-spin" /> : <></>}
                 </Button>

@@ -9,6 +9,8 @@ export default async function Home() {
   const { data } = await readUserSession();
   if(data.session) return redirect('/catalogo');
 
+  // TO DO: Mostrar toast de error si no funciona el log in
+
   return (
     <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -18,7 +20,7 @@ export default async function Home() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <LogInForm></LogInForm>
-        <OAuthForm></OAuthForm>
+        {/* <OAuthForm></OAuthForm> */}
 
         <p className="mt-10 text-center text-sm text-gray-500">
           No estás registrado? {" "}

@@ -5,6 +5,8 @@ const nextConfig = {
       "t3.ftcdn.net",
       "tailwindui.com",
       "ujfmhfambjwfboketpby.supabase.co",
+      "drive.google.com",
+      "lh3.googleusercontent.com",
     ],
   },
 };

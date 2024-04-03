@@ -38,7 +38,7 @@ const Mayorista: React.FC = () => {
       <div className="basis-1/2">
         <img
           loading="lazy"
-          src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/cuaderno.png"
+          src={"https://lh3.googleusercontent.com/d/" + "1U8nckAqt_RozK0WGDC-QCFiLnPcc77tz"}
           alt="Mock up de cuaderno"
           className="mt-10 lg:grow lg:w-full rounded-[40px]"
         />

@@ -14,6 +14,9 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import { Toaster } from "@/components/ui/toaster"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+
+import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
 
 export default async function Home({ searchParams }: any) {
   // Inicializo cliente de supabase
@@ -60,11 +63,13 @@ export default async function Home({ searchParams }: any) {
       );
   }
 
+  // Pagination TO DO: hacerlo un componente aparte
+
   return (
     <div>
       <Navbar />
 
-      <div className="lg:flex lg:flex-row lg:justify-center lg:mx-0 lg:px-20 mt-5">
+      {/* <div className="lg:flex lg:flex-row lg:justify-center lg:mx-0 lg:px-20 mt-5">
         <div className="m-2 lg:m-6 lg:basis-1/4 mx-10">
           <p className="font-medium text-2xl text-verde">Buscar por Colección</p>
           <CategoriesSection records={categories} categoriaChecked={categoriaLanding} />
@@ -78,10 +83,8 @@ export default async function Home({ searchParams }: any) {
             ))}
           </div>
 
-          {/* Pagination TO DO: hacerlo un componente aparte */}
           <Pagination className="mt-7">
             <PaginationContent>
-              {/* Previous button */}
               {pagina != 1 && (
                 <PaginationItem>
                   <PaginationPrevious
@@ -90,10 +93,8 @@ export default async function Home({ searchParams }: any) {
                 </PaginationItem>
               )}
 
-              {/* Render all buttons */}
               {pagItems}
 
-              {/* Next button */}
               {pagina != Math.ceil(resp.count! / 12) && (
                 <PaginationItem>
                   <PaginationNext
@@ -105,6 +106,17 @@ export default async function Home({ searchParams }: any) {
           </Pagination>
 
         </div>
+      </div> */}
+
+      <div className="container">
+        <Alert variant="destructive" className="my-40">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+              Sitio en mantenimiento, vuelva mas tarde :)
+            </AlertDescription>
+        </Alert>
+
       </div>
 
       <Footer />

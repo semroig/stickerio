@@ -46,7 +46,7 @@ const Landing: React.FC = () => {
       {/* Right column for image */}
       <div className="basis-2/5 lg:ml-5 m-10">
           <Image
-              src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/hero.png"
+              src={"https://lh3.googleusercontent.com/d/" + "1Yv-pN9DLMidOoB9WbOQA9TcmTT76UCqc"}
               alt="Description of your image"
               width={500}
               height={500}

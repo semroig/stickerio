@@ -40,7 +40,7 @@ function Precios() {
     <div className="lg:flex lg:items-center lg:justify-center mt-20 mx-10 lg:mx-28">
       <div className="basis-1/2">
         <Image
-            src="https://ujfmhfambjwfboketpby.supabase.co/storage/v1/object/public/images/landing/precios.png"
+            src={"https://lh3.googleusercontent.com/d/" + "1ZM4GXBPE4a9tqHzzRd5CSrGfVBun8h8C"}
             alt="Description of your image"
             width={500}
             height={500}

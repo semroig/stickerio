@@ -7,20 +7,22 @@ import Category from "@/components/custom/category";
 
 export default function CategoriesSection({ records, categoriaChecked }: any) {
     const router = useRouter();
-    const [filteringCategoryIds, setFilteringCategoryIds] = useState<any[]>([categoriaChecked]);
+    const [filteringCategoryIds, setFilteringCategoryIds] = useState<Number[]>([categoriaChecked]);
 
     // Funcion para agregar id de catalogo a lista de filters y consumir ruta con params
     async function addFilteringCategoryId(id : any) {
         const newArray = [...filteringCategoryIds, id];
-        setFilteringCategoryIds(newArray);
-        router.push('/catalogo?category=' + newArray.join('-'));
+        const filteredArr = newArray.filter(cod => cod);
+        setFilteringCategoryIds(filteredArr);
+        router.push('/catalogo?category=' + filteredArr.join('-'));
     }
 
     // Funcion para sacar id de catalogo a lista de filters y consumir ruta con params
     async function removeFilteringCategoryId(id : any) {
         const newArray = filteringCategoryIds.filter((cat) => cat !== id);
-        setFilteringCategoryIds(newArray)
-        router.push('/catalogo?category=' + newArray.join('-'));
+        const filteredArr = newArray.filter(cod => cod);
+        setFilteringCategoryIds(filteredArr)
+        router.push('/catalogo?category=' + filteredArr.join('-'));
     }
 
     return (

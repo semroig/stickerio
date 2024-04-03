@@ -14,9 +14,9 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination"
 import { Toaster } from "@/components/ui/toaster"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+// import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
-import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
+// import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
 
 export default async function Home({ searchParams }: any) {
   // Inicializo cliente de supabase
@@ -69,7 +69,7 @@ export default async function Home({ searchParams }: any) {
     <div>
       <Navbar />
 
-      {/* <div className="lg:flex lg:flex-row lg:justify-center lg:mx-0 lg:px-20 mt-5">
+      <div className="lg:flex lg:flex-row lg:justify-center lg:mx-0 lg:px-20 mt-5">
         <div className="m-2 lg:m-6 lg:basis-1/4 mx-10">
           <p className="font-medium text-2xl text-verde">Buscar por Colección</p>
           <CategoriesSection records={categories} categoriaChecked={categoriaLanding} />
@@ -106,9 +106,9 @@ export default async function Home({ searchParams }: any) {
           </Pagination>
 
         </div>
-      </div> */}
+      </div>
 
-      <div className="container">
+      {/* <div className="container">
         <Alert variant="destructive" className="my-40">
             <AlertCircle className="h-4 w-4" />
             <AlertTitle>Error</AlertTitle>
@@ -117,7 +117,7 @@ export default async function Home({ searchParams }: any) {
             </AlertDescription>
         </Alert>
 
-      </div>
+      </div> */}
 
       <Footer />
       <Toaster />

@@ -23,7 +23,7 @@ export default function Tarjeta({ record }: any) {
                     title: "Proximamente!",
                     description: "Muy pronto vas a poder armar tu pedido desde esta misma web! Por ahora podes ir chusmeando nuestro catalogo ;)",
                     duration: 3000,
-                    action: <ToastAction altText="Oki">Oki</ToastAction>
+                    action: <ToastAction altText="Oki">Oki</ToastAction>,
                 })
             }}
         >

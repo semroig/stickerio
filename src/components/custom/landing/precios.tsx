@@ -40,7 +40,7 @@ function Precios() {
     <div className="lg:flex lg:items-center lg:justify-center mt-20 mx-10 lg:mx-28">
       <div className="basis-1/2">
         <Image
-            src={"https://lh3.googleusercontent.com/d/" + "1ZM4GXBPE4a9tqHzzRd5CSrGfVBun8h8C"}
+            src={"https://lh3.googleusercontent.com/d/1QyiT2grXvBNX5EK8cdf-SPp8bY5nUBD6"}
             alt="Description of your image"
             width={500}
             height={500}

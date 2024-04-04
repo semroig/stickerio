@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { useTransition } from "react";
+import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -38,6 +39,7 @@ const FormSchema = z
 	});
 
 export default function SignUpForm() {
+  const router = useRouter();
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -58,6 +60,9 @@ export default function SignUpForm() {
       const { error }  = JSON.parse(result);
       if(error) console.error(error.message)
       else console.log('todo ok el registro');
+
+      // TO DO: En caso de sign up exitoso, redireccionar a pagina de confirmation
+      // router.push('/catalogo?category=' + filteredArr.join('-'));
     })
 
 		// toast({

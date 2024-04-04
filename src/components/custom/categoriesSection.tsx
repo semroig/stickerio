@@ -28,14 +28,13 @@ export default function CategoriesSection({ records, categoriaChecked }: any) {
     return (
         <div className="mt-5 text-gris">
             {records?.map((category : any) => (
-                <div key={category.id}>
-                    <Category
-                        record={category}
-                        addFilter={addFilteringCategoryId}
-                        removeFilter={removeFilteringCategoryId}
-                        categoriaChecked={categoriaChecked == category.id ? true : false}
-                    ></Category>
-                </div>
+                <Category
+                    key={category.id}
+                    record={category}
+                    addFilter={addFilteringCategoryId}
+                    removeFilter={removeFilteringCategoryId}
+                    categoriaChecked={categoriaChecked == category.id ? true : false}
+                ></Category>
             ))}
         </div>
     )

@@ -4,15 +4,15 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 export default function Category({ record, addFilter, removeFilter, categoriaChecked }: any) {
     return (
-        <div className="my-2 flex items-center space-x-2">
+        <div className="my-3 flex items-center space-x-2">
             <Checkbox
                 defaultChecked={categoriaChecked}
-                id="category"
+                id={record.name}
                 onCheckedChange={(e) => e ? addFilter(record.id) : removeFilter(record.id)}
             />
             <label
-                htmlFor="category"
-                className="text-xl font-light leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                htmlFor={record.name}
+                className="text-xl font-light leading-none cursor-pointer"
             >
                 {record.name}
             </label>

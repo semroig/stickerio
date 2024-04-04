@@ -41,23 +41,6 @@ export default function Tarjeta({ record }: any) {
                     />
                 </CardContent>
             {/* </Link> */}
-
-            {/* <AlertDialog open={open}>
-                <AlertDialogContent>
-                    <AlertDialogHeader>
-                        <AlertDialogTitle>Bienvenido a The Sticker Co!</AlertDialogTitle>
-                        <AlertDialogDescription>
-                        Proximamente vas a poder armar tu pedido desde esta misma web! Por ahora podes ir chusmeando nuestro catalogo ;)
-                        </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                        <Button onClick={() => {
-                            setOpen(false)
-                            console.log(open)
-                            }} >Oki</Button>
-                    </AlertDialogFooter>
-                </AlertDialogContent>
-            </AlertDialog> */}
         </Card>
     )
 }

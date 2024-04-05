@@ -2,7 +2,10 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useTransition } from "react";
 import * as z from "zod";
+
+import { signInWithEmailAndPassword } from "@/app/actions"
 
 import {
   Form,
@@ -14,8 +17,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { signInWithEmailAndPassword } from "@/app/actions"
-import { useTransition } from "react";
+import { ToastAction } from "@/components/ui/toast"
+import { useToast } from "@/components/ui/use-toast"
 
 import { Loader2 } from "lucide-react"
 
@@ -29,6 +32,7 @@ const FormSchema = z
 
 export default function LogInForm() {
     const [isPending, startTransition] = useTransition();
+    const { toast } = useToast()
 
     const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -41,19 +45,25 @@ export default function LogInForm() {
 	function onSubmit(datos: z.infer<typeof FormSchema>) {
         startTransition(async () => {
             const result = await signInWithEmailAndPassword(datos);
-            const { error }  = JSON.parse(result);
-            if(error) console.error(error.message)
-            else console.log('todo ok el registro');
+            const { data, error }  = JSON.parse(result);
+            if (error) console.error(error.message);
+            else {
+                toast({
+                    title: `Bienvenido ${data.user.user_metadata.display_name}!`,
+                    description: "Es lindo tenerte de vuelta ;)",
+                    duration: 3000,
+                    action: <ToastAction altText="Oki">Oki</ToastAction>,
+                });
+            }
         })
 	}
 
     // TO DO: que salga un asterisco rojo indicando que es required
-    // TO DO: cuando hace login fue exitoso, que muestre un toast mientras se hace el redirect
 
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-    
+
                 <FormField
                     control={form.control}
                     name="email"
@@ -67,7 +77,7 @@ export default function LogInForm() {
                     </FormItem>
                     )}
                 />
-    
+
                 <FormField
                     control={form.control}
                     name="password"
@@ -82,8 +92,6 @@ export default function LogInForm() {
                     )}
                 />
 
-                {/* Usar isPending para renderizado condicional de boton con spinner */}
-        
                 <Button type="submit" disabled={isPending} className="w-full">
                     Ingresar
                     { isPending ? <Loader2 className="ml-2 h-4 w-4 animate-spin" /> : <></>}

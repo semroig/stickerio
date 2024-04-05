@@ -7,27 +7,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import Link from 'next/link';
-
-import { ToastAction } from "@/components/ui/toast"
-import { useToast } from "@/components/ui/use-toast"
+import Link from 'next/link';
 
 export default function Tarjeta({ record }: any) {
-    const { toast } = useToast()
-
     return (
         <Card 
             className="hover:cursor-pointer w-fit m-2 lg:m-3 rounded-lg shadow-md hover:shadow-xl"
-            onClick={() => {
-                toast({
-                    title: "Proximamente!",
-                    description: "Muy pronto vas a poder armar tu pedido desde esta misma web! Por ahora podes ir chusmeando nuestro catalogo ;)",
-                    duration: 3000,
-                    action: <ToastAction altText="Oki">Oki</ToastAction>,
-                })
-            }}
         >
-            {/* <Link href={`/producto/${record.id}`}> */}
+            <Link href={`/producto/${record.id}`}>
                 <CardHeader>
                 <CardTitle className='font-normal font-sm text-gris'>{record.name}</CardTitle>
                 </CardHeader>
@@ -40,7 +27,7 @@ export default function Tarjeta({ record }: any) {
                         className='rounded-lg'
                     />
                 </CardContent>
-            {/* </Link> */}
+            </Link>
         </Card>
     )
 }

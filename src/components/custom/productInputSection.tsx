@@ -142,7 +142,7 @@ export default function ProductInputSection({ record }: any) {
                 </div>
             </div>
 
-            <SubmitButton />
+            {/* <SubmitButton /> */}
 
             <div className="mt-3">
                 {/* <AlertBox msg={state?.message}></AlertBox> */}

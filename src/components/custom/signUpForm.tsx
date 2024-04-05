@@ -58,30 +58,9 @@ export default function SignUpForm() {
     startTransition(async () => {
       const result = await signUpWithEmailAndPassword(datos);
       const { error }  = JSON.parse(result);
-      if(error) {
-        console.error(error.message);
-
-        // Cambio estado del error para renderizar alert
-        setErrorGenerated(error.message);
-      }
-      else {
-        console.log('todo ok el registro');
-
-        // TO DO: ocultar form y mostrar cartel de confirmation
-        setEmail(datos.email);
-      }
+      if(error) setErrorGenerated(error.message);
+      else setEmail(datos.email);
     })
-
-		// toast({
-		// 	title: "You submitted the following values:",
-		// 	description: (
-		// 		<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-		// 			<code className="text-white">
-		// 				{JSON.stringify(data, null, 2)}
-		// 			</code>
-		// 		</pre>
-		// 	),
-		// });
 	}
 
   // TO DO: que salga un asterisco rojo indicando que es required
@@ -195,7 +174,7 @@ export default function SignUpForm() {
                   para que valides tu usuario. Por las dudas podes revisar tu casilla de spam.
               </p>
 
-              {/* TO DO: hacer andar el botond e reenviar mail */}
+              {/* TO DO: hacer andar el boton de reenviar mail */}
               {/* <p className="mt-10 text-center text-sm text-gray-500">
                   Todavia no lo recibiste? {" "}
                   <Link href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Reenviar link</Link>

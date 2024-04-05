@@ -49,17 +49,23 @@ export async function addItem(
     }
 }
 
-export async function signUpWithEmailAndPassword(data: {
+export async function signUpWithEmailAndPassword(formData: {
     name: string;
     email: string;
     password: string;
     confirm: string;
 }){
     const supabase = await createSupabaseServerClient();
-
-    // TO DO: como enviar el nombre para que se guarde en la tabla de user data
-
-    const result = await supabase.auth.signUp({email: data.email, password: data.password});
+    const result = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+            emailRedirectTo: process.env.EMAIL_CONFIRMATION_REDIRECT_URL,
+            data: {
+                display_name: formData.name
+            }
+        }
+    });
     return JSON.stringify(result);
 }
 

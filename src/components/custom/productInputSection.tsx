@@ -23,15 +23,15 @@ import { cn } from "@/lib/utils"
 const sizes = [
     {
       value: "chico",
-      label: "4x4 - $300",
+      label: "Chico 4x4 - $400",
     },
-    {
-      value: "mediano",
-      label: "6x6 - $400",
-    },
+    // {
+    //   value: "mediano",
+    //   label: "6x6 - $400",
+    // },
     {
       value: "grande",
-      label: "8x8 - $500",
+      label: "Grande 7x7 - $550",
     }
 ]
 
@@ -51,10 +51,12 @@ function SubmitButton() {
 
 // Componente de alert usando state message del form action
 function AlertBox({props}: any) {
+    console.log(props)
+
     // Primero valido que haya algun mensaje
-    if (props.msg){
+    if (props){
         // Luego valido si es error o exito
-        if (props.msg === 'Success') return (
+        if (props === 'Success') return (
             <Alert>
                 <Check className="h-4 w-4" />
                 <AlertTitle>Listo!</AlertTitle>
@@ -68,7 +70,7 @@ function AlertBox({props}: any) {
                 <AlertCircle className="h-4 w-4" />
                 <AlertTitle>Error</AlertTitle>
                 <AlertDescription>
-                    {props.msg}
+                    {props}
                 </AlertDescription>
             </Alert>
         )
@@ -76,22 +78,27 @@ function AlertBox({props}: any) {
     else return <></>
 }
 
+// interface State {
+//     prevState: {
+//         message: string;
+//     },
+// }
+
 export default function ProductInputSection({ record }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
-    // const [state, formAction] = useFormState<State, FormData>(addItem, { message: "" });
+    const [state, formAction] = useFormState<any, FormData>(addItem, { message: "" });
+
+    console.log(state?.message)
 
     // TO DO: No permitir numeros negativos en input de cantidad
     // TO DO: El alert debe desaparecer luego de algunos segundos
 
-    // action={formAction}
-
     return (
-        <form>
-
+        <form action={formAction}>
             <div className="flex flex-row justify-start mt-8">
                 <div className="basis-1/2">
-                    <p className="text-lg my-4">Tamaño:</p>
+                    <p className="text-lg my-3 font-medium text-gris">Tamaño:</p>
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                             <Button
@@ -135,17 +142,17 @@ export default function ProductInputSection({ record }: any) {
                     </Popover>
                 </div>
                 <div className="basis-1/3">
-                    <p className="text-lg my-4">Cantidad:</p>
-                    <Input type="number" name="cantidad" required></Input>
+                    <p className="text-lg my-3 font-medium text-gris">Cantidad:</p>
+                    <Input type="number" name="cantidad" min="0" required></Input>
                     <input type="hidden" name="size" value={value} />
                     <input type="hidden" name="id" value={record.id} />
                 </div>
             </div>
 
-            {/* <SubmitButton /> */}
+            <SubmitButton />
 
             <div className="mt-3">
-                {/* <AlertBox msg={state?.message}></AlertBox> */}
+                <AlertBox msg={state?.message}></AlertBox>
             </div>
         </form>
     )

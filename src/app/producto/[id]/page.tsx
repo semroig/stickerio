@@ -35,22 +35,23 @@ export default async function Home({ params }: any) {
         <Navbar />
         <div className="flex flex-row justify-center px-20 mt-8">
           <div className="m-6 basis-2/5">
-            <Card className="m-3" >
-                <CardContent>
-                    <Image
-                        src={product![0].image_url}
-                        width={450}
-                        height={450}
-                        alt="Picture of the author"
-                    />
-                </CardContent>
+            <Card className="w-fit rounded-lg pt-5">
+              <CardContent>
+                  <Image
+                      src={product![0].image_url}
+                      width={600}
+                      height={600}
+                      alt="Picture of the author"
+                      className='rounded-lg'
+                  />
+              </CardContent>
             </Card>
           </div>
           <div className="m-6 basis-2/5">
 
-            <p className="font-semibold text-3xl">{ product![0].name }</p>
-            <p className="text-lg mt-3">Descripción bla bla</p>
-            <p className="font-semibold text-5xl my-10">$ 200</p>
+            <p className="font-medium text-3xl text-verde">{ product![0].name }</p>
+            <p className="text-lg mt-3 text-gris">{ product![0].description }</p>
+            {/* <p className="font-light text-5xl my-10 ">$ 200</p> */}
 
             <ProductInputSection record={product![0]}></ProductInputSection>
           </div>

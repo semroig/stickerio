@@ -11,7 +11,7 @@ export default async function Navbar() {
   // TO DO: Revisar cuando ya este logeado el user y mostrar navbar dinamico
 
   return (
-    <header className="sticky z-50 top-0 flex justify-center items-center px-20 py-4 w-full text-naranja whitespace-nowrap max-md:px-5 max-md:max-w-full bg-white">
+    <header className="sticky z-50 top-0 flex justify-center items-center px-16 py-4 w-full text-naranja whitespace-nowrap max-md:px-5 max-md:max-w-full bg-white">
         <div className="flex gap-5 justify-between w-full max-md:flex-wrap max-md:max-w-full mx-12" >
           <Link href={"/"} className="my-auto">
             <img

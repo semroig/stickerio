@@ -69,9 +69,9 @@ export default async function Home({ searchParams }: any) {
     <div>
       <Navbar />
 
-      <div className="lg:flex lg:flex-row lg:justify-center lg:mx-0 lg:px-20 mt-5">
-        <div className="m-2 lg:m-6 lg:basis-1/4 mx-10">
-          <p className="font-medium text-2xl text-verde">Buscar por Colección</p>
+      <div className="lg:flex lg:flex-row lg:justify-center lg:mx-0 lg:px-20 mt-5 lg:mt-16">
+        <div className="lg:m-6 lg:basis-1/5 mx-16 my-7 lg:my-1.5 lg:mx-1">
+          <p className="font-medium text-3xl text-verde">Colecciones</p>
           <CategoriesSection records={categories} categoriaChecked={categoriaLanding} />
         </div>
         <div className="lg:basis-3/4">

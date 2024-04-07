@@ -13,7 +13,7 @@ export default function SignOut() {
 
     return (
         <form action={logout}>
-            <Button>Salir</Button>
+            <Button className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg bg-white hover:bg-white text-naranja">Salir</Button>
         </form>
     );
 }

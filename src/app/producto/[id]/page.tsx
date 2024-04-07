@@ -31,21 +31,18 @@ export default async function Home({ params }: any) {
         .from("Product").select().eq('id', id);
 
     return (
-      <>
+      <div>
         <Navbar />
-        <div className="flex flex-row justify-center px-20 mt-8">
+
+        <div className="lg:flex lg:flex-row lg:justify-center lg:px-20 lg:mt-8">
           <div className="m-6 basis-2/5">
-            <Card className="w-fit rounded-lg pt-5">
-              <CardContent>
-                  <Image
-                      src={product![0].image_url}
-                      width={600}
-                      height={600}
-                      alt="Picture of the author"
-                      className='rounded-lg'
-                  />
-              </CardContent>
-            </Card>
+            <Image
+                src={product![0].image_url}
+                width={600}
+                height={600}
+                alt="Picture of the author"
+                className='rounded-lg'
+            />
           </div>
           <div className="m-6 basis-2/5">
 
@@ -57,6 +54,6 @@ export default async function Home({ params }: any) {
           </div>
         </div>
         <Footer />
-      </>
+      </div>
     )
 }

@@ -9,6 +9,7 @@ import SignOut from '@/components/custom/signOut'
 export default async function Navbar() {
   const { data } = await readUserSession();
   // TO DO: Revisar cuando ya este logeado el user y mostrar navbar dinamico
+  // TO DO: usar next image component
 
   return (
     <header className="sticky z-50 top-0 flex justify-center items-center px-16 py-4 w-full text-naranja whitespace-nowrap max-md:px-5 max-md:max-w-full bg-white">

@@ -40,7 +40,7 @@ function SubmitButton() {
 
     return (
         <Button 
-            className="mt-8"
+            className="mt-8 w-full"
             type="submit"
             aria-disabled={pending}
         >
@@ -50,53 +50,40 @@ function SubmitButton() {
 }
 
 // Componente de alert usando state message del form action
-function AlertBox({props}: any) {
-    console.log(props)
+function AlertBox({ msg }: any) {
+    // Valido si es error o exito
+    if (msg == 'Success') return (
+        <Alert variant="exito">
+            <Check className="h-4 w-4" />
+            <AlertTitle>Listo!</AlertTitle>
+            <AlertDescription>
+                Producto agregado al carrito exitosamente.
+            </AlertDescription>
+        </Alert>
+    )
 
-    // Primero valido que haya algun mensaje
-    if (props){
-        // Luego valido si es error o exito
-        if (props === 'Success') return (
-            <Alert>
-                <Check className="h-4 w-4" />
-                <AlertTitle>Listo!</AlertTitle>
-                <AlertDescription>
-                    Producto agregado al carrito exitosamente.
-                </AlertDescription>
-            </Alert>
-        )
-        else return (
-            <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
-                    {props}
-                </AlertDescription>
-            </Alert>
-        )
-    }
-    else return <></>
+    return (
+        <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+                {msg}
+            </AlertDescription>
+        </Alert>
+    )
 }
-
-// interface State {
-//     prevState: {
-//         message: string;
-//     },
-// }
 
 export default function ProductInputSection({ record }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
     const [state, formAction] = useFormState<any, FormData>(addItem, { message: "" });
 
-    console.log(state?.message)
-
     // TO DO: No permitir numeros negativos en input de cantidad
     // TO DO: El alert debe desaparecer luego de algunos segundos
 
     return (
-        <form action={formAction}>
-            <div className="flex flex-row justify-start mt-8">
+        <form action={formAction} className="mt-8 lg:mt-14">
+            <div className="lg:flex lg:flex-row lg:justify-start gap-5">
                 <div className="basis-1/2">
                     <p className="text-lg my-3 font-medium text-gris">Tamaño:</p>
                     <Popover open={open} onOpenChange={setOpen}>
@@ -105,7 +92,7 @@ export default function ProductInputSection({ record }: any) {
                                 variant="outline"
                                 role="combobox"
                                 aria-expanded={open}
-                                className="w-[200px] justify-between"
+                                className="w-full lg:w-64 justify-between"
                             >
                                 {   
                                     value
@@ -115,33 +102,33 @@ export default function ProductInputSection({ record }: any) {
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-[200px] p-0">
+                        <PopoverContent className="w-full lg:w-64 p-0">
                             <Command>
                                 <CommandGroup>
                                     {sizes.map((size) => (
-                                    <CommandItem
-                                        key={size.value}
-                                        value={size.value}
-                                        onSelect={(currentValue) => {
-                                            setValue(currentValue === value ? "" : currentValue)
-                                            setOpen(false)
-                                        }}
-                                    >
-                                        <Check
-                                            className={cn(
-                                                "mr-2 h-4 w-4",
-                                                value === size.value ? "opacity-100" : "opacity-0"
-                                            )}
-                                        />
-                                        {size.label}
-                                    </CommandItem>
+                                        <CommandItem
+                                            key={size.value}
+                                            value={size.value}
+                                            onSelect={(currentValue) => {
+                                                setValue(currentValue === value ? "" : currentValue)
+                                                setOpen(false)
+                                            }}
+                                        >
+                                            <Check
+                                                className={cn(
+                                                    "mr-2 h-4 w-4",
+                                                    value === size.value ? "opacity-100" : "opacity-0"
+                                                )}
+                                            />
+                                            {size.label}
+                                        </CommandItem>
                                     ))}
                                 </CommandGroup>
                             </Command>
                         </PopoverContent>
                     </Popover>
                 </div>
-                <div className="basis-1/3">
+                <div className="basis-1/2">
                     <p className="text-lg my-3 font-medium text-gris">Cantidad:</p>
                     <Input type="number" name="cantidad" min="0" required></Input>
                     <input type="hidden" name="size" value={value} />
@@ -149,11 +136,14 @@ export default function ProductInputSection({ record }: any) {
                 </div>
             </div>
 
+            {state?.message && (
+                <div className="mt-3">
+                    <AlertBox msg={state?.message}></AlertBox>
+                </div>
+            )}
+
             <SubmitButton />
 
-            <div className="mt-3">
-                <AlertBox msg={state?.message}></AlertBox>
-            </div>
         </form>
     )
 }

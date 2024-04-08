@@ -30,7 +30,7 @@ export default async function Navbar() {
             { data.session ? 
               (
                 <>
-                  <Link href={"/carrito"}><ShoppingCart /></Link>
+                  <Link href={"/carrito"} prefetch={false}><ShoppingCart /></Link>
                   <SignOut />
                 </>
               ) :

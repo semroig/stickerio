@@ -16,6 +16,7 @@ import Link from "next/link";
 
 import TarjetaCarrito from "@/components/custom/tarjetaCarrito";
 import DeleteCartItemButton from "@/components/custom/deleteCartItemButton";
+import RefresherCarrito from "@/components/custom/refresherCarrito";
 
 export default async function Home() {
   const { data } = await readUserSession();
@@ -41,6 +42,9 @@ export default async function Home() {
   return (
     <>
       <Navbar />
+
+      {/* Componente temporal para hacer refresh al cargar ruta */}
+      <RefresherCarrito />
 
       <div className="flex m-20">
         <div className="basis-3/4 ml-10">

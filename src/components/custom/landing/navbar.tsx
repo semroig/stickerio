@@ -6,6 +6,8 @@ import Link from "next/link";
 
 import SignOut from '@/components/custom/signOut'
 
+import { ShoppingCart } from 'lucide-react';
+
 export default async function Navbar() {
   const { data } = await readUserSession();
   // TO DO: Revisar cuando ya este logeado el user y mostrar navbar dinamico
@@ -23,26 +25,30 @@ export default async function Navbar() {
             />
           </Link>
 
-          <div className="flex gap-5">
+          <div className="flex justify-center items-center gap-5">
 
             { data.session ? 
-            (
-              <SignOut />
-            ) :
-            (
-              <>
-                <Link href={"/signup"}>
-                  <div className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
-                    Registrarse
-                  </div>
-                </Link>
-                <Link href={"/login"}>
-                  <div className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
-                    Ingresar
-                  </div>
-                </Link>
-              </>
-            )}
+              (
+                <>
+                  <Link href={"/carrito"}><ShoppingCart /></Link>
+                  <SignOut />
+                </>
+              ) :
+              (
+                <>
+                  <Link href={"/signup"}>
+                    <div className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
+                      Registrarse
+                    </div>
+                  </Link>
+                  <Link href={"/login"}>
+                    <div className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
+                      Ingresar
+                    </div>
+                  </Link>
+                </>
+              )
+            }
 
             
           </div>

@@ -10,7 +10,7 @@ export default function TarjetaCarrito({ record }: any) {
             <CardContent>
                 <div className="flex flex-row items-center mt-5">
                     <Image
-                        src="https://t3.ftcdn.net/jpg/04/62/93/66/360_F_462936689_BpEEcxfgMuYPfTaIAOC1tCDurmsno7Sp.jpg"
+                        src={record.Product.image_url}
                         width={100}
                         height={100}
                         alt="Sticker image"

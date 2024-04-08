@@ -12,8 +12,9 @@ const poppins = Poppins({
 })
 
 import { Analytics } from "@vercel/analytics/react"
-import './globals.css'
+import { Toaster } from "@/components/ui/toaster"
 
+import './globals.css'
 
 export default function RootLayout({
   children,
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className="bg-neutral-100">
         {children}
         <Analytics />
+        <Toaster />
       </body>
     </html>
   )

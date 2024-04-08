@@ -13,7 +13,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
-import { Toaster } from "@/components/ui/toaster"
 // import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 // import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
@@ -120,7 +119,6 @@ export default async function Home({ searchParams }: any) {
       </div> */}
 
       <Footer />
-      <Toaster />
     </div>
   )
 }

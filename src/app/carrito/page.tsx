@@ -19,8 +19,8 @@ import DeleteCartItemButton from "@/components/custom/deleteCartItemButton";
 import RefresherCarrito from "@/components/custom/refresherCarrito";
 
 export default async function Home() {
-  const { data } = await readUserSession();
-  if(!data.session) return redirect('/login');
+  const { data: sessionData } = await readUserSession();
+  if(!sessionData.session) return redirect('/login');
 
   // Inicializo cliente de supabase
   const supabase = await createSupabaseServerClient();
@@ -28,7 +28,8 @@ export default async function Home() {
   // Traigo todos los cart items
   const { data: items, error } = await supabase
     .from("CartItem")
-    .select(`*, Product(*)`);
+    .select(`*, Product(*)`)
+    .eq('user_id', sessionData.session.user.id);
   if (error) console.error(error);
 
   // Itero por los items para sumar totales
@@ -41,7 +42,7 @@ export default async function Home() {
 
   return (
     <>
-      <Navbar />
+      <Navbar userSessionData={sessionData.session} />
 
       {/* Componente temporal para hacer refresh al cargar ruta */}
       <RefresherCarrito />

@@ -1,15 +1,12 @@
 import * as React from "react";
 
-import readUserSession from '@/lib/actions'
-
 import Link from "next/link";
 
 import SignOut from '@/components/custom/signOut'
 
 import { ShoppingCart } from 'lucide-react';
 
-export default async function Navbar() {
-  const { data } = await readUserSession();
+export default async function Navbar({ userSessionData } : any) {
   // TO DO: Revisar cuando ya este logeado el user y mostrar navbar dinamico
   // TO DO: usar next image component
 
@@ -27,7 +24,7 @@ export default async function Navbar() {
 
           <div className="flex justify-center items-center gap-5">
 
-            { data.session ? 
+            { userSessionData ? 
               (
                 <>
                   <Link href={"/carrito"} prefetch={false}><ShoppingCart /></Link>

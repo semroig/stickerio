@@ -1,4 +1,5 @@
 import createSupabaseServerClient from "@/lib/supabase/server";
+import readUserSession from '@/lib/actions'
 
 import Navbar from "@/components/custom/landing/navbar"
 import Footer from "@/components/custom/landing/footer"
@@ -18,6 +19,8 @@ import {
 // import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
 
 export default async function Home({ searchParams }: any) {
+  const { data: sessionData } = await readUserSession();
+
   // Inicializo cliente de supabase
   const supabase = await createSupabaseServerClient();
 
@@ -66,7 +69,7 @@ export default async function Home({ searchParams }: any) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar userSessionData={ sessionData.session } />
 
       <div className="lg:flex lg:flex-row lg:justify-center lg:mx-0 lg:px-20 mt-5 lg:mt-16">
         <div className="lg:m-6 lg:basis-1/5 mx-16 my-7 lg:my-1.5 lg:mx-1">

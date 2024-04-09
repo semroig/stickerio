@@ -13,12 +13,14 @@ export async function addItem(
     const schema = z.object({
         size: z.string().min(1),
         cantidad: z.string().min(1),
-        id: z.string().min(1)
+        id: z.string().min(1),
+        user_id: z.string().min(1),
     });
     const parse = schema.safeParse({
         size: formData.get("size"),
         cantidad: formData.get("cantidad"),
-        id: formData.get("id")
+        id: formData.get("id"),
+        user_id: formData.get("user_id"),
     });
 
     if (!parse.success) {
@@ -35,7 +37,8 @@ export async function addItem(
         .insert([{ 
             product_id: parsedData.id,
             size: parsedData.size,
-            quantity: parsedData.cantidad
+            quantity: parsedData.cantidad,
+            user_id: parsedData.user_id
         }])
         .select();
 
@@ -44,7 +47,6 @@ export async function addItem(
         return { message: "Failed to create cart item" };
     }
     if (data) {
-        console.log(data)
         return { message: "Success" };
     }
 }

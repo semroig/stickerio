@@ -73,7 +73,7 @@ function AlertBox({ msg }: any) {
     )
 }
 
-export default function ProductInputSection({ record }: any) {
+export default function ProductInputSection({ record, userSessionData }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
     const [state, formAction] = useFormState<any, FormData>(addItem, { message: "" });
@@ -133,6 +133,7 @@ export default function ProductInputSection({ record }: any) {
                     <Input type="number" name="cantidad" min="0" required></Input>
                     <input type="hidden" name="size" value={value} />
                     <input type="hidden" name="id" value={record.id} />
+                    <input type="hidden" name="user_id" value={userSessionData.user.id} />
                 </div>
             </div>
 

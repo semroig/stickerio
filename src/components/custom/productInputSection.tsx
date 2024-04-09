@@ -20,20 +20,7 @@ import {
 import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const sizes = [
-    {
-      value: "chico",
-      label: "Chico 4x4 - $400",
-    },
-    // {
-    //   value: "mediano",
-    //   label: "6x6 - $400",
-    // },
-    {
-      value: "grande",
-      label: "Grande 7x7 - $550",
-    }
-]
+import { SIZES } from '@/app/constants';
 
 function SubmitButton() {
     const { pending } = useFormStatus();
@@ -96,7 +83,7 @@ export default function ProductInputSection({ record, userSessionData }: any) {
                             >
                                 {   
                                     value
-                                    ? sizes.find((size) => size.value === value)?.label
+                                    ? SIZES.find((size) => size.value === value)?.label
                                     : "Elegir tamaño..."
                                 }
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -105,7 +92,7 @@ export default function ProductInputSection({ record, userSessionData }: any) {
                         <PopoverContent className="w-full lg:w-64 p-0">
                             <Command>
                                 <CommandGroup>
-                                    {sizes.map((size) => (
+                                    {SIZES.map((size) => (
                                         <CommandItem
                                             key={size.value}
                                             value={size.value}

@@ -10,22 +10,24 @@ export async function addItem(
   },
   formData: FormData,
 ) {
+    const form = Object.fromEntries(formData.entries());
+
     const schema = z.object({
         size: z.string().min(1),
-        cantidad: z.string().min(1),
+        cantidad: z.number().int().gt(0).lt(100),
         id: z.string().min(1),
         user_id: z.string().min(1),
     });
     const parse = schema.safeParse({
-        size: formData.get("size"),
-        cantidad: formData.get("cantidad"),
-        id: formData.get("id"),
-        user_id: formData.get("user_id"),
+        size: form.size,
+        cantidad: typeof form.cantidad === 'string' ? parseInt(form.cantidad) : undefined,
+        id: form.id,
+        user_id: form.user_id,
     });
 
     if (!parse.success) {
-        console.error("Failed to create cart item")
-        return { message: "Failed to create cart item" };
+        console.error(parse.error.errors[0].message)
+        return { message: parse.error.errors[0].message };
     }
     const parsedData = parse.data;
 

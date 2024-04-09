@@ -7,10 +7,6 @@ import Navbar from "@/components/custom/landing/navbar"
 import Footer from "@/components/custom/landing/footer"
 
 import Image from 'next/image';
-import {
-  Card,
-  CardContent
-} from "@/components/ui/card";
 
 import ProductInputSection from "@/components/custom/productInputSection";
 

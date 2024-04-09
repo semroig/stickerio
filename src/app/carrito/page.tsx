@@ -47,22 +47,26 @@ export default async function Home() {
       {/* Componente temporal para hacer refresh al cargar ruta */}
       <RefresherCarrito />
 
-      <div className="flex m-20">
-        <div className="basis-3/4 ml-10">
+      <div className="flex justify-center mx-28 mt-16">
+        <div className="basis-9/12">
           <p className="font-semibold text-2xl">Carrito</p>
+
+          {items?.length === 0 && 
+            <p className='m-20'>Aun no hay productos agregados al carrito :(</p>
+          }
 
           {items?.map((item : any) => (
             <div key={item.id} className="flex items-center">
-              <div className="basis-4/5">
+              <div className="basis-11/12">
                 <TarjetaCarrito record={item} />
               </div>
-              <div className="basis-1/5 ml-5">
+              <div className="basis-1/12 ml-5">
                 <DeleteCartItemButton recordId={item.id} />
               </div>
             </div>
           ))}
         </div>
-        <div className="basis-1/4 mr-10">
+        <div className="basis-3/12">
           <p className="font-semibold text-2xl">Resumen</p>
           <Card className="mt-4 pt-5">
             <CardContent>

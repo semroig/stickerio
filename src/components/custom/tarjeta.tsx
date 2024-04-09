@@ -5,8 +5,6 @@ import {
   Card,
   CardContent,
   CardTitle,
-  CardFooter,
-  CardDescription,
   CardHeader
 } from "@/components/ui/card";
 import Link from 'next/link';

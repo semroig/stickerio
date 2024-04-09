@@ -83,9 +83,9 @@ export default async function Home() {
               </p>
             </CardContent>
             <CardFooter className="flex justify-center">
-              {/* <Link href="/checkout">
+              <Link href="/checkout">
                 <Button>Finalizar compra</Button>
-              </Link> */}
+              </Link>
             </CardFooter>
           </Card>
         </div>

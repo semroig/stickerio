@@ -3,11 +3,14 @@ import { redirect } from 'next/navigation';
 
 import createSupabaseServerClient from "@/lib/supabase/server";
 
+import Navbar from "@/components/custom/landing/navbar";
+import Footer from "@/components/custom/landing/footer";
+
 import CheckoutFinalSection from "@/components/custom/checkoutFinalSection";
 
 export default async function Home() {
-  const { data } = await readUserSession();
-  if(!data.session) return redirect('/login');
+  const { data: sessionData } = await readUserSession();
+  if(!sessionData.session) return redirect('/login');
 
   // Inicializo cliente de supabase
   const supabase = await createSupabaseServerClient();
@@ -19,10 +22,16 @@ export default async function Home() {
   if (error) console.error(error);
 
   return (
-    <div className="flex justify-center">
-      <div className="m-5">
-        <CheckoutFinalSection records={items} />
+    <>
+      <Navbar userSessionData={sessionData.session} />
+
+      <div className="flex justify-center">
+        <div className="basis-1/2">
+          <CheckoutFinalSection records={items} />
+        </div>
       </div>
-    </div>
+
+      <Footer />
+    </>
   )
 }

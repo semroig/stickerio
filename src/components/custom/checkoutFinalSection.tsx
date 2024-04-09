@@ -13,7 +13,9 @@ import {
   CardFooter
 } from "@/components/ui/card";
 
-const opcionesEntrega = [
+// import { METODOS_ENTREGA } from '@/app/constants';
+
+const METODOS_ENTREGA = [
     { 
         value: "correo",
         label: "Envio por correo",
@@ -34,8 +36,9 @@ const opcionesEntrega = [
     }
 ];
 
+
 export default function CheckoutFinalSection ({ records }: any) {
-    const [entrega, setEntrega] = useState(opcionesEntrega[0]);
+    const [entrega, setEntrega] = useState(METODOS_ENTREGA[0]);
     const router = useRouter();
 
     // Itero por los items para sumar totales
@@ -106,7 +109,9 @@ export default function CheckoutFinalSection ({ records }: any) {
     }
 
     async function changeEntrega({event}: any) {
-        opcionesEntrega.forEach(opcion => {
+        console.log('debug')
+        console.log(event)
+        METODOS_ENTREGA.forEach(opcion => {
             if (opcion.value === event) setEntrega(opcion);
         })
     }
@@ -116,7 +121,7 @@ export default function CheckoutFinalSection ({ records }: any) {
             <div className='mt-12'>
                 <p className="font-semibold text-2xl">Opciones de entrega</p>
                 <RadioGroup defaultValue="correo" className="mt-3" onValueChange={changeEntrega}>
-                    {opcionesEntrega?.map((opcion : any) => (
+                    {METODOS_ENTREGA.map((opcion : any) => (
                         <div key={opcion.value}>
                             <div className="flex items-center space-x-2 mt-2">
                                 <RadioGroupItem value={opcion.value} id="r1" />
@@ -162,7 +167,7 @@ export default function CheckoutFinalSection ({ records }: any) {
                         </p>
                     </CardContent>
                     <CardFooter className="flex justify-center">
-                        <Button onClick={confirmarPedido}>Finalizar compra</Button>
+                        {/* <Button onClick={confirmarPedido}>Finalizar compra</Button> */}
                     </CardFooter>
                 </Card>
             </div>

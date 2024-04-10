@@ -25,9 +25,13 @@ import { SIZES } from '@/app/constants';
 function SubmitButton() {
     const { pending } = useFormStatus();
 
+    <button >
+        Ver catálogo
+    </button>
+
     return (
-        <Button 
-            className="mt-8 w-full"
+        <Button
+            className="mt-7 w-full px-7 py-6 text-xl font-normal text-crema whitespace-nowrap bg-naranja rounded-[50px]"
             type="submit"
             aria-disabled={pending}
         >
@@ -72,14 +76,14 @@ export default function ProductInputSection({ record, userSessionData }: any) {
         <form action={formAction} className="mt-8 lg:mt-14">
             <div className="lg:flex lg:flex-row lg:justify-start gap-5">
                 <div className="basis-1/2">
-                    <p className="text-lg my-3 font-medium text-gris">Tamaño:</p>
+                    <p className="text-xl my-3 font-medium text-gris">Tamaño:</p>
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
                                 role="combobox"
                                 aria-expanded={open}
-                                className="w-full lg:w-64 justify-between"
+                                className="w-full lg:w-64 justify-between rounded-[50px] py-6 px-5 font-normal"
                             >
                                 {   
                                     value
@@ -116,8 +120,8 @@ export default function ProductInputSection({ record, userSessionData }: any) {
                     </Popover>
                 </div>
                 <div className="basis-1/2">
-                    <p className="text-lg my-3 font-medium text-gris">Cantidad:</p>
-                    <Input type="number" name="cantidad" min="0" required></Input>
+                    <p className="text-xl my-3 font-medium text-gris">Cantidad:</p>
+                    <Input type="number" name="cantidad" min="0" required className="rounded-[50px] py-6 px-5"></Input>
                     <input type="hidden" name="size" value={value} />
                     <input type="hidden" name="id" value={record.id} />
                     <input type="hidden" name="user_id" value={userSessionData.user.id} />

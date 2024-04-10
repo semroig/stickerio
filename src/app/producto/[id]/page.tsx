@@ -7,8 +7,11 @@ import Navbar from "@/components/custom/landing/navbar"
 import Footer from "@/components/custom/landing/footer"
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import ProductInputSection from "@/components/custom/productInputSection";
+
+import { ArrowLeft } from 'lucide-react';
 
 export default async function Home({ params }: any) {
     // Verifico si esta logueado
@@ -35,7 +38,11 @@ export default async function Home({ params }: any) {
       <div>
         <Navbar userSessionData={ sessionData.session } />
 
-        <div className="lg:flex lg:flex-row lg:justify-center lg:px-20 lg:mt-8">
+        <Link href={'/catalogo'} className="text-gris text-lg font-light flex mx-5 mt-5 lg:mx-48 lg:mt-8">
+          <ArrowLeft color="#016241" className="mr-1"/> Volver al catálogo
+        </Link>
+
+        <div className="lg:flex lg:flex-row lg:justify-center lg:px-20">
           <div className="m-6 basis-2/5">
             <Image
                 src={product![0].image_url}
@@ -47,8 +54,8 @@ export default async function Home({ params }: any) {
           </div>
           <div className="m-6 basis-2/5">
 
-            <p className="font-medium text-3xl text-verde">{ product![0].name }</p>
-            <p className="text-lg mt-3 text-gris">{ product![0].description }</p>
+            <p className="font-medium text-5xl text-verde">{ product![0].name }</p>
+            <p className="text-xl mt-3 text-gris font-light">{ product![0].description }</p>
             {/* <p className="font-light text-5xl my-10 ">$ 200</p> */}
 
             {sessionData.session && <ProductInputSection record={product![0]} userSessionData={ sessionData.session } />}

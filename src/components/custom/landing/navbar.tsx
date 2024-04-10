@@ -4,14 +4,14 @@ import Link from "next/link";
 
 import SignOut from '@/components/custom/signOut'
 
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, ChevronDown } from 'lucide-react';
 
 export default async function Navbar({ userSessionData } : any) {
   // TO DO: Revisar cuando ya este logeado el user y mostrar navbar dinamico
   // TO DO: usar next image component
 
   return (
-    <header className="sticky z-50 top-0 flex justify-center items-center px-16 py-4 w-full text-naranja whitespace-nowrap max-md:px-5 max-md:max-w-full bg-white">
+    <header className="sticky z-50 top-0 flex justify-center items-center px-16 py-4 w-full whitespace-nowrap max-md:px-5 max-md:max-w-full bg-white">
         <div className="flex gap-5 justify-between w-full max-md:flex-wrap max-md:max-w-full mx-12" >
           <Link href={"/"} className="my-auto">
             <img
@@ -24,6 +24,12 @@ export default async function Navbar({ userSessionData } : any) {
 
           <div className="flex justify-center items-center gap-5">
 
+            <Link href={"/catalogo"}>
+              <div className="flex justify-center text-gris font-medium text-lg">
+                Catálogo <ChevronDown className="mt-0.5"/>
+              </div>
+            </Link>
+
             { userSessionData ? 
               (
                 <>
@@ -34,12 +40,12 @@ export default async function Navbar({ userSessionData } : any) {
               (
                 <>
                   <Link href={"/signup"}>
-                    <div className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
+                    <div className="justify-center px-5 py-1.5 text-naranja font-medium text-lg">
                       Registrarse
                     </div>
                   </Link>
                   <Link href={"/login"}>
-                    <div className="justify-center px-5 py-1.5 border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
+                    <div className="justify-center px-5 py-1.5 text-naranja border-2 border-naranja border-solid rounded-[50px] font-medium text-lg">
                       Ingresar
                     </div>
                   </Link>
@@ -47,7 +53,6 @@ export default async function Navbar({ userSessionData } : any) {
               )
             }
 
-            
           </div>
         </div>
     </header>

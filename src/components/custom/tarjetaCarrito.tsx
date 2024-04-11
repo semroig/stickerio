@@ -4,6 +4,8 @@ import {
   CardContent
 } from "@/components/ui/card";
 
+import DeleteCartItemButton from "@/components/custom/deleteCartItemButton";
+
 import { SIZES } from '@/app/constants';
 
 export default function TarjetaCarrito({ record }: any) {
@@ -16,7 +18,7 @@ export default function TarjetaCarrito({ record }: any) {
     })
     
     return (
-        <Card className="my-4">
+        <Card className="mt-5 shadow-md">
             <CardContent>
                 <div className="flex flex-row items-center pt-4">
                     <Image
@@ -27,13 +29,14 @@ export default function TarjetaCarrito({ record }: any) {
                         className='rounded-lg'
                     />
                     <div className="basis-full flex items-center justify-center text-gris">
-                        <div className="basis-6/12 ml-3">
+                        <div className="basis-4/12 ml-4">
                             <p className="text-xl font-medium">{record.Product.name}</p>
                             {/* <p>{record.Product.description}</p> */}
                         </div>
-                        <p className="basis-3/12 text-lg">{sticker!.shortLabel}</p>
-                        <p className="basis-1/12 text-lg">{record.quantity}</p>
-                        <p className="basis-2/12 text-2xl font-medium">$ {sticker!.price * record.quantity}</p>
+                        <p className="basis-4/12 text-lg">{sticker!.shortLabel}</p>
+                        <p className="basis-1/12 text-xl">{record.quantity}</p>
+                        <p className="basis-2/12 text-3xl font-medium">$ {sticker!.price * record.quantity}</p>
+                        <div className="basis-1/12"><DeleteCartItemButton recordId={record.id} /></div>
                     </div>
                 </div>
             </CardContent>

@@ -1,12 +1,16 @@
 import readUserSession from '@/lib/actions'
 import { redirect } from 'next/navigation';
 
+import Link from "next/link";
+
 import createSupabaseServerClient from "@/lib/supabase/server";
 
 import Navbar from "@/components/custom/landing/navbar";
 import Footer from "@/components/custom/landing/footer";
 
 import CheckoutFinalSection from "@/components/custom/checkoutFinalSection";
+
+import { ArrowLeft } from 'lucide-react';
 
 export default async function Home() {
   const { data: sessionData } = await readUserSession();
@@ -25,11 +29,11 @@ export default async function Home() {
     <>
       <Navbar userSessionData={sessionData.session} />
 
-      <div className="flex justify-center">
-        <div className="basis-1/2">
-          <CheckoutFinalSection records={items} />
-        </div>
-      </div>
+      <Link href={'/catalogo'} className="text-gris text-lg font-light flex mx-5 mt-5 lg:mx-28 lg:mt-14">
+        <ArrowLeft color="#016241" className="mr-1"/> Volver al carrito
+      </Link>
+
+      <CheckoutFinalSection records={items} />
 
       <Footer />
     </>

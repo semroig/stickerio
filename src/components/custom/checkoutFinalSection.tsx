@@ -13,9 +13,11 @@ import {
   CardFooter
 } from "@/components/ui/card";
 
+import TarjetaEntregaCheckout from "@/components/custom/tarjetaEntregaCheckout"
+
 // import { METODOS_ENTREGA } from '@/app/constants';
 
-const METODOS_ENTREGA = [
+export const METODOS_ENTREGA = [
     { 
         value: "correo",
         label: "Envio por correo",
@@ -34,8 +36,7 @@ const METODOS_ENTREGA = [
         price: 0,
         description: "De lunes a viernes entre las 8hs y 17hs por Villa Urquiza, Ciudad de Buenos Aires. Disponible a partir de manana!"
     }
-];
-
+  ];
 
 export default function CheckoutFinalSection ({ records }: any) {
     const [entrega, setEntrega] = useState(METODOS_ENTREGA[0]);
@@ -108,69 +109,66 @@ export default function CheckoutFinalSection ({ records }: any) {
         router.push(`/order/${order[0].id}`);
     }
 
-    async function changeEntrega({event}: any) {
+    async function changeEntrega({value}: any) {
         console.log('debug')
-        console.log(event)
+        console.log(value)
         METODOS_ENTREGA.forEach(opcion => {
-            if (opcion.value === event) setEntrega(opcion);
+            if (opcion.value === value) setEntrega(opcion);
         })
     }
 
     return (
-        <>
-            <div className='mt-12'>
-                <p className="font-semibold text-2xl">Opciones de entrega</p>
-                <RadioGroup defaultValue="correo" className="mt-3" onValueChange={changeEntrega}>
-                    {METODOS_ENTREGA.map((opcion : any) => (
-                        <div key={opcion.value}>
-                            <div className="flex items-center space-x-2 mt-2">
-                                <RadioGroupItem value={opcion.value} id="r1" />
-                                <Label htmlFor="r1" className="text-lg font-medium">
-                                    $ {opcion.price} - {opcion.label}
-                                </Label>
-                            </div>
-                            <p className="ml-5 text-base font-normal">
-                                {opcion.description}
-                            </p>
+        <div className="flex justify-center mx-28 mt-8 gap-20">
+            <div className="basis-9/12">
+                <div className=''>
+                    <p className="font-medium text-4xl text-verde">Elegí método de entrega</p>
+                    <RadioGroup defaultValue="moto" className="mt-5" onValueChange={changeEntrega}>
+                        {METODOS_ENTREGA!.map((opcion : any) => (
+                            <TarjetaEntregaCheckout key={opcion.value} opcion={opcion} />
+                        ))}
+                    </RadioGroup>
+                </div>
+        
+                <div className='mt-10'>
+                    <p className="font-medium text-4xl text-verde">Elegí método de pago</p>
+                    <RadioGroup defaultValue="transferencia" className="mt-5">
+                        <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="transferencia" id="s1" />
+                        <Label htmlFor="s1" className="text-lg font-medium">Transferencia</Label>
                         </div>
-                    ))}
-                </RadioGroup>
-            </div>
-    
-            <div className='mt-10'>
-                <p className="font-semibold text-2xl">Metodos de pago</p>
-                <RadioGroup defaultValue="transferencia" className="mt-5">
-                    <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="transferencia" id="s1" />
-                    <Label htmlFor="s1" className="text-lg font-medium">Transferencia</Label>
-                    </div>
-                    <p className="ml-5 text-base font-normal">
-                    Tendras que enviarnos el comprobante luego de realizado el pago.
-                    </p>
-                </RadioGroup>
+                        <p className="ml-5 text-base font-normal">
+                        Tendras que enviarnos el comprobante luego de realizado el pago.
+                        </p>
+                    </RadioGroup>
+                </div>
             </div>
 
-            <div className='mt-10'>
-                <p className="font-semibold text-2xl">Resumen del pedido</p>
-                <Card className="mt-5 pt-5 mx-20">
+            <div className="basis-3/12">
+                <p className="font-medium text-4xl text-verde">Resumen</p>
+                <Card className="mt-5 pt-5 shadow-md">
                     <CardContent>
-                        <p className="text-lg text-right my-1">
-                            Sub total stickers <span className="ml-3">$ {subTotal}</span>
-                        </p>
-                        <p className="text-lg text-right my-1 text-cyan-700">
-                            {entrega.label} 
-                            <span className="ml-3">$ {entrega.price}</span>
-                        </p>
+                        <div className="flex justify-between text-lg text-right my-1">
+                            <p>Sub total stickers</p>
+                            <p>$ {subTotal}</p>
+                        </div>
+                        <div className="flex justify-between text-lg text-right my-1 text-cyan-700">
+                            <p>{entrega.label}</p>
+                            <p>$ {entrega.price}</p>
+                        </div>
                         <hr/>
-                        <p className="text-lg text-right my-1 font-semibold">
-                            Total <span className="ml-3">$ {subTotal + entrega.price}</span>
-                        </p>
+                        <div className="flex justify-between text-lg text-right my-1 font-semibold">
+                            <p>Total</p>
+                            <p>$ {subTotal + entrega.price}</p>
+                        </div>
                     </CardContent>
                     <CardFooter className="flex justify-center">
                         {/* <Button onClick={confirmarPedido}>Finalizar compra</Button> */}
                     </CardFooter>
                 </Card>
-            </div>
-        </>
+           </div>
+
+        </div>
+
+        
     )
 }

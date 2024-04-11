@@ -73,22 +73,35 @@ export default async function Home() {
           <Card className="mt-5 pt-5 shadow-md">
             <CardContent>
               {/* <p className="font-semibold text-xl">Dirección</p> */}
-              <p className="text-lg text-right my-1">
-                Sticker chico x{cantChicos} <span className="ml-3 text-right">$ {cantChicos * 400}</span>
-              </p>
-              <p className="text-lg text-right my-1">
-                Sticker grande x{cantGrandes} <span className="ml-3">$ {cantGrandes * 550}</span>
-              </p>
+              <div className='flex justify-between text-lg my-1'>
+                <p>Sticker chico x{cantChicos}</p>
+                <p>
+                  <span className="ml-3 text-right">$ {cantChicos * 400}</span>
+                </p>
+              </div>
+              <div className='flex justify-between text-lg my-1'>
+                <p>Sticker grande x{cantGrandes}</p>
+                <p>
+                  <span className="ml-3 text-right">$ {cantGrandes * 550}</span>
+                </p>
+              </div>
               <hr/>
-              <p className="text-lg text-right my-1 font-semibold">
-                Total (sin envio) <span className="ml-3">$ {cantChicos * 400 + cantGrandes * 550}</span>
-              </p>
+              <div className='flex justify-between text-lg my-1 font-semibold'>
+                <p>Total (sin envio)</p>
+                <p>
+                  <span className="ml-3 text-right">$ {cantChicos * 400 + cantGrandes * 550}</span>
+                </p>
+              </div>
             </CardContent>
-            <CardFooter className="flex justify-center">
-              <Link href="/checkout">
-                <Button className='mt-3 w-full px-12 py-6 text-xl font-normal text-crema whitespace-nowrap bg-naranja rounded-[50px]'>Finalizar compra</Button>
-              </Link>
-            </CardFooter>
+
+            {items?.length !== 0 && 
+              <CardFooter className="flex justify-center">
+                <Link href="/checkout">
+                  <Button className='mt-3 w-full px-12 py-6 text-xl font-normal text-crema whitespace-nowrap bg-naranja rounded-[50px]'>Finalizar compra</Button>
+                </Link>
+              </CardFooter>
+            }
+
           </Card>
         </div>
       </div>

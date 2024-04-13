@@ -7,7 +7,10 @@ import createSupabaseServerClient from "@/lib/supabase/server";
 
 import {
     Card,
-    CardContent
+    CardContent,
+    CardHeader,
+    CardDescription,
+    CardTitle
 } from "@/components/ui/card";
 
 import Navbar from "@/components/custom/landing/navbar";
@@ -74,6 +77,7 @@ export default async function Home({ params }: any) {
                 </div>
             </div>
 
+            {/* Renderizado en funcion de screen breakpoint */}
             <div className="ml-10 mr-0 px-0 lg:mx-44 mt-14">
                 <div className='block lg:hidden ml-10'>
                     <ProgressBar
@@ -88,6 +92,47 @@ export default async function Home({ params }: any) {
                     />
                 </div>
             </div>
+
+            {order![0].estado === 'pendiente' && (
+
+                <div className="flex justify-center text-left mt-5 lg:mt-8 mx-5 lg:mx-80">
+                    <Card className="mt-5 pt-5 shadow-md">
+                        <CardContent>
+                            <div className='p-4'>
+                                <p className='text-3xl text-gris'>
+                                    Tu pedido permanecerá en {"Pendiente"} hasta que confirmemos tu pago
+                                </p>
+                                <p className='text-xl text-gris mt-2'>
+                                    Tenés que transferir transferir $ {subTotal + order![0].metodo_entrega.price} al alias
+                                    sem.vicky y enviarnos el comprobante de pago por mail (a thestickerco.info@gmail.com) o whatsapp (al +54 9 11 2392 0584)!
+                                    En cuanto nos escribas, lo antes posible lo vamos a verificar y empezar a preparar tus stickers 🤙
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            
+            )}
+
+            {(order![0].estado === 'viaje' && order![0].metodo_entrega.value === 'retiro') && (
+
+                <div className="flex justify-center text-left mt-5 lg:mt-8 mx-5 lg:mx-80">
+                    <Card className="mt-5 pt-5 shadow-md">
+                        <CardContent>
+                            <div className='p-4'>
+                                <p className='text-3xl text-gris'>
+                                    Tu pedido ya está listo para que lo vengas a retirar!
+                                </p>
+                                <p className='text-xl text-gris mt-2'>
+                                    Podes pasar de lunes a sábado hasta las 18hs por Av Alvarez Thomas 3250, barrio Villa
+                                    Urquiza. Cuando vengas avisanos para confirmarte que vamos a estar! :)
+                                </p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+
+            )}
 
             <div className="lg:flex lg:justify-between mx-5 lg:mx-44 mt-8 lg:mt-20 lg:gap-24">
                 <div className="lg:basis-8/12">

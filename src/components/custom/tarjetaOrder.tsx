@@ -4,11 +4,9 @@ import {
   CardContent
 } from "@/components/ui/card";
 
-import DeleteCartItemButton from "@/components/custom/deleteCartItemButton";
-
 import { SIZES } from '@/app/constants';
 
-export default function TarjetaCarrito({ record }: any) {
+export default function TarjetaOrder({ record }: any) {
     // Almaceno en esta var la data del tamano del sticker
     let sticker;
     SIZES.forEach((element) => {
@@ -24,8 +22,8 @@ export default function TarjetaCarrito({ record }: any) {
                 <div className="flex flex-row items-center pt-4 gap-4">
                     <Image
                         src={record.Product.image_url}
-                        width={80}
-                        height={80}
+                        width={70}
+                        height={70}
                         alt="Sticker image"
                         className='rounded-lg'
                     />
@@ -36,8 +34,7 @@ export default function TarjetaCarrito({ record }: any) {
                     <p className="lg:basis-1/12 text-xl">{record.quantity}</p>
                 </div>
                 <hr className='my-2'/>
-                <div className='flex flex-row items-center justify-between'>
-                    <DeleteCartItemButton recordId={record.id} />
+                <div className='flex flex-row items-center justify-end'>
                     <p className="lg:basis-2/12 text-3xl font-medium">$ {sticker!.price * record.quantity}</p>
                 </div>
             </CardContent>
@@ -47,8 +44,8 @@ export default function TarjetaCarrito({ record }: any) {
                 <div className="flex flex-row items-center pt-4">
                     <Image
                         src={record.Product.image_url}
-                        width={100}
-                        height={100}
+                        width={80}
+                        height={80}
                         alt="Sticker image"
                         className='rounded-lg'
                     />
@@ -60,7 +57,6 @@ export default function TarjetaCarrito({ record }: any) {
                         <p className="basis-4/12 text-lg">{sticker!.shortLabel}</p>
                         <p className="basis-1/12 text-xl">{record.quantity}</p>
                         <p className="basis-2/12 text-3xl font-medium">$ {sticker!.price * record.quantity}</p>
-                        <div className="basis-1/12"><DeleteCartItemButton recordId={record.id} /></div>
                     </div>
                 </div>
             </CardContent>

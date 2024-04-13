@@ -10,20 +10,24 @@ export async function addItem(
   },
   formData: FormData,
 ) {
+    const form = Object.fromEntries(formData.entries());
+
     const schema = z.object({
         size: z.string().min(1),
-        cantidad: z.string().min(1),
-        id: z.string().min(1)
+        cantidad: z.number().int().gt(0).lt(100),
+        id: z.string().min(1),
+        user_id: z.string().min(1),
     });
     const parse = schema.safeParse({
-        size: formData.get("size"),
-        cantidad: formData.get("cantidad"),
-        id: formData.get("id")
+        size: form.size,
+        cantidad: typeof form.cantidad === 'string' ? parseInt(form.cantidad) : undefined,
+        id: form.id,
+        user_id: form.user_id,
     });
 
     if (!parse.success) {
-        console.error("Failed to create cart item")
-        return { message: "Failed to create cart item" };
+        console.error(parse.error.errors[0].message)
+        return { message: parse.error.errors[0].message };
     }
     const parsedData = parse.data;
 
@@ -35,7 +39,8 @@ export async function addItem(
         .insert([{ 
             product_id: parsedData.id,
             size: parsedData.size,
-            quantity: parsedData.cantidad
+            quantity: parsedData.cantidad,
+            user_id: parsedData.user_id
         }])
         .select();
 
@@ -44,22 +49,27 @@ export async function addItem(
         return { message: "Failed to create cart item" };
     }
     if (data) {
-        console.log(data)
         return { message: "Success" };
     }
 }
 
-export async function signUpWithEmailAndPassword(data: {
+export async function signUpWithEmailAndPassword(formData: {
     name: string;
     email: string;
     password: string;
     confirm: string;
 }){
     const supabase = await createSupabaseServerClient();
-
-    // TO DO: como enviar el nombre para que se guarde en la tabla de user data
-
-    const result = await supabase.auth.signUp({email: data.email, password: data.password});
+    const result = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+        options: {
+            emailRedirectTo: process.env.EMAIL_CONFIRMATION_REDIRECT_URL,
+            data: {
+                display_name: formData.name
+            }
+        }
+    });
     return JSON.stringify(result);
 }
 

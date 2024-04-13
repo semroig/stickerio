@@ -4,43 +4,31 @@ import Image from 'next/image';
 import {
   Card,
   CardContent,
-  CardHeader,
   CardTitle,
+  CardHeader
 } from "@/components/ui/card";
-// import Link from 'next/link';
-
-import { ToastAction } from "@/components/ui/toast"
-import { useToast } from "@/components/ui/use-toast"
+import Link from 'next/link';
 
 export default function Tarjeta({ record }: any) {
-    const { toast } = useToast()
-
     return (
         <Card 
-            className="hover:cursor-pointer w-fit m-2 lg:m-3 rounded-lg shadow-md hover:shadow-xl"
-            onClick={() => {
-                toast({
-                    title: "Proximamente!",
-                    description: "Muy pronto vas a poder armar tu pedido desde esta misma web! Por ahora podes ir chusmeando nuestro catalogo ;)",
-                    duration: 3000,
-                    action: <ToastAction altText="Oki">Oki</ToastAction>
-                })
-            }}
+            className="hover:cursor-pointer w-fit m-2 lg:m-3 rounded-lg shadow-md hover:shadow-xl pt-4"
         >
-            {/* <Link href={`/producto/${record.id}`}> */}
-                <CardHeader>
-                <CardTitle className='font-normal font-sm text-gris'>{record.name}</CardTitle>
-                </CardHeader>
+            <Link href={`/producto/${record.id}`}>
                 <CardContent>
                     <Image
                         src={record.image_url}
-                        width={220}
-                        height={220}
+                        width={230}
+                        height={230}
                         alt="Picture of the author"
                         className='rounded-lg'
                     />
                 </CardContent>
-            {/* </Link> */}
+                <CardHeader className="px-4 pb-4">
+                    <CardTitle className='font-medium text-gris'>{record.name}</CardTitle>
+                    <p className='pt-1 flex justify-end text-lg text-verde'>Con Stock</p>
+                </CardHeader>
+            </Link>
         </Card>
     )
 }

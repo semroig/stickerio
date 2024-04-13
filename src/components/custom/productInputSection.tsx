@@ -20,27 +20,18 @@ import {
 import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
-const sizes = [
-    {
-      value: "chico",
-      label: "4x4 - $300",
-    },
-    {
-      value: "mediano",
-      label: "6x6 - $400",
-    },
-    {
-      value: "grande",
-      label: "8x8 - $500",
-    }
-]
+import { SIZES } from '@/app/constants';
 
 function SubmitButton() {
     const { pending } = useFormStatus();
 
+    <button >
+        Ver catálogo
+    </button>
+
     return (
-        <Button 
-            className="mt-8"
+        <Button
+            className="mt-7 w-full px-7 py-6 text-xl font-normal text-crema whitespace-nowrap bg-naranja rounded-[50px]"
             type="submit"
             aria-disabled={pending}
         >
@@ -50,103 +41,101 @@ function SubmitButton() {
 }
 
 // Componente de alert usando state message del form action
-function AlertBox({props}: any) {
-    // Primero valido que haya algun mensaje
-    if (props.msg){
-        // Luego valido si es error o exito
-        if (props.msg === 'Success') return (
-            <Alert>
-                <Check className="h-4 w-4" />
-                <AlertTitle>Listo!</AlertTitle>
-                <AlertDescription>
-                    Producto agregado al carrito exitosamente.
-                </AlertDescription>
-            </Alert>
-        )
-        else return (
-            <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4" />
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
-                    {props.msg}
-                </AlertDescription>
-            </Alert>
-        )
-    }
-    else return <></>
+function AlertBox({ msg }: any) {
+    // Valido si es error o exito
+    if (msg == 'Success') return (
+        <Alert variant="exito">
+            <Check className="h-4 w-4" />
+            <AlertTitle>Listo!</AlertTitle>
+            <AlertDescription>
+                Producto agregado al carrito exitosamente.
+            </AlertDescription>
+        </Alert>
+    )
+
+    return (
+        <Alert variant="destructive">
+            <AlertCircle className="h-4 w-4" />
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>
+                {msg}
+            </AlertDescription>
+        </Alert>
+    )
 }
 
-export default function ProductInputSection({ record }: any) {
+export default function ProductInputSection({ record, userSessionData }: any) {
     const [open, setOpen] = useState(false)
     const [value, setValue] = useState("")
-    // const [state, formAction] = useFormState<State, FormData>(addItem, { message: "" });
+    const [state, formAction] = useFormState<any, FormData>(addItem, { message: "" });
 
     // TO DO: No permitir numeros negativos en input de cantidad
     // TO DO: El alert debe desaparecer luego de algunos segundos
 
-    // action={formAction}
-
     return (
-        <form>
-
-            <div className="flex flex-row justify-start mt-8">
+        <form action={formAction} className="mt-8 lg:mt-14">
+            <div className="lg:flex lg:flex-row lg:justify-start gap-5">
                 <div className="basis-1/2">
-                    <p className="text-lg my-4">Tamaño:</p>
+                    <p className="text-xl my-3 font-medium text-gris">Tamaño:</p>
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                             <Button
                                 variant="outline"
                                 role="combobox"
                                 aria-expanded={open}
-                                className="w-[200px] justify-between"
+                                className="w-full lg:w-64 justify-between rounded-[50px] py-6 px-5 font-normal"
                             >
                                 {   
                                     value
-                                    ? sizes.find((size) => size.value === value)?.label
+                                    ? SIZES.find((size) => size.value === value)?.label
                                     : "Elegir tamaño..."
                                 }
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                             </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-[200px] p-0">
+                        <PopoverContent className="w-full lg:w-64 p-0">
                             <Command>
                                 <CommandGroup>
-                                    {sizes.map((size) => (
-                                    <CommandItem
-                                        key={size.value}
-                                        value={size.value}
-                                        onSelect={(currentValue) => {
-                                            setValue(currentValue === value ? "" : currentValue)
-                                            setOpen(false)
-                                        }}
-                                    >
-                                        <Check
-                                            className={cn(
-                                                "mr-2 h-4 w-4",
-                                                value === size.value ? "opacity-100" : "opacity-0"
-                                            )}
-                                        />
-                                        {size.label}
-                                    </CommandItem>
+                                    {SIZES.map((size) => (
+                                        <CommandItem
+                                            key={size.value}
+                                            value={size.value}
+                                            onSelect={(currentValue) => {
+                                                setValue(currentValue === value ? "" : currentValue)
+                                                setOpen(false)
+                                            }}
+                                        >
+                                            <Check
+                                                className={cn(
+                                                    "mr-2 h-4 w-4",
+                                                    value === size.value ? "opacity-100" : "opacity-0"
+                                                )}
+                                            />
+                                            {size.label}
+                                        </CommandItem>
                                     ))}
                                 </CommandGroup>
                             </Command>
                         </PopoverContent>
                     </Popover>
                 </div>
-                <div className="basis-1/3">
-                    <p className="text-lg my-4">Cantidad:</p>
-                    <Input type="number" name="cantidad" required></Input>
+                <div className="basis-1/2">
+                    <p className="text-xl my-3 font-medium text-gris">Cantidad:</p>
+                    <Input type="number" name="cantidad" min="0" required className="rounded-[50px] py-6 px-5"></Input>
                     <input type="hidden" name="size" value={value} />
                     <input type="hidden" name="id" value={record.id} />
+                    <input type="hidden" name="user_id" value={userSessionData.user.id} />
                 </div>
             </div>
 
+            {state?.message && (
+                <div className="mt-3">
+                    <AlertBox msg={state?.message}></AlertBox>
+                </div>
+            )}
+
             <SubmitButton />
 
-            <div className="mt-3">
-                {/* <AlertBox msg={state?.message}></AlertBox> */}
-            </div>
         </form>
     )
 }

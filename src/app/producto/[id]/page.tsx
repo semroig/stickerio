@@ -1,18 +1,22 @@
 import { cookies } from "next/headers";
 import { createServerClient } from '@supabase/ssr'
 
+import readUserSession from '@/lib/actions'
+
 import Navbar from "@/components/custom/landing/navbar"
 import Footer from "@/components/custom/landing/footer"
 
 import Image from 'next/image';
-import {
-  Card,
-  CardContent
-} from "@/components/ui/card";
+import Link from 'next/link';
 
 import ProductInputSection from "@/components/custom/productInputSection";
 
+import { ArrowLeft } from 'lucide-react';
+
 export default async function Home({ params }: any) {
+    // Verifico si esta logueado
+    const { data: sessionData } = await readUserSession();
+
     // Obtengo id de prod y busco registro
     const { id } = params;
     const cookieStore = cookies()
@@ -31,31 +35,36 @@ export default async function Home({ params }: any) {
         .from("Product").select().eq('id', id);
 
     return (
-      <>
-        <Navbar />
-        <div className="flex flex-row justify-center px-20 mt-8">
+      <div>
+        <Navbar userSessionData={ sessionData.session } />
+
+        <Link href={'/catalogo'} className="text-gris text-lg font-light flex mx-5 mt-5 lg:mx-48 lg:mt-8">
+          <ArrowLeft color="#016241" className="mr-1"/> Volver al catálogo
+        </Link>
+
+        <div className="lg:flex lg:flex-row lg:justify-center lg:px-20">
           <div className="m-6 basis-2/5">
-            <Card className="m-3" >
-                <CardContent>
-                    <Image
-                        src={product![0].image_url}
-                        width={450}
-                        height={450}
-                        alt="Picture of the author"
-                    />
-                </CardContent>
-            </Card>
+            <Image
+                src={product![0].image_url}
+                width={500}
+                height={500}
+                alt="Picture of the author"
+                className='rounded-lg'
+            />
           </div>
           <div className="m-6 basis-2/5">
 
-            <p className="font-semibold text-3xl">{ product![0].name }</p>
-            <p className="text-lg mt-3">Descripción bla bla</p>
-            <p className="font-semibold text-5xl my-10">$ 200</p>
+            <p className="font-medium text-4xl lg:text-5xl text-verde">{ product![0].name }</p>
+            <p className="text-xl mt-3 text-gris font-light">{ product![0].description }</p>
+            {/* <p className="font-light text-5xl my-10 ">$ 200</p> */}
 
-            <ProductInputSection record={product![0]}></ProductInputSection>
+            {sessionData.session && <ProductInputSection record={product![0]} userSessionData={ sessionData.session } />}
+
           </div>
         </div>
+
         <Footer />
-      </>
+
+      </div>
     )
 }

@@ -3,6 +3,9 @@ import { redirect } from 'next/navigation';
 
 import createSupabaseServerClient from "@/lib/supabase/server";
 
+import Navbar from "@/components/custom/landing/navbar"
+import Footer from "@/components/custom/landing/footer"
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -13,10 +16,13 @@ import Link from "next/link";
 
 import TarjetaCarrito from "@/components/custom/tarjetaCarrito";
 import DeleteCartItemButton from "@/components/custom/deleteCartItemButton";
+import RefresherCarrito from "@/components/custom/refresherCarrito";
+
+import { ArrowLeft } from 'lucide-react';
 
 export default async function Home() {
-  const { data } = await readUserSession();
-  if(!data.session) return redirect('/login');
+  const { data: sessionData } = await readUserSession();
+  if(!sessionData.session) return redirect('/login');
 
   // Inicializo cliente de supabase
   const supabase = await createSupabaseServerClient();
@@ -24,7 +30,8 @@ export default async function Home() {
   // Traigo todos los cart items
   const { data: items, error } = await supabase
     .from("CartItem")
-    .select(`*, Product(*)`);
+    .select(`*, Product(*)`)
+    .eq('user_id', sessionData.session.user.id);
   if (error) console.error(error);
 
   // Itero por los items para sumar totales
@@ -36,40 +43,70 @@ export default async function Home() {
   })
 
   return (
-    <div className="flex m-20">
-      <div className="basis-3/4 ml-10">
-        <p className="font-semibold text-2xl">Carrito</p>
+    <>
+      <Navbar userSessionData={sessionData.session} />
 
-        {items?.map((item : any) => (
-          <div key={item.id} className="flex items-center">
-            <div className="basis-4/5"><TarjetaCarrito record={item}></TarjetaCarrito></div>
-            <div className="basis-1/5 ml-5">
-              <DeleteCartItemButton recordId={item.id}></DeleteCartItemButton>
-            </div>
+      {/* Componente temporal para hacer refresh al cargar ruta */}
+      <RefresherCarrito />
+      
+      <Link href={'/catalogo'} className="text-gris text-lg font-light flex mx-5 mt-5 lg:mx-28 lg:mt-14">
+        <ArrowLeft color="#016241" className="mr-1"/> Seguir comprando
+      </Link>
+
+      <div className="lg:flex lg:justify-center mx-5 lg:mx-28 mt-5 lg:mt-8 lg:gap-20">
+        <div className="basis-9/12">
+          <p className="font-medium text-3xl lg:text-4xl text-verde">Carrito</p>
+
+          {items?.length === 0 && 
+            <p className='m-20'>Aun no hay productos agregados al carrito :(</p>
+          }
+
+          <div className='mt-5'>
+            {items?.map((item : any) => (
+              <TarjetaCarrito record={item} key={item.id}/>
+            ))}
           </div>
-        ))}
+
+        </div>
+        <div className="basis-3/12">
+          <p className="mt-5 font-medium text-3xl lg:text-4xl text-verde">Resumen</p>
+          <Card className="mt-5 pt-5 shadow-md">
+            <CardContent>
+              {/* <p className="font-semibold text-xl">Dirección</p> */}
+              <div className='flex justify-between text-lg my-1'>
+                <p>Sticker chico x{cantChicos}</p>
+                <p>
+                  <span className="ml-3 text-right">$ {cantChicos * 450}</span>
+                </p>
+              </div>
+              <div className='flex justify-between text-lg my-1'>
+                <p>Sticker grande x{cantGrandes}</p>
+                <p>
+                  <span className="ml-3 text-right">$ {cantGrandes * 600}</span>
+                </p>
+              </div>
+              <hr/>
+              <div className='flex justify-between text-lg my-1 font-semibold'>
+                <p>Total (sin envio)</p>
+                <p>
+                  <span className="ml-3 text-right">$ {cantChicos * 450 + cantGrandes * 600}</span>
+                </p>
+              </div>
+            </CardContent>
+
+            {items?.length !== 0 && 
+              <CardFooter className="flex justify-center">
+                <Link href="/checkout">
+                  <Button className='mt-3 w-full px-12 py-6 text-xl font-normal text-crema whitespace-nowrap bg-naranja rounded-[50px]'>Finalizar compra</Button>
+                </Link>
+              </CardFooter>
+            }
+
+          </Card>
+        </div>
       </div>
-      <div className="basis-1/4 mr-10">
-        <p className="font-semibold text-2xl">Resumen</p>
-        <Card className="mt-4 pt-5">
-          <CardContent>
-            {/* <p className="font-semibold text-xl">Dirección</p> */}
-            <p className="text-lg text-right my-1">
-              Sticker chico x{cantChicos} <span className="ml-3">$ {cantChicos * 400}</span>
-            </p>
-            <p className="text-lg text-right my-1">
-              Sticker grande x{cantGrandes} <span className="ml-3">$ {cantGrandes * 550}</span>
-            </p>
-            <hr/>
-            <p className="text-lg text-right my-1 font-semibold">
-              Total (sin envio) <span className="ml-3">$ {cantChicos * 400 + cantGrandes * 550}</span>
-            </p>
-          </CardContent>
-          <CardFooter className="flex justify-center">
-            <Link href="/checkout"><Button>Finalizar compra</Button></Link>
-          </CardFooter>
-        </Card>
-      </div>
-    </div>
+
+      <Footer />
+    </>
   )
 }

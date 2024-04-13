@@ -22,12 +22,13 @@ import { METODOS_ENTREGA } from '@/app/constants';
 export default function CheckoutFinalSection ({ records, userSessionData }: any) {
     const [entrega, setEntrega] = useState(METODOS_ENTREGA[0]);
     const router = useRouter();
+    const [direccion, setDireccion] = useState('');
 
     // Itero por los items para sumar totales
     let subTotal = 0;
     records?.forEach((element: any) => {
-        if (element.size === 'grande') subTotal += element.quantity * 550;
-        if (element.size === 'chico') subTotal += element.quantity * 400;
+        if (element.size === 'grande') subTotal += element.quantity * 600;
+        if (element.size === 'chico') subTotal += element.quantity * 450;
     })
 
     async function confirmarPedido() {
@@ -44,7 +45,8 @@ export default function CheckoutFinalSection ({ records, userSessionData }: any)
                     subtotal_stickers: subTotal,
                     metodo_entrega: entrega,
                     total: subTotal + entrega.price,
-                    user_id: userSessionData.user.id
+                    user_id: userSessionData.user.id,
+                    direccion_entrega: direccion
                 },
             ])
             .select()
@@ -108,7 +110,7 @@ export default function CheckoutFinalSection ({ records, userSessionData }: any)
                         onValueChange={cambiarEntrega}
                     >
                         {METODOS_ENTREGA!.map((opcion : any) => (
-                            <TarjetaEntregaCheckout key={opcion.value} opcion={opcion} />
+                            <TarjetaEntregaCheckout key={opcion.value} opcion={opcion} setDireccion={setDireccion} entregaActiva={entrega.value}/>
                         ))}
                     </RadioGroup>
                 </div>

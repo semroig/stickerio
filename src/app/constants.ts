@@ -1,34 +1,30 @@
 export const SIZES = [
     {
       value: "chico",
-      label: "Chico 4x4 - $400",
+      label: "Chico 4x4 - $450",
       shortLabel: "Chico 4x4",
-      price: 400
+      price: 450
     },
     {
         value: "grande",
-        label: "Grande 7x7 - $550",
+        label: "Grande 7x7 - $600",
         shortLabel: "Grande 7x7",
-        price: 550
+        price: 600
     }
-    // {
-    //   value: "mediano",
-    //   label: "6x6 - $400",
-    // },
 ]
 
 export const METODOS_ENTREGA = [
   { 
       value: "correo",
       label: "Envio por correo",
-      price: 3650,
-      description: "Disponible para todo el pais. Llega en los proximos 10 dias."
+      price: 4300,
+      description: "Disponible para todo el pais. Llega en los proximos 5-8 dias habiles."
   },
   {
       value: "moto",
       label: "Envio por moto",
-      price: 2000,
-      description: "Disponible solo para Ciudad de Buenos Aires. Llega en los proximos 5 dias."
+      price: 3890,
+      description: "Disponible solo para Ciudad de Buenos Aires. Llega en los proximos 3 dias habiles."
   },
   {
       value: "retiro",

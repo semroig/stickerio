@@ -26,12 +26,12 @@ function Precios() {
   const priceData = [
     {
       size: "Chico",
-      price: "$400",
+      price: "$450",
       measurement: "4x4 cm",
     },
     {
       size: "Grande",
-      price: "$550",
+      price: "$600",
       measurement: "7x7 cm",
     },
   ];

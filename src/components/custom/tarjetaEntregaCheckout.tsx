@@ -5,8 +5,9 @@ import {
 
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Input } from "@/components/ui/input"
 
-export default function TarjetaEntregaCheckout({ opcion }: any) {
+export default function TarjetaEntregaCheckout({ opcion, setDireccion, entregaActiva }: any) {
     const precio = opcion.price !== 0 ? '$ ' + opcion.price.toString() : 'Gratis'
     return (
         <Card className="mb-4 shadow-md p-3">
@@ -36,8 +37,24 @@ export default function TarjetaEntregaCheckout({ opcion }: any) {
                             )
                         }
                     </div>
-                    
+
                 </div>
+
+                {((opcion.value === 'correo' || opcion.value === 'moto') && opcion.value === entregaActiva) && (
+                    <div className="lg:flex lg:items-center lg:justify-center mt-5">
+                        <div className="basis-3/4">
+                            <Label htmlFor="direc" className="text-lg font-medium">
+                                Dirección completa:
+                            </Label>
+                            <Input id="direc" type="text" name="cantidad" min="0" required className="rounded-[50px] py-6 px-5"
+                                onChange={(event) => {
+                                    console.log(event)
+                                    setDireccion(event.target.value)
+                                }}
+                            ></Input>
+                        </div>
+                    </div>
+                )}
             </CardContent>
         </Card>
     )

@@ -54,8 +54,8 @@ export default async function Home({ params }: any) {
     // Itero por los items para sumar totales
     let subTotal = 0;
     items?.forEach((element: any) => {
-        if (element.size === 'grande') subTotal += element.quantity * 550;
-        if (element.size === 'chico') subTotal += element.quantity * 400;
+        if (element.size === 'grande') subTotal += element.quantity * 600;
+        if (element.size === 'chico') subTotal += element.quantity * 450;
     })
 
     return (
@@ -104,7 +104,8 @@ export default async function Home({ params }: any) {
                                 </p>
                                 <p className='text-xl text-gris mt-2'>
                                     Tenés que transferir transferir $ {subTotal + order![0].metodo_entrega.price} al alias
-                                    sem.vicky y enviarnos el comprobante de pago por mail (a thestickerco.info@gmail.com) o whatsapp (al +54 9 11 2392 0584)!
+                                    <span className='font-medium text-verde'>thestickercompany</span> y enviarnos el
+                                    comprobante de pago por mail (a thestickerco.info@gmail.com) o whatsapp (al +54 9 11 2392 0584)!
                                     En cuanto nos escribas, lo antes posible lo vamos a verificar y empezar a preparar tus stickers 🤙
                                 </p>
                             </div>

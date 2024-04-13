@@ -53,9 +53,9 @@ export default async function Home() {
         <ArrowLeft color="#016241" className="mr-1"/> Seguir comprando
       </Link>
 
-      <div className="flex justify-center mx-28 mt-8 gap-20">
+      <div className="lg:flex lg:justify-center mx-5 lg:mx-28 mt-5 lg:mt-8 lg:gap-20">
         <div className="basis-9/12">
-          <p className="font-medium text-4xl text-verde">Carrito</p>
+          <p className="font-medium text-3xl lg:text-4xl text-verde">Carrito</p>
 
           {items?.length === 0 && 
             <p className='m-20'>Aun no hay productos agregados al carrito :(</p>
@@ -69,7 +69,7 @@ export default async function Home() {
 
         </div>
         <div className="basis-3/12">
-          <p className="font-medium text-4xl text-verde">Resumen</p>
+          <p className="mt-5 font-medium text-3xl lg:text-4xl text-verde">Resumen</p>
           <Card className="mt-5 pt-5 shadow-md">
             <CardContent>
               {/* <p className="font-semibold text-xl">Dirección</p> */}

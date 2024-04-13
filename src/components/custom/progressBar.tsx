@@ -13,51 +13,31 @@ import {
     Stepper,
     useSteps,
     Box
-  } from '@chakra-ui/react'
+} from '@chakra-ui/react'
 
-const estados = [
-    {
-        title: 'Pendiente',
-        value: "pendiente",
-        label: "Confirmacion de pago",
-        indice: 0
-    },
-    {
-        title: 'Preparacion',
-        value: "preparacion",
-        label: "Armando tu pedido",
-        indice: 1
-    },
-    {
-        title: 'Enviado',
-        value: "viaje",
-        label: "En viaje",
-        indice: 2
-    },
-    {
-        title: 'Listo :)',
-        value: "recibido",
-        label: "Pedido entregado",
-        indice: 4
-    }
-];
+import { STATES } from '@/app/constants';
 
-export default function ProgressBar ({ estado }: any) {
+export default function ProgressBar ({ estado, orientacion }: any) {
     let indice = 0;
-    estados.forEach(element => {
+    STATES.forEach(element => {
         if (element.value === estado) indice = element.indice;
     })
 
     const { activeStep } = useSteps({
         index: indice,
-        count: estados.length,
+        count: STATES.length,
     })
 
     return (
-        <Box position="relative" mx={100}>
+        <Box position="relative" maxW='lg'>
             <ChakraProvider>
-                <Stepper index={activeStep} colorScheme='green'>
-                    {estados.map((step, index) => (
+                <Stepper
+                    index={activeStep}
+                    colorScheme='green'
+                    orientation={orientacion}
+                    height={orientacion === 'vertical' ? '300px' : ''}
+                >
+                    {STATES.map((step, index) => (
                         <Step key={index}>
                             <StepIndicator>
                                 <StepStatus

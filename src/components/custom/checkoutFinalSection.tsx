@@ -4,6 +4,8 @@ import { useState } from "react";
 import { createBrowserClient } from '@supabase/ssr'
 import { useRouter } from 'next/navigation'
 
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
@@ -15,38 +17,17 @@ import {
 
 import TarjetaEntregaCheckout from "@/components/custom/tarjetaEntregaCheckout"
 
-// import { METODOS_ENTREGA } from '@/app/constants';
+import { METODOS_ENTREGA } from '@/app/constants';
 
-export const METODOS_ENTREGA = [
-    { 
-        value: "correo",
-        label: "Envio por correo",
-        price: 3650,
-        description: "Disponible para todo el pais. Llega en los proximos 10 dias."
-    },
-    {
-        value: "moto",
-        label: "Envio por moto",
-        price: 2000,
-        description: "Disponible solo para Ciudad de Buenos Aires. Llega en los proximos 5 dias."
-    },
-    {
-        value: "retiro",
-        label: "Retiro en persona",
-        price: 0,
-        description: "De lunes a viernes entre las 8hs y 17hs por Villa Urquiza, Ciudad de Buenos Aires. Disponible a partir de manana!"
-    }
-  ];
-
-export default function CheckoutFinalSection ({ records }: any) {
+export default function CheckoutFinalSection ({ records, userSessionData }: any) {
     const [entrega, setEntrega] = useState(METODOS_ENTREGA[0]);
     const router = useRouter();
 
     // Itero por los items para sumar totales
     let subTotal = 0;
     records?.forEach((element: any) => {
-        if (element.size === 'grande') subTotal += 550;
-        if (element.size === 'chico') subTotal += 400;
+        if (element.size === 'grande') subTotal += element.quantity * 550;
+        if (element.size === 'chico') subTotal += element.quantity * 400;
     })
 
     async function confirmarPedido() {
@@ -62,7 +43,8 @@ export default function CheckoutFinalSection ({ records }: any) {
                     metodo_pago: 'transferencia',
                     subtotal_stickers: subTotal,
                     metodo_entrega: entrega,
-                    total: subTotal + entrega.price
+                    total: subTotal + entrega.price,
+                    user_id: userSessionData.user.id
                 },
             ])
             .select()
@@ -98,7 +80,7 @@ export default function CheckoutFinalSection ({ records }: any) {
         const { data: cartItems, error: cartItemsError } = await supabase
             .from('CartItem')
             .delete()
-            .gt('id', 0)
+            .eq('user_id', userSessionData.user.id);
 
         if (cartItems) console.log(cartItems);
         if (cartItemsError) {
@@ -109,42 +91,52 @@ export default function CheckoutFinalSection ({ records }: any) {
         router.push(`/order/${order[0].id}`);
     }
 
-    async function changeEntrega({value}: any) {
-        console.log('debug')
-        console.log(value)
+    async function cambiarEntrega(valor : string) {
         METODOS_ENTREGA.forEach(opcion => {
-            if (opcion.value === value) setEntrega(opcion);
+            if (opcion.value === valor) setEntrega(opcion);
         })
     }
 
     return (
-        <div className="flex justify-center mx-28 mt-8 gap-20">
+        <div className="lg:flex lg:justify-center mx-5 lg:mx-28 mt-5 lg:mt-8 lg:gap-20">
             <div className="basis-9/12">
-                <div className=''>
-                    <p className="font-medium text-4xl text-verde">Elegí método de entrega</p>
-                    <RadioGroup defaultValue="moto" className="mt-5" onValueChange={changeEntrega}>
+                <div>
+                    <p className="font-medium text-3xl lg:text-4xl text-verde">Elegí método de entrega</p>
+                    <RadioGroup 
+                        defaultValue="correo"
+                        className="mt-5"
+                        onValueChange={cambiarEntrega}
+                    >
                         {METODOS_ENTREGA!.map((opcion : any) => (
                             <TarjetaEntregaCheckout key={opcion.value} opcion={opcion} />
                         ))}
                     </RadioGroup>
                 </div>
         
-                <div className='mt-10'>
-                    <p className="font-medium text-4xl text-verde">Elegí método de pago</p>
-                    <RadioGroup defaultValue="transferencia" className="mt-5">
-                        <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="transferencia" id="s1" />
-                        <Label htmlFor="s1" className="text-lg font-medium">Transferencia</Label>
-                        </div>
-                        <p className="ml-5 text-base font-normal">
-                        Tendras que enviarnos el comprobante luego de realizado el pago.
-                        </p>
-                    </RadioGroup>
+                <div className='mt-5 lg:mt-10'>
+                    <p className="font-medium text-3xl lg:text-4xl text-verde">Elegí método de pago</p>
+
+                    <Card className="mt-5 shadow-md p-3">
+                        <CardContent>
+                            <div className="lg:flex lg:items-center lg:justify-between">
+                                <div className="lg:basis-9/12">
+                                    <div className="flex items-center space-x-2 mt-2">
+                                        <Label className="text-lg font-medium">
+                                            Transferencia
+                                        </Label>
+                                    </div>
+                                    <p className="text-base font-light">
+                                        Tendras que enviarnos el comprobante luego de realizado el pago.
+                                    </p>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
 
-            <div className="basis-3/12">
-                <p className="font-medium text-4xl text-verde">Resumen</p>
+            <div className="mt-6 lg:mt-0 lg:basis-3/12">
+                <p className="font-medium text-3xl lg:text-4xl text-verde">Resumen</p>
                 <Card className="mt-5 pt-5 shadow-md">
                     <CardContent>
                         <div className="flex justify-between text-lg text-right my-1">
@@ -161,8 +153,16 @@ export default function CheckoutFinalSection ({ records }: any) {
                             <p>$ {subTotal + entrega.price}</p>
                         </div>
                     </CardContent>
+
                     <CardFooter className="flex justify-center">
-                        {/* <Button onClick={confirmarPedido}>Finalizar compra</Button> */}
+                        <Link href="/checkout">
+                            <Button
+                                onClick={confirmarPedido}
+                                className='mt-3 w-full px-12 py-6 text-xl font-normal text-crema whitespace-nowrap bg-naranja rounded-[50px]'
+                            >
+                                Finalizar compra
+                            </Button>
+                        </Link>
                     </CardFooter>
                 </Card>
            </div>

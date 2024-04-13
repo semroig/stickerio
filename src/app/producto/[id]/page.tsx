@@ -46,15 +46,15 @@ export default async function Home({ params }: any) {
           <div className="m-6 basis-2/5">
             <Image
                 src={product![0].image_url}
-                width={600}
-                height={600}
+                width={500}
+                height={500}
                 alt="Picture of the author"
                 className='rounded-lg'
             />
           </div>
           <div className="m-6 basis-2/5">
 
-            <p className="font-medium text-5xl text-verde">{ product![0].name }</p>
+            <p className="font-medium text-4xl lg:text-5xl text-verde">{ product![0].name }</p>
             <p className="text-xl mt-3 text-gris font-light">{ product![0].description }</p>
             {/* <p className="font-light text-5xl my-10 ">$ 200</p> */}
 
@@ -62,7 +62,9 @@ export default async function Home({ params }: any) {
 
           </div>
         </div>
+
         <Footer />
+
       </div>
     )
 }

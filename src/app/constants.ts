@@ -37,3 +37,30 @@ export const METODOS_ENTREGA = [
       description: "De lunes a viernes entre las 8hs y 17hs por Villa Urquiza, Ciudad de Buenos Aires. Disponible a partir de manana!"
   }
 ];
+
+export const STATES = [
+    {
+        title: 'Pendiente',
+        value: "pendiente",
+        label: "Confirmacion de pago",
+        indice: 0
+    },
+    {
+        title: 'Preparacion',
+        value: "preparacion",
+        label: "Armando tu pedido",
+        indice: 1
+    },
+    {
+        title: 'Enviado',
+        value: "viaje",
+        label: "En viaje",
+        indice: 2
+    },
+    {
+        title: 'Listo :)',
+        value: "recibido",
+        label: "Pedido entregado",
+        indice: 4
+    }
+];

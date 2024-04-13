@@ -22,18 +22,19 @@ export default async function Home() {
   // Traigo todos los cart items
   const { data: items, error } = await supabase
     .from("CartItem")
-    .select(`*, Product(*)`);
+    .select(`*, Product(*)`)
+    .eq('user_id', sessionData.session.user.id);
   if (error) console.error(error);
 
   return (
     <>
       <Navbar userSessionData={sessionData.session} />
 
-      <Link href={'/catalogo'} className="text-gris text-lg font-light flex mx-5 mt-5 lg:mx-28 lg:mt-14">
+      <Link href={'/carrito'} className="text-gris text-lg font-light flex mx-5 mt-5 lg:mx-28 lg:mt-14">
         <ArrowLeft color="#016241" className="mr-1"/> Volver al carrito
       </Link>
 
-      <CheckoutFinalSection records={items} />
+      <CheckoutFinalSection records={items} userSessionData={sessionData.session}/>
 
       <Footer />
     </>

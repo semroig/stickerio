@@ -103,7 +103,7 @@ export default async function Home({ params }: any) {
                                     Tu pedido permanecerá en {"Pendiente"} hasta que confirmemos tu pago
                                 </p>
                                 <p className='text-xl text-gris mt-2'>
-                                    Tenés que transferir transferir $ {subTotal + order![0].metodo_entrega.price} al alias
+                                    Tenés que transferir $ {subTotal + order![0].metodo_entrega.price} al alias
                                     <span className='font-medium text-verde'> thestickercompany</span> y enviarnos el
                                     comprobante de pago por mail (a thestickerco.info@gmail.com) o whatsapp (al +54 9 11 2392 0584)!
                                     En cuanto nos escribas, lo antes posible lo vamos a verificar y empezar a preparar tus stickers 🤙

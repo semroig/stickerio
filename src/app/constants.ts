@@ -11,6 +11,21 @@ export const SIZES = [
         shortLabel: "Grande 7x7",
         price: 600
     }
+];
+
+export const PAPERS = [
+    {
+      value: "blanco",
+      label: "Blanco mate",
+    },
+    {
+        value: "transparente",
+        label: "Transparente",
+    },
+    {
+        value: "holografico",
+        label: "Holografico",
+    }
 ]
 
 export const METODOS_ENTREGA = [

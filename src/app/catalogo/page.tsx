@@ -39,6 +39,7 @@ export default async function Home({ searchParams }: any) {
     resp = await supabase
     .from("Product")
     .select("*", { count: 'exact' })
+    .eq('isActive', true)
     .in('collection_id', filteringCategories)
     .range((pagina - 1) * 12, pagina * 12 - 1)
 
@@ -48,6 +49,7 @@ export default async function Home({ searchParams }: any) {
     resp = await supabase
     .from("Product")
     .select("*", { count: 'exact' })
+    .eq('isActive', true)
     .range((pagina - 1) * 12, pagina * 12 - 1)
   }
 

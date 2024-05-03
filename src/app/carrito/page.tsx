@@ -1,3 +1,6 @@
+import type { Metadata } from 'next'
+export const metadata: Metadata = { title: "Carrito" }
+
 import readUserSession from '@/lib/actions'
 import { redirect } from 'next/navigation';
 

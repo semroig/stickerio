@@ -1,3 +1,6 @@
+import type { Metadata } from 'next'
+export const metadata: Metadata = { title: "Catalogo" }
+
 import createSupabaseServerClient from "@/lib/supabase/server";
 import readUserSession from '@/lib/actions'
 

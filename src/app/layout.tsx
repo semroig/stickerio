@@ -1,7 +1,45 @@
 import type { Metadata } from 'next'
 export const metadata: Metadata = {
-  title: 'The Sticker Company',
-  description: 'Ponele onda a tus cosas con nuestros stickers. Envios a todo Argentina y collecciones con ilustraciones únicas!',
+  title: {
+    template: '%s | The Sticker Company',
+    default: 'The Sticker Company', // a default is required when creating a template
+  },
+  description: 'Ponele onda a tus cosas con nuestros stickers! Arma tu pedido online, compra stickers, calcos y vinilos desde tu casa. Envios a todo el país. Buenos Aires, Argentina.',
+  generator: 'Supabase Vercel Next.js 14.1.1',
+  applicationName: 'The Sticker Company Online Shop Tienda',
+  // referrer: 'origin-when-cross-origin',
+  keywords: [
+    'Next.js',
+    'React',
+    'JavaScript',
+    'Sticker',
+    'Stickers',
+    'Vinilo',
+    'Vinilos',
+    'Calco',
+    'Calcos',
+    'Calcomania',
+    'Calcomanias',
+    'Arg',
+    'Argentina',
+    'Comprar',
+    'Online',
+    'Tienda',
+    'Shop',
+    'Catalogo'
+  ],
+  authors: [
+    { name: 'Sem Gabriel Roig', url: 'https://www.linkedin.com/in/sem-gabriel-roig/' },
+    { name: 'Victoria Cabranes', url: 'https://www.linkedin.com/in/victoria-cabranes/' }
+  ],
+  creator: 'Sem Gabriel Roig',
+  publisher: 'The Sticker Co Development Team',
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
+  category: 'retail',
 }
 
 import { Poppins } from 'next/font/google'

@@ -1,3 +1,6 @@
+import type { Metadata } from 'next'
+export const metadata: Metadata = { title: "Ingresar" }
+
 import Link from 'next/link'
 
 import LogInForm from '@/components/custom/logInForm'

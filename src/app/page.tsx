@@ -1,3 +1,6 @@
+import type { Metadata } from 'next'
+export const metadata: Metadata = { title: "Hola :) Bienvenido a The Sticker Company" }
+
 import readUserSession from '@/lib/actions'
 
 import Navbar from "@/components/custom/landing/navbar"

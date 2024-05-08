@@ -47,7 +47,9 @@ export default async function Navbar({ userSessionData, isHamburguesaOpen } : an
                   </div>
                 </Link>
 
-                <Link href={"/carrito"} prefetch={false}><ShoppingCart /></Link>
+                <Link href={"/carrito"} prefetch={false}>
+                  <ShoppingCart />
+                </Link>
                 <SignOut />
               </>
             ) :

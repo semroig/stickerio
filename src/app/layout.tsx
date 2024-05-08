@@ -4,7 +4,7 @@ export const metadata: Metadata = {
     template: '%s | The Sticker Company',
     default: 'The Sticker Company', // a default is required when creating a template
   },
-  description: 'Ponele onda a tus cosas con nuestros stickers. Arma tu pedido online, compra stickers, calcos y vinilos desde tu casa. Envios a todo Argentina.',
+  description: 'Ponele onda a tus cosas con nuestros stickers! Arma tu pedido online, compra stickers, calcos y vinilos desde tu casa. Envios a todo el país. Buenos Aires, Argentina.',
   generator: 'Supabase Vercel Next.js 14.1.1',
   applicationName: 'The Sticker Company Online Shop Tienda',
   // referrer: 'origin-when-cross-origin',

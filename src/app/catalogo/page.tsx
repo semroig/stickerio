@@ -28,7 +28,10 @@ export default async function Home({ searchParams }: any) {
   const supabase = await createSupabaseServerClient();
 
   // Traigo todas las categorias
-  const { data: categories } = await supabase.from("Collection").select();
+  const { data: categories } = await supabase
+    .from("Collection")
+    .select()
+    .eq('isActive', true);
 
   // Reviso si hay paginacion
   let pagina = 1;
@@ -40,22 +43,22 @@ export default async function Home({ searchParams }: any) {
   if (searchParams.category){
     const filteringCategories = searchParams.category.split('-');
     resp = await supabase
-    .from("Product")
-    .select("*", { count: 'exact' })
-    .eq('isActive', true)
-    .in('collection_id', filteringCategories)
-    .order('id', { ascending: false })
-    .range((pagina - 1) * 12, pagina * 12 - 1)
+      .from("Product")
+      .select("*", { count: 'exact' })
+      .eq('isActive', true)
+      .in('collection_id', filteringCategories)
+      .order('id', { ascending: false })
+      .range((pagina - 1) * 12, pagina * 12 - 1)
 
     if (filteringCategories.length === 1) categoriaLanding = parseInt(filteringCategories[0]);
   }
   else {
     resp = await supabase
-    .from("Product")
-    .select("*", { count: 'exact' })
-    .eq('isActive', true)
-    .order('id', { ascending: false })
-    .range((pagina - 1) * 12, pagina * 12 - 1)
+      .from("Product")
+      .select("*", { count: 'exact' })
+      .eq('isActive', true)
+      .order('id', { ascending: false })
+      .range((pagina - 1) * 12, pagina * 12 - 1)
   }
 
   const pagItems = [];

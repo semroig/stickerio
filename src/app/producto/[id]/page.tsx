@@ -17,7 +17,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import ProductInputSection from "@/components/custom/productInputSection";
 
 import { ArrowLeft } from 'lucide-react';
-import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
 
 export default async function Home({ params }: any) {
     // Verifico si esta logueado
@@ -65,10 +64,10 @@ export default async function Home({ params }: any) {
             {/* <p className="font-light text-5xl my-10 ">$ 200</p> */}
 
             {!sessionData.session && (
-              <Alert className="mt-20 p-7">
+              <Alert className="mt-16 p-7">
                   <AlertTitle>Hola! :)</AlertTitle>
                   <AlertDescription>
-                      Para poder agregar este sticker a tu carrito tenes que ingresar a tu cuenta.
+                      Para agregar este sticker a tu carrito tenés que ingresar a tu cuenta.
                   </AlertDescription>
               </Alert>
             )}

@@ -11,7 +11,38 @@ export async function GET (request: NextRequest) {
   const redirectTo = request.nextUrl.clone()
   redirectTo.pathname = next
 
-  if (token_hash && type) {
+  console.log('type', type);
+
+  if (token_hash && type === 'email') {
+    const cookieStore = cookies()
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get(name: string) {
+            return cookieStore.get(name)?.value
+          },
+          set(name: string, value: string, options: CookieOptions) {
+            cookieStore.set({ name, value, ...options })
+          },
+          remove(name: string, options: CookieOptions) {
+            cookieStore.delete({ name, ...options })
+          },
+        },
+      }
+    )
+
+    const { error } = await supabase.auth.verifyOtp({
+      type,
+      token_hash,
+    })
+    if (!error) {
+      return NextResponse.redirect(redirectTo)
+    }
+    else console.error(error);
+  }
+  else if (token_hash && type === 'recovery') {
     const cookieStore = cookies()
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,

@@ -54,6 +54,8 @@ import { Toaster } from "@/components/ui/toaster"
 
 import './globals.css'
 
+import GoogleAnalytics from '@/components/custom/googleAnalytics';
+
 export default function RootLayout({
   children,
 }: {
@@ -64,6 +66,7 @@ export default function RootLayout({
       <body className="bg-neutral-100">
         {children}
         <Analytics />
+        <GoogleAnalytics />
         <Toaster />
       </body>
     </html>

@@ -49,7 +49,7 @@ export default function LogInForm() {
         startTransition(async () => {
             const result = await signInWithEmailAndPassword(datos);
             const { data, error }  = JSON.parse(result);
-            if (error) console.error(error.message);
+            if (error) setErrorGenerated(error.message);
             else {
                 toast({
                     title: `Bienvenido ${data.user.user_metadata.display_name}!`,
@@ -98,7 +98,7 @@ export default function LogInForm() {
                 {errorGenerated !== '' && (
                     <Alert variant="destructive" className="my-2">
                       <AlertCircle className="h-4 w-4" />
-                      <AlertTitle>Error al crear el usuario</AlertTitle>
+                      <AlertTitle>Error al ingresar con tu usuario</AlertTitle>
                       <AlertDescription>{errorGenerated}</AlertDescription>
                     </Alert>
                 )}

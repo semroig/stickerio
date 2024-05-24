@@ -27,8 +27,9 @@ export default function CheckoutFinalSection ({ records, userSessionData }: any)
     // Itero por los items para sumar totales
     let subTotal = 0;
     records?.forEach((element: any) => {
-        if (element.size === 'grande') subTotal += element.quantity * 600;
         if (element.size === 'chico') subTotal += element.quantity * 450;
+        if (element.size === 'grande') subTotal += element.quantity * 600;
+        if (element.size === 'gigante') subTotal += element.quantity * 700;
     })
 
     async function confirmarPedido() {

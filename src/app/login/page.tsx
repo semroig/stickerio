@@ -4,7 +4,6 @@ export const metadata: Metadata = { title: "Ingresar" }
 import Link from 'next/link'
 
 import LogInForm from '@/components/custom/logInForm'
-import OAuthForm from '@/components/custom/oAuthForm';
 import readUserSession from '@/lib/actions'
 import { redirect } from 'next/navigation';
 
@@ -23,7 +22,7 @@ export default async function Home() {
       </div>
 
       <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-verde">Ingresar a tu cuenta</h2>
-      
+
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <LogInForm></LogInForm>
         {/* <OAuthForm></OAuthForm> */}

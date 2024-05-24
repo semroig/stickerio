@@ -10,7 +10,13 @@ export const SIZES = [
         label: "Grande 7x7 - $600",
         shortLabel: "Grande 7x7",
         price: 600
-    }
+    },
+    {
+        value: "gigante",
+        label: "Gigante 10x10 - $700",
+        shortLabel: "Gigante 10x10",
+        price: 700
+    },
 ];
 
 export const PAPERS = [

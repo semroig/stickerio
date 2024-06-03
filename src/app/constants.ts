@@ -1,9 +1,9 @@
 export const SIZES = [
     {
-      value: "chico",
-      label: "Chico 4x4 - $450",
-      shortLabel: "Chico 4x4",
-      price: 450
+        value: "chico",
+        label: "Chico 4x4 - $450",
+        shortLabel: "Chico 4x4",
+        price: 450
     },
     {
         value: "grande",

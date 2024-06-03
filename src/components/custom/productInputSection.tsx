@@ -17,6 +17,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
+
 import { Check, ChevronsUpDown, AlertCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 
@@ -72,6 +73,9 @@ export default function ProductInputSection({ record, userSessionData }: any) {
     // TO DO: No permitir numeros negativos en input de cantidad
     // TO DO: El alert debe desaparecer luego de algunos segundos
 
+    // Filtro array de tamanos basado en lo que tenga configurado el product record
+    const sizesFiltrados = SIZES.filter((tam) => record.availableSizes.includes(tam.value));
+
     return (
         <form action={formAction} className="mt-8 lg:mt-14">
             <div className="lg:flex lg:flex-row lg:justify-start gap-5">
@@ -87,7 +91,7 @@ export default function ProductInputSection({ record, userSessionData }: any) {
                             >
                                 {   
                                     value
-                                    ? SIZES.find((size) => size.value === value)?.label
+                                    ? sizesFiltrados.find((size) => size.value === value)?.label
                                     : "Elegir tamaño..."
                                 }
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
@@ -96,7 +100,7 @@ export default function ProductInputSection({ record, userSessionData }: any) {
                         <PopoverContent className="w-full lg:w-64 p-0">
                             <Command>
                                 <CommandGroup>
-                                    {SIZES.map((size) => (
+                                    {sizesFiltrados.map((size) => (
                                         <CommandItem
                                             key={size.value}
                                             value={size.value}
@@ -128,14 +132,13 @@ export default function ProductInputSection({ record, userSessionData }: any) {
                 </div>
             </div>
 
-            {state?.message && (
+            { state?.message && (
                 <div className="mt-3">
                     <AlertBox msg={state?.message}></AlertBox>
                 </div>
             )}
 
             <SubmitButton />
-
         </form>
     )
 }

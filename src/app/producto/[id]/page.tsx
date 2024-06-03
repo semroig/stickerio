@@ -3,14 +3,12 @@ export const metadata: Metadata = { title: "Producto" }
 
 import { cookies } from "next/headers";
 import { createServerClient } from '@supabase/ssr'
-
 import readUserSession from '@/lib/actions'
+import Link from 'next/link';
+import Image from 'next/image';
 
 import Navbar from "@/components/custom/landing/navbar"
 import Footer from "@/components/custom/landing/footer"
-
-import Image from 'next/image';
-import Link from 'next/link';
 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
@@ -72,13 +70,13 @@ export default async function Home({ params }: any) {
               </Alert>
             )}
 
-            {sessionData.session && <ProductInputSection record={product![0]} userSessionData={ sessionData.session } />}
-
+            { sessionData.session
+              && <ProductInputSection record={product![0]} userSessionData={ sessionData.session } />
+            }
           </div>
         </div>
 
         <Footer />
-
       </div>
     )
 }

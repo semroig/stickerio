@@ -106,7 +106,7 @@ export default function CheckoutFinalSection ({ records, userSessionData }: any)
                 <div>
                     <p className="font-medium text-3xl lg:text-4xl text-verde">Elegí método de entrega</p>
                     <RadioGroup 
-                        defaultValue="correo"
+                        defaultValue="moto"
                         className="mt-5"
                         onValueChange={cambiarEntrega}
                     >

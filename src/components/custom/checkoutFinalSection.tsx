@@ -29,7 +29,7 @@ export default function CheckoutFinalSection ({ records, userSessionData }: any)
     records?.forEach((element: any) => {
         if (element.size === 'chico') subTotal += element.quantity * 450;
         if (element.size === 'grande') subTotal += element.quantity * 600;
-        if (element.size === 'gigante') subTotal += element.quantity * 700;
+        if (element.size === 'gigante') subTotal += element.quantity * 750;
     })
 
     async function confirmarPedido() {

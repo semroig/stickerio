@@ -92,14 +92,14 @@ export default async function Home() {
               <div className='flex justify-between text-lg my-1'>
                 <p>Sticker gigante x{cantGigantes}</p>
                 <p>
-                  <span className="ml-3 text-right">$ {cantGigantes * 700}</span>
+                  <span className="ml-3 text-right">$ {cantGigantes * 750}</span>
                 </p>
               </div>
               <hr/>
               <div className='flex justify-between text-lg my-1 font-semibold'>
                 <p>Total (sin envio)</p>
                 <p>
-                  <span className="ml-3 text-right">$ {cantChicos * 450 + cantGrandes * 600 + cantGigantes * 700}</span>
+                  <span className="ml-3 text-right">$ {cantChicos * 450 + cantGrandes * 600 + cantGigantes * 750}</span>
                 </p>
               </div>
             </CardContent>

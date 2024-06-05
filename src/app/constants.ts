@@ -13,9 +13,9 @@ export const SIZES = [
     },
     {
         value: "gigante",
-        label: "Gigante 10x10 - $700",
+        label: "Gigante 10x10 - $750",
         shortLabel: "Gigante 10x10",
-        price: 700
+        price: 750
     },
 ];
 

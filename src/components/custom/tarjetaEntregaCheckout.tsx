@@ -4,11 +4,10 @@ import {
 } from "@/components/ui/card";
 
 import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { RadioGroupItem } from "@/components/ui/radio-group"
 import { Input } from "@/components/ui/input"
 
 export default function TarjetaEntregaCheckout({ opcion, setDireccion, entregaActiva }: any) {
-    const precio = opcion.price !== 0 ? '$ ' + opcion.price.toString() : 'Gratis'
     return (
         <Card className="mb-4 shadow-md p-3">
             <CardContent>

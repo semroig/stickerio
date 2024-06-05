@@ -8,9 +8,6 @@ import createSupabaseServerClient from "@/lib/supabase/server";
 import {
     Card,
     CardContent,
-    CardHeader,
-    CardDescription,
-    CardTitle
 } from "@/components/ui/card";
 
 import Navbar from "@/components/custom/landing/navbar";
@@ -46,16 +43,19 @@ export default async function Home({ params }: any) {
     // Itero por los items para sumar totales
     let cantChicos = 0;
     let cantGrandes = 0;
+    let cantGigantes = 0;
     items?.forEach((element) => {
-        if (element.size === 'grande') cantGrandes += element.quantity;
         if (element.size === 'chico') cantChicos += element.quantity;
+        if (element.size === 'grande') cantGrandes += element.quantity;
+        if (element.size === 'gigante') cantGigantes += element.quantity;
     })
 
     // Itero por los items para sumar totales
     let subTotal = 0;
     items?.forEach((element: any) => {
-        if (element.size === 'grande') subTotal += element.quantity * 600;
         if (element.size === 'chico') subTotal += element.quantity * 450;
+        if (element.size === 'grande') subTotal += element.quantity * 600;
+        if (element.size === 'gigante') subTotal += element.quantity * 750;
     })
 
     return (

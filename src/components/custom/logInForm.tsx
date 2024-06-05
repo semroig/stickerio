@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useTransition } from "react";
+import { useTransition, useState } from "react";
 import * as z from "zod";
 
 import { signInWithEmailAndPassword } from "@/app/actions"
@@ -20,7 +20,9 @@ import { Button } from "@/components/ui/button"
 import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
 
-import { Loader2 } from "lucide-react"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+
+import { Loader2, AlertCircle } from "lucide-react"
 
 const FormSchema = z
 	.object({
@@ -33,6 +35,7 @@ const FormSchema = z
 export default function LogInForm() {
     const [isPending, startTransition] = useTransition();
     const { toast } = useToast()
+    const [errorGenerated, setErrorGenerated] = useState('');
 
     const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
@@ -46,7 +49,7 @@ export default function LogInForm() {
         startTransition(async () => {
             const result = await signInWithEmailAndPassword(datos);
             const { data, error }  = JSON.parse(result);
-            if (error) console.error(error.message);
+            if (error) setErrorGenerated(error.message);
             else {
                 toast({
                     title: `Bienvenido ${data.user.user_metadata.display_name}!`,
@@ -91,6 +94,14 @@ export default function LogInForm() {
                     </FormItem>
                     )}
                 />
+
+                {errorGenerated !== '' && (
+                    <Alert variant="destructive" className="my-2">
+                      <AlertCircle className="h-4 w-4" />
+                      <AlertTitle>Error al ingresar con tu usuario</AlertTitle>
+                      <AlertDescription>{errorGenerated}</AlertDescription>
+                    </Alert>
+                )}
 
                 <Button type="submit" disabled={isPending} className="w-full">
                     Ingresar

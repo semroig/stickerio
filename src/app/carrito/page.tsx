@@ -18,7 +18,6 @@ import {
 import Link from "next/link";
 
 import TarjetaCarrito from "@/components/custom/tarjetaCarrito";
-import DeleteCartItemButton from "@/components/custom/deleteCartItemButton";
 import RefresherCarrito from "@/components/custom/refresherCarrito";
 
 import { ArrowLeft } from 'lucide-react';
@@ -40,9 +39,11 @@ export default async function Home() {
   // Itero por los items para sumar totales
   let cantChicos = 0;
   let cantGrandes = 0;
+  let cantGigantes = 0;
   items?.forEach((element) => {
-    if (element.size === 'grande') cantGrandes += element.quantity;
     if (element.size === 'chico') cantChicos += element.quantity;
+    if (element.size === 'grande') cantGrandes += element.quantity;
+    if (element.size === 'gigante') cantGigantes += element.quantity;
   })
 
   return (
@@ -88,11 +89,17 @@ export default async function Home() {
                   <span className="ml-3 text-right">$ {cantGrandes * 600}</span>
                 </p>
               </div>
+              <div className='flex justify-between text-lg my-1'>
+                <p>Sticker gigante x{cantGigantes}</p>
+                <p>
+                  <span className="ml-3 text-right">$ {cantGigantes * 750}</span>
+                </p>
+              </div>
               <hr/>
               <div className='flex justify-between text-lg my-1 font-semibold'>
                 <p>Total (sin envio)</p>
                 <p>
-                  <span className="ml-3 text-right">$ {cantChicos * 450 + cantGrandes * 600}</span>
+                  <span className="ml-3 text-right">$ {cantChicos * 450 + cantGrandes * 600 + cantGigantes * 750}</span>
                 </p>
               </div>
             </CardContent>
